@@ -1021,5 +1021,213 @@ export const artistInfoDatabase: Record<string, ArtistInfo> = {
     "residentAdvisorUrl": "https://www.blitz.club/2024/09/12/blitzcast-022-yamour/",
     "sourceLabel": "ra + web",
     "sourceUrl": "https://www.blitz.club/2024/09/12/blitzcast-022-yamour/"
+  },
+  "Otto Landsberg & Shin Hyo Jin": {
+    "bio": "Afro-cubano chekeres amplifying sounds of Cuban resilience, with deep gong textures and meditative silence.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Otto%20Landsberg%20Shin%20Hyo%20Jin",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Mohammad Reza Mortazavi": {
+    "bio": "Virtuosic tombak and daf performance where intricate percussion feels whispered, argued and dreamlike.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Mohammad%20Reza%20Mortazavi",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Nídia & Valentina Magaletti": {
+    "bio": "Syncopated drums, marimba lines and warm synths: dance music with personality, swagger and soul.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Nidia%20Valentina%20Magaletti",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Nkisi": {
+    "bio": "Music as transformation technology: insurgent rhythms that rupture consensus reality.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Nkisi",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Força Maior": {
+    "bio": "A saxophone-led project balancing delicacy and intensity, rooted in a long Portuguese historical lineage.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Forca%20Maior",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Charlemagne Palestine, Oren Ambarchi & Daniel O'Sullivan present KKAARREENNIINNAA": {
+    "bio": "A colorful, meditative minimalism reimagining of Charlemagne Palestine's Karenina performance.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Charlemagne%20Palestine%20Oren%20Ambarchi%20Daniel%20OSullivan",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Holy Tongue": {
+    "bio": "Psychedelic, free-form, high-energy spiritual dub-dance music.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Holy%20Tongue",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Niño de Elche": {
+    "bio": "Flamenco's radical heretic, reshaping the tradition into new forms over two decades.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Nino%20de%20Elche",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Takkak Takkak": {
+    "bio": "DJ Scotch Egg meets Raja Kirik: industrial, joyful and completely unclassifiable live collision.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Takkak%20Takkak",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Lip Sync 4 your Waking Life": {
+    "bio": "Late-night participatory chaos and collective madness: an open lip-sync ritual moment.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Lip%20Sync%204%20your%20Waking%20Life",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Lula Pena": {
+    "bio": "Voice-and-guitar intensity crossing fado grief, flamenco force and bossa tenderness.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Lula%20Pena",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Bonga": {
+    "bio": "Iconic figure in Angolan music.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Bonga",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "John McEntire & Sam Prekop": {
+    "bio": "Post-rock and rhythm-driven electronics from two long-time innovators, balancing movement and stillness.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=John%20McEntire%20Sam%20Prekop",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "O Ghettão": {
+    "bio": "Lisbon-rooted blend of afro-deep-house, kuduro and minimal dance experimentation.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=O%20Ghettao",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Joshua Serafin & Mario Barrantes Espinoza w/ Fake Moss": {
+    "bio": "A theatrical hybrid where fractured divinities and relic-like performance collide.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Joshua%20Serafin%20Mario%20Barrantes%20Espinoza%20Fake%20Moss",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Kitty Daisy & Lewis": {
+    "bio": "Sibling trio delivering a wild luau of guitar-ska-rockabilly-R&B chaos.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Kitty%20Daisy%20Lewis",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Asmaa Hamzaoui & Bnat Timbouktou": {
+    "bio": "Gnawa-rooted desert blues and trance-state invocation, carried by powerful vocal storytelling.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Asmaa%20Hamzaoui%20Bnat%20Timbouktou",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Pedrinho Xalé": {
+    "bio": "Cape Verdean soul, reggae and funana-inflected synth storytelling shaped into luminous club songs.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Pedrinho%20Xale",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Ata Kak": {
+    "bio": "High-energy vocal acrobatics and smile-inducing dance momentum with cult status.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Ata%20Kak",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Decius": {
+    "bio": "Raw, rave-driven intensity: dark desert energy turning suddenly euphoric.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Decius",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "e/tape": {
+    "bio": "Sound researcher and local fixture crafting lush, ethereal and diffused dawn atmospheres.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=e%20tape",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Alexi Perälä": {
+    "bio": "Ambient drone and astral vibration from a singular electronic language.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Alexi%20Perala",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Shahzad Ismaily": {
+    "bio": "Multi-instrumentalist whose delicate, heartstring-plucking performances feel deeply human.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Shahzad%20Ismaily",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Sonic Interventions": {
+    "bio": "Diasporic-futuristic, jazzified big-bang of music, spoken word and movement.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Sonic%20Interventions",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Robert Aiki Aubrey Lowe": {
+    "bio": "Modular synth alchemy and longform timbral architecture from the Brooklyn-based composer.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Robert%20Aiki%20Aubrey%20Lowe",
+    "sourceLabel": "Waking Life 2026 program booklet"
+  },
+  "Colleen presents Libres Antes del Final": {
+    "bio": "Moog Matriarch-led pulse work by Colleen, with immersive, ripple-like synth movement.",
+    "tags": [],
+    "labels": [],
+    "festivals": [],
+    "residentAdvisorUrl": "https://ra.co/search?search=Colleen%20Libres%20Antes%20del%20Final",
+    "sourceLabel": "Waking Life 2026 program booklet"
   }
 }

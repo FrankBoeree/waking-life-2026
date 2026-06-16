@@ -185,7 +185,7 @@ export default function Home() {
         {activeView === "timetable" ? (
           <TimetableView data={data} isLoading={isLoading} error={error} />
         ) : (
-          <LineupView showFavoritesOnly={showFavoritesOnly} />
+          <LineupView showFavoritesOnly={showFavoritesOnly} data={data} />
         )}
       </main>
 

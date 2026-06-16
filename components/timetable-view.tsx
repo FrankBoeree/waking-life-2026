@@ -10,6 +10,8 @@ import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/fes
 const HOUR_WIDTH = 240
 const MINUTES_PER_DAY = 24 * 60
 const PIXELS_PER_MINUTE = HOUR_WIDTH / 60
+const MIMO_PROGRAM_BLOCK_MINUTES = 4 * 60
+const MIMO_PAUSE_MINUTES = 2 * 60
 
 function FavoriteStarIcon({ filled }: { filled: boolean }) {
   return (
@@ -31,10 +33,19 @@ function FavoriteStarIcon({ filled }: { filled: boolean }) {
   )
 }
 
+function isOpenEndTime(time: string) {
+  return !time || time === "--" || time === "..:.."
+}
+
 function timeToMinutes(time: string) {
-  if (!time || time === "--") return 0
+  if (isOpenEndTime(time)) return 0
   const [h, m] = time.split(":").map(Number)
   return h * 60 + m
+}
+
+function formatArtistTimeRange(artist: Artist) {
+  const endTime = isOpenEndTime(artist.endTime) ? "..:.." : artist.endTime
+  return `${artist.startTime} - ${endTime}`
 }
 
 function formatTime(minutes: number) {
@@ -80,12 +91,103 @@ function getMinutesSinceFestivalStart(artist: Artist) {
 }
 
 function getArtistDuration(artist: Artist) {
+  if (artist.durationMinutes != null) {
+    return artist.durationMinutes
+  }
+
   const startDayIdx = getDayIndex(artist.startDay)
   const endDayIdx = getDayIndex(artist.endDay)
   const daysDiff = Math.max(0, endDayIdx - startDayIdx)
   const startMin = timeToMinutes(artist.startTime)
   const endMin = timeToMinutes(artist.endTime)
   return daysDiff * MINUTES_PER_DAY + (endMin - startMin)
+}
+
+function festivalOffsetToSlot(minutesFromStart: number): { day: ProgramDayId; time: string } {
+  const startDayIdx = PROGRAM_DAY_ORDER.indexOf(FESTIVAL_CONFIG.programStartDay)
+  const festivalStartMin = timeToMinutes(FESTIVAL_CONFIG.programStartTime)
+  const absoluteMin = festivalStartMin + minutesFromStart
+  const dayOffset = Math.floor(absoluteMin / MINUTES_PER_DAY)
+  const timeMin = ((absoluteMin % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY
+  const dayIdx = Math.min(startDayIdx + dayOffset, PROGRAM_DAY_ORDER.length - 1)
+
+  return {
+    day: PROGRAM_DAY_ORDER[dayIdx],
+    time: formatTime(timeMin),
+  }
+}
+
+function createMimoBlock(
+  offsetMinutes: number,
+  durationMinutes: number,
+  name: string,
+  placeholderKind: NonNullable<Artist["placeholderKind"]>,
+  index: number,
+): Artist {
+  const start = festivalOffsetToSlot(offsetMinutes)
+  const end = festivalOffsetToSlot(offsetMinutes + durationMinutes)
+
+  return {
+    id: `mimo-${placeholderKind}-${index}`,
+    name,
+    startTime: start.time,
+    endTime: end.time,
+    startDay: start.day,
+    endDay: end.day,
+    stage: "Mimo",
+    placeholderKind,
+  }
+}
+
+function generateMimoPlaceholderBlocks(totalFestivalMinutes: number): Artist[] {
+  const blocks: Artist[] = []
+  let offset = 0
+  let index = 0
+
+  while (offset < totalFestivalMinutes) {
+    const programDuration = Math.min(MIMO_PROGRAM_BLOCK_MINUTES, totalFestivalMinutes - offset)
+    if (programDuration > 0) {
+      blocks.push(
+        createMimoBlock(
+          offset,
+          programDuration,
+          "check program at stage",
+          "stage-program",
+          index++,
+        ),
+      )
+      offset += programDuration
+    }
+
+    if (offset >= totalFestivalMinutes) break
+
+    const pauseDuration = Math.min(MIMO_PAUSE_MINUTES, totalFestivalMinutes - offset)
+    if (pauseDuration > 0) {
+      offset += pauseDuration
+    }
+  }
+
+  return blocks
+}
+
+function getStageArtists(stageId: string, timetable: Artist[], totalMinutes: number) {
+  if (stageId === "Mimo") {
+    return generateMimoPlaceholderBlocks(totalMinutes)
+  }
+
+  return timetable.filter((artist) => artist.stage === stageId)
+}
+
+function getArtistBlockClassName(artist: Artist, isFav: boolean) {
+  if (artist.placeholderKind === "stage-program") {
+    return "border-dashed bg-white/55 border-black/70 cursor-default dark:bg-black/45 dark:border-white/70"
+  }
+
+  if (isFav) {
+    return "bg-black border-black dark:bg-white dark:border-white"
+  }
+
+  return "bg-white/80 border-black hover:bg-black dark:bg-black/60 dark:border-white dark:hover:bg-white"
 }
 
 function getFestivalTotalMinutes(timetable: Artist[]) {
@@ -345,50 +447,55 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                   </div>
                   {/* Artist timeline */}
                   <div className="relative" style={{ height: "56px", width: timelineWidth, marginTop: "8px" }}>
-                    {timetable.filter((a) => a.stage === stage.id).map((artist) => {
+                    {getStageArtists(stage.id, timetable, totalMinutes).map((artist) => {
                       const left = getMinutesSinceFestivalStart(artist) * PIXELS_PER_MINUTE;
                       const width = getArtistDuration(artist) * PIXELS_PER_MINUTE;
                       const isFav = isFavorite(artist.id);
+                      const isPlaceholder = Boolean(artist.placeholderKind);
+                      const isInteractive = !isPlaceholder;
                       return (
                         <div
                           key={artist.id}
-                          className={`absolute top-0 h-full border transition-colors cursor-pointer group flex flex-col justify-between mix-blend-multiply dark:mix-blend-normal ${
-                            isFav
-                              ? 'bg-black border-black dark:bg-white dark:border-white' 
-                              : 'bg-white/80 border-black hover:bg-black dark:bg-black/60 dark:border-white dark:hover:bg-white'
-                          }`}
+                          className={`absolute top-0 h-full border transition-colors group flex flex-col justify-between mix-blend-multiply dark:mix-blend-normal ${
+                            getArtistBlockClassName(artist, isFav)
+                          } ${isInteractive ? "cursor-pointer" : ""}`}
                           style={{
                             left: `${left}px`,
                             width: `${width}px`,
                             minWidth: "60px",
                           }}
-                          onClick={() => toggleFavorite(artist.id)}
+                          onClick={isInteractive ? () => toggleFavorite(artist.id) : undefined}
                         >
-                          {/* Ster icon right above */}
-                          <div className="absolute top-1 right-1 z-10">
-                            <span
-                              onClick={e => { e.stopPropagation(); toggleFavorite(artist.id); }}
-                              className="inline-flex items-center justify-center"
-                            >
-                              <FavoriteStarIcon filled={isFav} />
-                            </span>
-                          </div>
+                          {isInteractive && (
+                            <div className="absolute top-1 right-1 z-10">
+                              <span
+                                onClick={e => { e.stopPropagation(); toggleFavorite(artist.id); }}
+                                className="inline-flex items-center justify-center"
+                              >
+                                <FavoriteStarIcon filled={isFav} />
+                              </span>
+                            </div>
+                          )}
                           <div className="p-2 h-full flex flex-col justify-between">
                             <div 
-                              className={`text-xs font-bold truncate lowercase ${
-                                isFav
-                                  ? 'text-white dark:text-black'
-                                  : 'text-[#222] group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black'
+                              className={`text-xs font-bold lowercase ${
+                                artist.placeholderKind === "stage-program"
+                                  ? "text-black/70 leading-tight whitespace-normal dark:text-white/75"
+                                  : isFav
+                                    ? "text-white truncate dark:text-black"
+                                    : "text-[#222] truncate group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black"
                               }`}
                             >
                               {artist.name}
                             </div>
                             <div className={`text-xs font-bold lowercase ${
-                              isFav
-                                ? 'text-white/80 dark:text-black/75'
-                                : 'text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75'
+                              artist.placeholderKind
+                                ? "text-black/45 dark:text-white/45"
+                                : isFav
+                                  ? "text-white/80 dark:text-black/75"
+                                  : "text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75"
                             }`}>
-                              {artist.startTime} - {artist.endTime}
+                              {formatArtistTimeRange(artist)}
                             </div>
                           </div>
                         </div>

@@ -1,4 +1,1312 @@
 {
-  "version": "2026.1.0",
-  "timetable": []
+  "version": "2026.2.3",
+  "timetable": [
+    {
+      "id": "tristan-arp-praia-wednesday-21-00",
+      "name": "Tristan Arp",
+      "startTime": "21:00",
+      "endTime": "22:00",
+      "stage": "Praia",
+      "startDay": "wednesday",
+      "endDay": "wednesday"
+    },
+    {
+      "id": "party-smith-praia-wednesday-22-00",
+      "name": "Party Smith",
+      "startTime": "22:00",
+      "endTime": "01:00",
+      "stage": "Praia",
+      "startDay": "wednesday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "dj-marcelle-praia-thursday-01-00",
+      "name": "Dj Marcelle",
+      "startTime": "01:00",
+      "endTime": "04:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "kiss-nuka-praia-thursday-04-00",
+      "name": "Kiss Nuka",
+      "startTime": "04:00",
+      "endTime": "06:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "a-pausa-praia-thursday-06-00",
+      "name": "a pausa",
+      "startTime": "06:00",
+      "endTime": "12:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "om-unit-acid-dub-studies-praia-thursday-12-00",
+      "name": "Om Unit Acid Dub Studies",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "e-l-e-m-e-n-t-a-l-praia-thursday-13-00",
+      "name": "e l e m e n t a l",
+      "startTime": "13:00",
+      "endTime": "16:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "protodub-praia-thursday-16-00",
+      "name": "protodub",
+      "startTime": "16:00",
+      "endTime": "19:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "marylou-praia-thursday-19-00",
+      "name": "Marylou",
+      "startTime": "19:00",
+      "endTime": "23:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "mia-koden-praia-thursday-23-00",
+      "name": "Mia Koden",
+      "startTime": "23:00",
+      "endTime": "02:00",
+      "stage": "Praia",
+      "startDay": "thursday",
+      "endDay": "friday"
+    },
+    {
+      "id": "mala-praia-friday-02-00",
+      "name": "Mala",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "mix-elle-praia-friday-04-00",
+      "name": "Mix'Elle",
+      "startTime": "04:00",
+      "endTime": "06:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "a-pausa-praia-friday-06-00",
+      "name": "a pausa",
+      "startTime": "06:00",
+      "endTime": "12:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "o-ghett-o-praia-friday-12-00",
+      "name": "o ghettão",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "dj-caring-praia-friday-14-00",
+      "name": "Dj Caring",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "nightmares-on-wax-praia-friday-17-00",
+      "name": "Nightmares on Wax",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "ojoo-praia-friday-20-00",
+      "name": "Ojoo",
+      "startTime": "20:00",
+      "endTime": "23:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "dj-godfather-praia-friday-23-00",
+      "name": "Dj Godfather",
+      "startTime": "23:00",
+      "endTime": "00:00",
+      "stage": "Praia",
+      "startDay": "friday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "niknak-praia-saturday-00-00",
+      "name": "NikNak",
+      "startTime": "00:00",
+      "endTime": "01:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "nosedrip-praia-saturday-01-00",
+      "name": "Nosedrip",
+      "startTime": "01:00",
+      "endTime": "06:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "a-pausa-praia-saturday-06-00",
+      "name": "a pausa",
+      "startTime": "06:00",
+      "endTime": "12:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "hugo-sanchez-praia-saturday-12-00",
+      "name": "Hugo Sanchez",
+      "startTime": "12:00",
+      "endTime": "16:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "alan-braxe-praia-saturday-16-00",
+      "name": "Alan Braxe",
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "arrogance-arrogance-praia-saturday-18-00",
+      "name": "Arrogance Arrogance",
+      "startTime": "18:00",
+      "endTime": "21:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "natalia-escobar-praia-saturday-21-00",
+      "name": "Natalia Escobar",
+      "startTime": "21:00",
+      "endTime": "00:00",
+      "stage": "Praia",
+      "startDay": "saturday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "shackleton-praia-sunday-00-00",
+      "name": "Shackleton",
+      "startTime": "00:00",
+      "endTime": "01:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "olgica-praia-sunday-01-00",
+      "name": "Olgica",
+      "startTime": "01:00",
+      "endTime": "03:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "upsammy-x-gyrofield-praia-sunday-03-00",
+      "name": "Upsammy x Gyrofield",
+      "startTime": "03:00",
+      "endTime": "06:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "a-pausa-praia-sunday-06-00",
+      "name": "a pausa",
+      "startTime": "06:00",
+      "endTime": "14:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "selecta-fontes-praia-sunday-14-00",
+      "name": "Selecta Fontes",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "vixen-sound-praia-sunday-16-00",
+      "name": "Vixen Sound",
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "simply-rockers-sound-system-praia-sunday-18-00",
+      "name": "Simply Rockers Sound System",
+      "startTime": "18:00",
+      "endTime": "20:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "vedic-roots-praia-sunday-20-00",
+      "name": "Vedic Roots",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "lion-s-den-praia-sunday-22-00",
+      "name": "Lion's Den",
+      "startTime": "22:00",
+      "endTime": "00:00",
+      "stage": "Praia",
+      "startDay": "sunday",
+      "endDay": "monday"
+    },
+    {
+      "id": "simply-rockers-sound-system-praia-monday-00-00",
+      "name": "Simply Rockers Sound System",
+      "startTime": "00:00",
+      "endTime": "02:00",
+      "stage": "Praia",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "edward-outro-lado-thursday-12-00",
+      "name": "Edward",
+      "startTime": "12:00",
+      "endTime": "16:00",
+      "stage": "Outro Lado",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "alton-miller-outro-lado-thursday-16-00",
+      "name": "Alton Miller",
+      "startTime": "16:00",
+      "endTime": "19:00",
+      "stage": "Outro Lado",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "yamour-outro-lado-thursday-19-00",
+      "name": "Yamour",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "stage": "Outro Lado",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "xdb-lowtec-outro-lado-thursday-22-00",
+      "name": "XDB & Lowtec",
+      "startTime": "22:00",
+      "endTime": "01:00",
+      "stage": "Outro Lado",
+      "startDay": "thursday",
+      "endDay": "friday"
+    },
+    {
+      "id": "michael-j-blood-outro-lado-friday-01-00",
+      "name": "Michael J Blood",
+      "startTime": "01:00",
+      "endTime": "04:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "flo-masse-outro-lado-friday-04-00",
+      "name": "Flo Masse",
+      "startTime": "04:00",
+      "endTime": "07:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "elli-outro-lado-friday-07-00",
+      "name": "Elli",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "drama-outro-lado-friday-10-00",
+      "name": "Drama",
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "coco-maria-outro-lado-friday-11-30",
+      "name": "Coco Maria",
+      "startTime": "11:30",
+      "endTime": "14:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "millie-mckee-outro-lado-friday-14-00",
+      "name": "Millie McKee",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "pedro-tenreiro-outro-lado-friday-16-00",
+      "name": "Pedro Tenreiro",
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "i-cube-outro-lado-friday-18-00",
+      "name": "I:Cube",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "matthias-reiling-outro-lado-friday-19-00",
+      "name": "Matthias Reiling",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "keith-worthy-outro-lado-friday-22-00",
+      "name": "Keith Worthy",
+      "startTime": "22:00",
+      "endTime": "01:00",
+      "stage": "Outro Lado",
+      "startDay": "friday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "cosmo-outro-lado-saturday-01-00",
+      "name": "Cosmo",
+      "startTime": "01:00",
+      "endTime": "04:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "cassy-outro-lado-saturday-04-00",
+      "name": "Cassy",
+      "startTime": "04:00",
+      "endTime": "07:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "leafar-legov-outro-lado-saturday-07-00",
+      "name": "Leafar Legov",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "margaux-gazur-outro-lado-saturday-10-00",
+      "name": "Margaux Gazur",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "alexandre-centeio-outro-lado-saturday-11-00",
+      "name": "Alexandre Centeio",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "birds-tapes-outro-lado-saturday-12-00",
+      "name": "Birds & Tapes",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "ani-zakareishvili-outro-lado-saturday-13-00",
+      "name": "Ani Zakareishvili",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "lerosa-outro-lado-saturday-14-00",
+      "name": "Lerosa",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "billi-outro-lado-saturday-15-00",
+      "name": "Billi",
+      "startTime": "15:00",
+      "endTime": "18:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "aleksi-per-l-outro-lado-saturday-18-00",
+      "name": "Aleksi Perälä",
+      "startTime": "18:00",
+      "endTime": "20:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "parallel-9-outro-lado-saturday-20-00",
+      "name": "Parallel 9",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "edward-konstantin-outro-lado-saturday-22-00",
+      "name": "Edward & Konstantin",
+      "startTime": "22:00",
+      "endTime": "02:00",
+      "stage": "Outro Lado",
+      "startDay": "saturday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "tobias-outro-lado-sunday-02-00",
+      "name": "Tobias.",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "serenne-outro-lado-sunday-04-00",
+      "name": "Serenne",
+      "startTime": "04:00",
+      "endTime": "06:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "snplo-outro-lado-sunday-06-00",
+      "name": "SnPLO",
+      "startTime": "06:00",
+      "endTime": "10:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "jan-jelinek-outro-lado-sunday-10-00",
+      "name": "Jan Jelinek",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "sam-prekop-outro-lado-sunday-11-00",
+      "name": "Sam Prekop",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "lina-outro-lado-sunday-12-00",
+      "name": "Lina",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "tau-car-outro-lado-sunday-14-00",
+      "name": "Tau Car",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "andr-s-zacco-outro-lado-sunday-16-00",
+      "name": "Andrés Zacco",
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "jichael-mackson-outro-lado-sunday-18-00",
+      "name": "Jichael Mackson",
+      "startTime": "18:00",
+      "endTime": "20:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "lawrence-thomas-melchior-outro-lado-sunday-20-00",
+      "name": "Lawrence & Thomas Melchior",
+      "startTime": "20:00",
+      "endTime": "21:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "ulf-eriksson-outro-lado-sunday-21-00",
+      "name": "Ulf Eriksson",
+      "startTime": "21:00",
+      "endTime": "00:00",
+      "stage": "Outro Lado",
+      "startDay": "sunday",
+      "endDay": "monday"
+    },
+    {
+      "id": "eduardo-de-la-calle-outro-lado-monday-00-00",
+      "name": "Eduardo de la Calle",
+      "startTime": "00:00",
+      "endTime": "01:00",
+      "stage": "Outro Lado",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "jane-fitz-outro-lado-monday-01-00",
+      "name": "Jane Fitz",
+      "startTime": "01:00",
+      "endTime": "05:00",
+      "stage": "Outro Lado",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "vera-dj-dustin-mimi-vuur-outro-lado-monday-05-00",
+      "name": "Vera, DJ Dustin, Mimi, Vuur, ...",
+      "startTime": "05:00",
+      "endTime": "..:..",
+      "stage": "Outro Lado",
+      "startDay": "monday",
+      "endDay": "monday",
+      "durationMinutes": 360
+    },
+    {
+      "id": "carmen-villain-floresta-wednesday-21-00",
+      "name": "Carmen Villain",
+      "startTime": "21:00",
+      "endTime": "21:45",
+      "stage": "Floresta",
+      "startDay": "wednesday",
+      "endDay": "wednesday"
+    },
+    {
+      "id": "yentl-floresta-wednesday-21-45",
+      "name": "Yentl.",
+      "startTime": "21:45",
+      "endTime": "01:00",
+      "stage": "Floresta",
+      "startDay": "wednesday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "magda-mike-servito-floresta-thursday-01-00",
+      "name": "Magda & Mike Servito",
+      "startTime": "01:00",
+      "endTime": "04:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "tina-floresta-thursday-04-00",
+      "name": "Tina",
+      "startTime": "04:00",
+      "endTime": "07:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "mad-miran-floresta-thursday-07-00",
+      "name": "mad miran",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "a-pausa-floresta-thursday-10-00",
+      "name": "a pausa",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "dj-trystero-floresta-thursday-14-00",
+      "name": "DJ Trystero",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "vlada-floresta-thursday-17-00",
+      "name": "Vlada",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "ccl-floresta-thursday-20-00",
+      "name": "CCL",
+      "startTime": "20:00",
+      "endTime": "23:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "vil-floresta-thursday-23-00",
+      "name": "VIL",
+      "startTime": "23:00",
+      "endTime": "02:00",
+      "stage": "Floresta",
+      "startDay": "thursday",
+      "endDay": "friday"
+    },
+    {
+      "id": "69db-presents-wave-arising-floresta-friday-02-00",
+      "name": "69db presents Wave Arising",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "haruka-floresta-friday-04-00",
+      "name": "Haruka",
+      "startTime": "04:00",
+      "endTime": "07:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "konduku-floresta-friday-07-00",
+      "name": "Konduku",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "a-pausa-floresta-friday-10-00",
+      "name": "a pausa",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "nathalie-seres-floresta-friday-14-00",
+      "name": "Nathalie Seres",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "rhadoo-floresta-friday-17-00",
+      "name": "Rhadoo",
+      "startTime": "17:00",
+      "endTime": "23:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "tiago-floresta-friday-23-00",
+      "name": "Tiago",
+      "startTime": "23:00",
+      "endTime": "03:00",
+      "stage": "Floresta",
+      "startDay": "friday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "koodoo-lamaz-floresta-saturday-03-00",
+      "name": "Koodoo & Lamaz",
+      "startTime": "03:00",
+      "endTime": "07:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "paquita-gordon-floresta-saturday-07-00",
+      "name": "Paquita Gordon",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "a-pausa-floresta-saturday-10-00",
+      "name": "a pausa",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "dana-kuehr-floresta-saturday-14-00",
+      "name": "Dana Kuehr",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "serginho-floresta-saturday-17-00",
+      "name": "Serginho",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "prosumer-floresta-saturday-20-00",
+      "name": "Prosumer",
+      "startTime": "20:00",
+      "endTime": "00:00",
+      "stage": "Floresta",
+      "startDay": "saturday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "bashkka-floresta-sunday-00-00",
+      "name": "BASHKKA",
+      "startTime": "00:00",
+      "endTime": "04:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "amelia-holt-floresta-sunday-04-00",
+      "name": "Amelia Holt",
+      "startTime": "04:00",
+      "endTime": "07:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "dvde-floresta-sunday-07-00",
+      "name": "DVDE",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "a-pausa-floresta-sunday-10-00",
+      "name": "a pausa",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "katatonic-silentio-floresta-sunday-14-00",
+      "name": "Katatonic Silentio",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "valody-floresta-sunday-15-00",
+      "name": "Valody",
+      "startTime": "15:00",
+      "endTime": "17:30",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "2jack4u-floresta-sunday-17-30",
+      "name": "2JACK4U",
+      "startTime": "17:30",
+      "endTime": "20:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "carrier-gavsborg-floresta-sunday-20-00",
+      "name": "Carrier & Gavsborg",
+      "startTime": "20:00",
+      "endTime": "21:30",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "dasha-rush-floresta-sunday-21-30",
+      "name": "Dasha Rush",
+      "startTime": "21:30",
+      "endTime": "01:00",
+      "stage": "Floresta",
+      "startDay": "sunday",
+      "endDay": "monday"
+    },
+    {
+      "id": "polar-inertia-floresta-monday-01-00",
+      "name": "Polar Inertia",
+      "startTime": "01:00",
+      "endTime": "02:30",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "rene-wise-floresta-monday-02-30",
+      "name": "Rene Wise",
+      "startTime": "02:30",
+      "endTime": "06:00",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "rroxymore-floresta-monday-06-00",
+      "name": "rRoxymore",
+      "startTime": "06:00",
+      "endTime": "09:00",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "kia-richard-akingbehin-floresta-monday-09-00",
+      "name": "Kia & Richard Akingbehin",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "kuba-97-floresta-monday-13-00",
+      "name": "Kuba'97",
+      "startTime": "13:00",
+      "endTime": "16:00",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "djrum-floresta-monday-16-00",
+      "name": "Djrum",
+      "startTime": "16:00",
+      "endTime": "..:..",
+      "stage": "Floresta",
+      "startDay": "monday",
+      "endDay": "monday",
+      "durationMinutes": 360
+    },
+    {
+      "id": "otto-landsberg-shin-hyo-jin-cochilo-wednesday-21-00",
+      "name": "Otto Landsberg & Shin Hyo Jin",
+      "startTime": "21:00",
+      "endTime": "21:45",
+      "stage": "Cochilo",
+      "startDay": "wednesday",
+      "endDay": "wednesday"
+    },
+    {
+      "id": "mohammad-reza-mortazavi-cochilo-wednesday-22-00",
+      "name": "Mohammad Reza Mortazavi",
+      "startTime": "22:00",
+      "endTime": "23:00",
+      "stage": "Cochilo",
+      "startDay": "wednesday",
+      "endDay": "wednesday"
+    },
+    {
+      "id": "n-dia-valentina-magaletti-cochilo-wednesday-23-30",
+      "name": "Nídia & Valentina Magaletti",
+      "startTime": "23:30",
+      "endTime": "00:15",
+      "stage": "Cochilo",
+      "startDay": "wednesday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "nkisi-cochilo-thursday-00-45",
+      "name": "Nkisi",
+      "startTime": "00:45",
+      "endTime": "01:30",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "hhy-the-kampala-unit-cochilo-thursday-02-00",
+      "name": "HHY & The Kampala Unit",
+      "startTime": "02:00",
+      "endTime": "02:45",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "for-a-maior-cochilo-thursday-12-00",
+      "name": "Força Maior",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "charlemagne-palestine-oren-ambarchi-daniel-o-sullivan-present-kkaarreenniinnaa-cochilo-thursday-16-10",
+      "name": "Charlemagne Palestine, Oren Ambarchi & Daniel O'Sullivan present KKAARREENNIINNAA",
+      "startTime": "16:10",
+      "endTime": "17:00",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "holy-tongue-cochilo-thursday-19-00",
+      "name": "Holy Tongue",
+      "startTime": "19:00",
+      "endTime": "20:00",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "ni-o-de-elche-cochilo-thursday-22-30",
+      "name": "Niño de Elche",
+      "startTime": "22:30",
+      "endTime": "23:30",
+      "stage": "Cochilo",
+      "startDay": "thursday",
+      "endDay": "thursday"
+    },
+    {
+      "id": "takkak-takkak-cochilo-friday-01-00",
+      "name": "Takkak Takkak",
+      "startTime": "01:00",
+      "endTime": "02:00",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "djrum-cochilo-friday-12-00",
+      "name": "Djrum",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "samuel-rohrer-eivind-aarset-cochilo-friday-15-00",
+      "name": "Samuel Rohrer & Eivind Aarset",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "heith-tarawangawelas-present-duori-cochilo-friday-18-00",
+      "name": "Heith & Tarawangawelas present Duori",
+      "startTime": "18:00",
+      "endTime": "18:45",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "michelle-gurevich-cochilo-friday-21-00",
+      "name": "Michelle Gurevich",
+      "startTime": "21:00",
+      "endTime": "22:15",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "friday"
+    },
+    {
+      "id": "lip-sync-4-your-waking-life-cochilo-friday-23-30",
+      "name": "Lip Sync 4 your Waking Life",
+      "startTime": "23:30",
+      "endTime": "02:00",
+      "stage": "Cochilo",
+      "startDay": "friday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "lula-pena-cochilo-saturday-12-00",
+      "name": "Lula Pena",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "stage": "Cochilo",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "bonga-cochilo-saturday-16-00",
+      "name": "Bonga",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "stage": "Cochilo",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "john-mcentire-sam-prekop-cochilo-saturday-18-00",
+      "name": "John McEntire & Sam Prekop",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "stage": "Cochilo",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "o-ghett-o-cochilo-saturday-20-30",
+      "name": "O Ghettão",
+      "startTime": "20:30",
+      "endTime": "22:00",
+      "stage": "Cochilo",
+      "startDay": "saturday",
+      "endDay": "saturday"
+    },
+    {
+      "id": "joshua-serafin-mario-barrantes-espinoza-w-fake-moss-cochilo-sunday-01-00",
+      "name": "Joshua Serafin & Mario Barrantes Espinoza w/ Fake Moss",
+      "startTime": "01:00",
+      "endTime": "02:00",
+      "stage": "Cochilo",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "kitty-daisy-lewis-cochilo-sunday-12-00",
+      "name": "Kitty Daisy & Lewis",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "stage": "Cochilo",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "asmaa-hamzaoui-bnat-timbouktou-cochilo-sunday-15-00",
+      "name": "Asmaa Hamzaoui & Bnat Timbouktou",
+      "startTime": "15:00",
+      "endTime": "16:15",
+      "stage": "Cochilo",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "pedrinho-xal-cochilo-sunday-17-30",
+      "name": "Pedrinho Xalé",
+      "startTime": "17:30",
+      "endTime": "18:30",
+      "stage": "Cochilo",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "ata-kak-cochilo-sunday-20-30",
+      "name": "Ata Kak",
+      "startTime": "20:30",
+      "endTime": "21:30",
+      "stage": "Cochilo",
+      "startDay": "sunday",
+      "endDay": "sunday"
+    },
+    {
+      "id": "decius-cochilo-monday-00-00",
+      "name": "Decius",
+      "startTime": "00:00",
+      "endTime": "01:15",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "e-tape-cochilo-monday-07-00",
+      "name": "e/tape",
+      "startTime": "07:00",
+      "endTime": "10:00",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "alexi-per-l-cochilo-monday-10-00",
+      "name": "Alexi Perälä",
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "devon-rexi-cochilo-monday-15-00",
+      "name": "Devon Rexi",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "sonic-interventions-cochilo-monday-17-30",
+      "name": "Sonic Interventions",
+      "startTime": "17:30",
+      "endTime": "18:30",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "shahzad-ismaily-cochilo-monday-13-00",
+      "name": "Shahzad Ismaily",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "robert-aiki-aubrey-lowe-cochilo-monday-21-00",
+      "name": "Robert Aiki Aubrey Lowe",
+      "startTime": "21:00",
+      "endTime": "21:50",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    },
+    {
+      "id": "colleen-presents-libres-antes-del-final-cochilo-monday-22-00",
+      "name": "Colleen presents Libres Antes del Final",
+      "startTime": "22:00",
+      "endTime": "22:55",
+      "stage": "Cochilo",
+      "startDay": "monday",
+      "endDay": "monday"
+    }
+  ]
 }

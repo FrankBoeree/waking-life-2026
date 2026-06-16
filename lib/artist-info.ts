@@ -31,7 +31,7 @@ function getResidentAdvisorSearchUrl(name: string) {
 
 function fallbackArtistInfo(name: string): ArtistInfo {
   return {
-    bio: `${name} appears on the Waking Life 2026 lineup. A reliable imported artist profile was not found for this exact name, so this panel is ready for a verified short bio about their sound and background.`,
+    bio: "",
     tags: [],
     labels: [],
     festivals: [],

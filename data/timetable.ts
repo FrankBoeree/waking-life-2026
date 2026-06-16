@@ -9,6 +9,10 @@ export interface Artist {
   day?: string
   startDay?: string
   endDay?: string
+  /** Used when endTime is "..:.." or "--" to size the block on the timeline */
+  durationMinutes?: number
+  /** Generated timetable rows (e.g. Mimo has no published schedule) */
+  placeholderKind?: "stage-program" | "pause"
 }
 
 export interface Stage {
@@ -40,6 +44,5 @@ export const stages: Stage[] = [
   { id: "Cochilo", name: "Cochilo", color: "#84cc16" },
 ]
 
-// The official 2026 timetable has not been published yet.
-// Keep this intentionally empty so last year's slots are never shown as current.
+// Bundled fallback; runtime refresh loads /festival-data.json.
 export const timetable: Artist[] = festivalData.timetable as Artist[]

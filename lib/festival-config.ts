@@ -23,6 +23,6 @@ export const FESTIVAL_CONFIG = {
   officialStartDateTime: "2026-06-16T00:00:00",
   programStartDay: "wednesday" as ProgramDayId,
   programStartTime: "21:00",
-  dataVersion: "2026.1.0",
+  dataVersion: "2026.2.3",
   cacheVersion: "v4",
 } as const

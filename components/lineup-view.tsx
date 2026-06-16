@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { ExternalLink, Search, Star } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,21 +12,126 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
-import { likelyLineup, type LineupArtist } from "@/data/lineup"
+import type { Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
 import { getArtistInfo, type ArtistInfo } from "@/lib/artist-info"
+import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
+import type { OfflineData } from "@/lib/offline-storage"
+
+interface LineupArtist {
+  id: string
+  name: string
+  slots: Artist[]
+}
 
 interface LineupViewProps {
   showFavoritesOnly: boolean
+  data: OfflineData | null
 }
 
-export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
+function toLineupId(name: string) {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+}
+
+function isOpenEndTime(time: string) {
+  return !time || time === "--" || time === "..:.."
+}
+
+function formatTimeRange(slot: Artist) {
+  const endTime = isOpenEndTime(slot.endTime) ? "..:.." : slot.endTime
+  return `${slot.startTime}–${endTime}`
+}
+
+function formatDayLabel(day?: string) {
+  if (!day) return ""
+  return day.slice(0, 3)
+}
+
+// Kept in sync with `stages` in data/timetable.ts. Defined locally to avoid
+// pulling the bundled festival JSON into this client component's bundle.
+const STAGE_COLORS: Record<string, string> = {
+  Floresta: "#8b5cf6",
+  Praia: "#06b6d4",
+  "Outro Lado": "#10b981",
+  Mimo: "#f59e0b",
+  Cochilo: "#84cc16",
+}
+
+function getStageColor(stageId: string) {
+  return STAGE_COLORS[stageId]
+}
+
+function formatSlotMeta(slot: Artist) {
+  const day = formatDayLabel(slot.startDay)
+  return `${day} ${formatTimeRange(slot)}`
+}
+
+function StageDot({ stage }: { stage: string }) {
+  const color = getStageColor(stage)
+  return (
+    <span
+      aria-hidden="true"
+      className="inline-block h-2.5 w-2.5 flex-shrink-0 border border-black/40 dark:border-white/40"
+      style={{ backgroundColor: color ?? "transparent" }}
+    />
+  )
+}
+
+function SlotLine({ slot }: { slot: Artist }) {
+  return (
+    <div className="flex items-center gap-2 leading-snug">
+      <StageDot stage={slot.stage} />
+      <span>{`${slot.stage.toLowerCase()} · ${formatSlotMeta(slot)}`}</span>
+    </div>
+  )
+}
+
+function slotSortKey(slot: Artist) {
+  const dayIndex = PROGRAM_DAY_ORDER.indexOf(slot.startDay as ProgramDayId)
+  const [hours, minutes] = slot.startTime.split(":").map(Number)
+  return dayIndex * 24 * 60 + hours * 60 + minutes
+}
+
+function sortSlots(slots: Artist[]) {
+  return [...slots].sort((a, b) => slotSortKey(a) - slotSortKey(b))
+}
+
+export default function LineupView({ showFavoritesOnly, data }: LineupViewProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedArtist, setSelectedArtist] = useState<LineupArtist | null>(null)
   const [artistInfo, setArtistInfo] = useState<ArtistInfo | null>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
 
-  const filteredArtists = likelyLineup
+  const lineupArtists = useMemo(() => {
+    const byId = new Map<string, { name: string; slots: Artist[] }>()
+
+    for (const slot of data?.timetable || []) {
+      if (slot.placeholderKind || slot.name.toLowerCase() === "a pausa") continue
+
+      const id = toLineupId(slot.name)
+      const existing = byId.get(id)
+      if (existing) {
+        existing.slots.push(slot)
+      } else {
+        byId.set(id, { name: slot.name, slots: [slot] })
+      }
+    }
+
+    return [...byId.entries()]
+      .map(([id, { name, slots }]) => ({
+        id,
+        name,
+        slots: sortSlots(slots),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  }, [data?.timetable])
+
+  const filteredArtists = lineupArtists
     .filter((artist) =>
       artist.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -48,12 +153,6 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
 
   return (
     <div className="p-4 text-[#222] dark:text-[#f7f3e7]">
-      <div className="mb-5 border-2 border-black bg-white/75 p-4 font-bold lowercase mix-blend-multiply dark:border-white dark:bg-black/65 dark:mix-blend-normal">
-        <p className="text-base leading-6">
-          The exact timetable is not available yet. This lineup shows artists who are very likely to play Waking Life 2026, without times or stages.
-        </p>
-      </div>
-
       {/* Search */}
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/55 dark:text-white/60 w-4 h-4" />
@@ -69,11 +168,13 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredArtists.map((artist) => {
           const isFav = isFavorite(artist.id)
+          const primarySlot = artist.slots[0]
+          const extraSlots = artist.slots.length - 1
           
           return (
             <div 
               key={artist.id} 
-              className={`relative h-32 cursor-pointer border transition-colors group mix-blend-multiply dark:mix-blend-normal ${
+              className={`relative min-h-32 cursor-pointer border transition-colors group mix-blend-multiply dark:mix-blend-normal ${
                 isFav
                   ? 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black' 
                   : 'border-black bg-white/80 text-[#222] hover:bg-black hover:text-white dark:border-white dark:bg-black/60 dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black'
@@ -97,14 +198,20 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
                   {artist.name}
                 </div>
                 
-                {/* Timetable status */}
-                <div className={`text-sm font-bold lowercase ${
-                  isFav
-                    ? 'text-white/80 dark:text-black/75'
-                    : 'text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75'
-                }`}>
-                  time and stage to be announced
-                </div>
+                {primarySlot && (
+                  <div className={`text-sm font-bold lowercase leading-snug ${
+                    isFav
+                      ? 'text-white/80 dark:text-black/75'
+                      : 'text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75'
+                  }`}>
+                    <SlotLine slot={primarySlot} />
+                    {extraSlots > 0 && (
+                      <div className="mt-1 text-xs opacity-80">
+                        +{extraSlots} more set{extraSlots > 1 ? "s" : ""}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           )
@@ -170,15 +277,31 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
               </SheetHeader>
 
               <div className="min-h-0 flex-1 basis-0 overflow-y-auto overflow-x-hidden px-5 pb-10 pt-5">
-                <div className="mb-5 border border-black/30 p-3 text-sm font-bold lowercase text-black/70 dark:border-white/30 dark:text-white/70">
-                  timetable not published yet
-                </div>
+                {selectedArtist.slots.length > 0 && (
+                  <div className="mb-5 border border-black/30 p-3 dark:border-white/30">
+                    <div className="mb-2 text-xs font-black uppercase text-black/50 dark:text-white/50">
+                      timetable
+                    </div>
+                    <div className="space-y-2">
+                      {selectedArtist.slots.map((slot) => (
+                        <div
+                          key={slot.id}
+                          className="text-sm font-bold lowercase text-black/75 dark:text-white/75"
+                        >
+                          <SlotLine slot={slot} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-                {artistInfo && (
+                {artistInfo && (artistInfo.bio || artistInfo.labels.length > 0 || artistInfo.festivals.length > 0) && (
                   <div className="space-y-5">
-                    <p className="max-w-3xl text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
-                      {artistInfo.bio}
-                    </p>
+                    {artistInfo.bio && (
+                      <p className="max-w-3xl text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
+                        {artistInfo.bio}
+                      </p>
+                    )}
 
                     {(artistInfo.labels.length > 0 ||
                       artistInfo.festivals.length > 0) && (
