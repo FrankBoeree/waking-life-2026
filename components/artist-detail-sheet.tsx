@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet"
 import type { Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
-import { getArtistInfo, type ArtistInfo } from "@/lib/artist-info"
+import { getArtistInfo, getResidentAdvisorProfileUrl, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
 
@@ -116,6 +116,9 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
   }, [artist])
 
   const selectedIsFavorite = artist ? isFavorite(artist.id) : false
+  const residentAdvisorProfileUrl = artistInfo
+    ? getResidentAdvisorProfileUrl(artistInfo.residentAdvisorUrl)
+    : undefined
 
   return (
     <Sheet
@@ -128,7 +131,7 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
     >
       <SheetContent
         side="bottom"
-        className="flex h-[70vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
+        className="flex h-[90vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
       >
         {artist && (
           <>
@@ -161,9 +164,9 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                 <SheetDescription className="sr-only">
                   Artist information and favorite controls for {artist.name}
                 </SheetDescription>
-                {artistInfo?.residentAdvisorUrl && (
+                {residentAdvisorProfileUrl && (
                   <a
-                    href={artistInfo.residentAdvisorUrl}
+                    href={residentAdvisorProfileUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-4 inline-flex items-center gap-2 border border-black px-3 py-2 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
