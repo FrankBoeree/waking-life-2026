@@ -1,6 +1,6 @@
-const CACHE_NAME = 'festival-timetable-v3';
-const STATIC_CACHE = 'festival-static-v3';
-const DATA_CACHE = 'festival-data-v3';
+const CACHE_NAME = 'festival-timetable-v4';
+const STATIC_CACHE = 'festival-static-v4';
+const DATA_CACHE = 'festival-data-v4';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -48,25 +48,21 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Handle API requests (data)
-  if (url.pathname.startsWith('/api/') || url.pathname.includes('timetable') || url.pathname.includes('artist')) {
+  // Handle festival data network-first so the refresh button can pick up a new deploy.
+  if (url.pathname === '/festival-data.json') {
     event.respondWith(
       caches.open(DATA_CACHE)
         .then((cache) => {
-          return cache.match(request)
-            .then((response) => {
-              if (response) {
-                return response;
+          return fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse.status === 200) {
+                cache.put('/festival-data.json', networkResponse.clone());
               }
-              return fetch(request)
-                .then((networkResponse) => {
-                  cache.put(request, networkResponse.clone());
-                  return networkResponse;
-                })
-                .catch(() => {
-                  // Return cached data if available, otherwise return offline page
-                  return cache.match('/offline');
-                });
+              return networkResponse;
+            })
+            .catch(async () => {
+              const cachedResponse = await cache.match('/festival-data.json');
+              return cachedResponse || Response.error();
             });
         })
     );

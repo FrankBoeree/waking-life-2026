@@ -15,7 +15,7 @@ export default function Home() {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   const [manualThemeOverride, setManualThemeOverride] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
-  const { refreshData, isLoading } = useOfflineData()
+  const { data, refreshData, isLoading, error } = useOfflineData()
   const [countdown, setCountdown] = useState<{
     days: number
     hours: number
@@ -153,6 +153,8 @@ export default function Home() {
                 onClick={handleRefresh}
                 disabled={isLoading}
                 className="text-[#222] hover:bg-black hover:text-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+                aria-label="Refresh timetable data"
+                title="Refresh timetable data"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
               </Button>
@@ -181,7 +183,7 @@ export default function Home() {
       {/* Main Content */}
       <main className={activeView === "timetable" ? "h-[calc(100vh-120px)] pb-16 overflow-y-auto" : "pb-24"}>
         {activeView === "timetable" ? (
-          <TimetableView />
+          <TimetableView data={data} isLoading={isLoading} error={error} />
         ) : (
           <LineupView showFavoritesOnly={showFavoritesOnly} />
         )}

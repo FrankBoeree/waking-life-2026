@@ -65,16 +65,17 @@ class OfflineStorage {
   }
 
   async getAllData(): Promise<OfflineData> {
-    const [timetable, favorites, version] = await Promise.all([
+    const [timetable, favorites, version, lastSync] = await Promise.all([
       this.getData<Artist[]>('timetable'),
       this.getData<string[]>('favorites'),
-      this.getData<string>('data-version')
+      this.getData<string>('data-version'),
+      this.getData<number>('last-sync')
     ])
 
     return {
       timetable: timetable || [],
       favorites: favorites || [],
-      lastSync: Date.now(),
+      lastSync: lastSync || Date.now(),
       version: version || 'legacy'
     }
   }

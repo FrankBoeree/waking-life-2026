@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { stages, days, type Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
-import { useOfflineData } from "@/hooks/use-offline-data"
+import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 
 const HOUR_WIDTH = 240
@@ -110,10 +110,15 @@ function getCurrentTimePosition(totalMinutes: number) {
   return minutes
 }
 
-export default function TimetableView() {
+interface TimetableViewProps {
+  data: OfflineData | null
+  isLoading: boolean
+  error: string | null
+}
+
+export default function TimetableView({ data, isLoading, error }: TimetableViewProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
-  const { data, isLoading, error } = useOfflineData()
   const [currentTimePosition, setCurrentTimePosition] = useState<number | null>(null)
   const [activeDay, setActiveDay] = useState<ProgramDayId>(FESTIVAL_CONFIG.programStartDay)
 

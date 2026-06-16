@@ -1,3 +1,5 @@
+import festivalData from "@/public/festival-data.json"
+
 export interface Artist {
   id: string
   name: string
@@ -40,4 +42,4 @@ export const stages: Stage[] = [
 
 // The official 2026 timetable has not been published yet.
 // Keep this intentionally empty so last year's slots are never shown as current.
-export const timetable: Artist[] = []
+export const timetable: Artist[] = festivalData.timetable as Artist[]
