@@ -119,9 +119,7 @@ export default function Home() {
               {FESTIVAL_CONFIG.officialDateRange}
             </p>
             <h1 className="text-2xl font-bold lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
-              {activeView === "timetable"
-                ? `${FESTIVAL_CONFIG.title} timetable`
-                : `${FESTIVAL_CONFIG.title} lineup`}
+              {FESTIVAL_CONFIG.title}
             </h1>
             <p className="sr-only">
               Festival timetable and lineup for Waking Life 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.
