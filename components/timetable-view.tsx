@@ -7,6 +7,11 @@ import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
+import {
+  ArtistDetailSheet,
+  buildArtistWithSlots,
+  type ArtistWithSlots,
+} from "@/components/artist-detail-sheet"
 
 const HOUR_WIDTH = 240
 const MINUTES_PER_DAY = 24 * 60
@@ -184,6 +189,10 @@ function getArtistBlockClassName(artist: Artist, isFav: boolean) {
     return "border-dashed bg-white/55 border-black/70 cursor-default dark:bg-black/45 dark:border-white/70"
   }
 
+  if (artist.placeholderKind === "pause") {
+    return "border-dashed bg-transparent border-black/25 cursor-default dark:border-white/25"
+  }
+
   if (isFav) {
     return "bg-black border-black dark:bg-white dark:border-white"
   }
@@ -224,6 +233,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
   const { isFavorite, toggleFavorite } = useFavorites()
   const [currentTimePosition, setCurrentTimePosition] = useState<number | null>(null)
   const [activeDay, setActiveDay] = useState<ProgramDayId>(FESTIVAL_CONFIG.programStartDay)
+  const [selectedArtist, setSelectedArtist] = useState<ArtistWithSlots | null>(null)
 
   const timetable = data?.timetable || []
   const totalMinutes = getFestivalTotalMinutes(timetable)
@@ -466,7 +476,11 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                             width: `${width}px`,
                             minWidth: "60px",
                           }}
-                          onClick={isInteractive ? () => toggleFavorite(favoriteId) : undefined}
+                          onClick={
+                            isInteractive
+                              ? () => setSelectedArtist(buildArtistWithSlots(artist.name, timetable))
+                              : undefined
+                          }
                         >
                           {isInteractive && (
                             <div className="absolute top-1 right-1 z-10">
@@ -479,26 +493,30 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                             </div>
                           )}
                           <div className="p-2 h-full flex flex-col justify-between">
-                            <div 
-                              className={`text-xs font-bold lowercase ${
-                                artist.placeholderKind === "stage-program"
-                                  ? "text-black/70 leading-tight whitespace-normal dark:text-white/75"
-                                  : isFav
-                                    ? "text-white truncate dark:text-black"
-                                    : "text-[#222] truncate group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black"
-                              }`}
-                            >
-                              {artist.name}
-                            </div>
-                            <div className={`text-xs font-bold lowercase ${
-                              artist.placeholderKind
-                                ? "text-black/45 dark:text-white/45"
-                                : isFav
-                                  ? "text-white/80 dark:text-black/75"
-                                  : "text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75"
-                            }`}>
-                              {formatArtistTimeRange(artist)}
-                            </div>
+                            {artist.placeholderKind !== "pause" && (
+                              <>
+                                <div 
+                                  className={`text-xs font-bold lowercase ${
+                                    artist.placeholderKind === "stage-program"
+                                      ? "text-black/70 leading-tight whitespace-normal dark:text-white/75"
+                                      : isFav
+                                        ? "text-white truncate dark:text-black"
+                                        : "text-[#222] truncate group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black"
+                                  }`}
+                                >
+                                  {artist.name}
+                                </div>
+                                <div className={`text-xs font-bold lowercase ${
+                                  artist.placeholderKind
+                                    ? "text-black/45 dark:text-white/45"
+                                    : isFav
+                                      ? "text-white/80 dark:text-black/75"
+                                      : "text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75"
+                                }`}>
+                                  {formatArtistTimeRange(artist)}
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       );
@@ -512,6 +530,11 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
           </div>
         </div>
       </div>
+
+      <ArtistDetailSheet
+        artist={selectedArtist}
+        onClose={() => setSelectedArtist(null)}
+      />
     </div>
   )
 }

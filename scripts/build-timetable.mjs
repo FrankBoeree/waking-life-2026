@@ -28,6 +28,7 @@ function entry(name, stage, startDay, startTime, endTime, endDay = startDay, opt
       startDay,
       endDay: startDay,
       durationMinutes: options.durationMinutes ?? 360,
+      ...(options.placeholderKind ? { placeholderKind: options.placeholderKind } : {}),
     }
   }
 
@@ -44,8 +45,11 @@ function entry(name, stage, startDay, startTime, endTime, endDay = startDay, opt
     stage,
     startDay,
     endDay: resolvedEndDay,
+    ...(options.placeholderKind ? { placeholderKind: options.placeholderKind } : {}),
   }
 }
+
+const pause = { placeholderKind: "pause" }
 
 function toMinutes(time) {
   const [h, m] = time.split(":").map(Number)
@@ -58,7 +62,7 @@ const slots = [
   entry("Party Smith", "Praia", "wednesday", "22:00", "01:00"),
   entry("Dj Marcelle", "Praia", "thursday", "01:00", "04:00"),
   entry("Kiss Nuka", "Praia", "thursday", "04:00", "06:00"),
-  entry("a pausa", "Praia", "thursday", "06:00", "12:00"),
+  entry("a pausa", "Praia", "thursday", "06:00", "12:00", "thursday", pause),
   entry("Om Unit Acid Dub Studies", "Praia", "thursday", "12:00", "13:00"),
   entry("e l e m e n t a l", "Praia", "thursday", "13:00", "16:00"),
   entry("protodub", "Praia", "thursday", "16:00", "19:00"),
@@ -66,7 +70,7 @@ const slots = [
   entry("Mia Koden", "Praia", "thursday", "23:00", "02:00"),
   entry("Mala", "Praia", "friday", "02:00", "04:00"),
   entry("Mix'Elle", "Praia", "friday", "04:00", "06:00"),
-  entry("a pausa", "Praia", "friday", "06:00", "12:00"),
+  entry("a pausa", "Praia", "friday", "06:00", "12:00", "friday", pause),
   entry("o ghettão", "Praia", "friday", "12:00", "14:00"),
   entry("Dj Caring", "Praia", "friday", "14:00", "17:00"),
   entry("Nightmares on Wax", "Praia", "friday", "17:00", "20:00"),
@@ -74,7 +78,7 @@ const slots = [
   entry("Dj Godfather", "Praia", "friday", "23:00", "00:00"),
   entry("NikNak", "Praia", "saturday", "00:00", "01:00"),
   entry("Nosedrip", "Praia", "saturday", "01:00", "06:00"),
-  entry("a pausa", "Praia", "saturday", "06:00", "12:00"),
+  entry("a pausa", "Praia", "saturday", "06:00", "12:00", "saturday", pause),
   entry("Hugo Sanchez", "Praia", "saturday", "12:00", "16:00"),
   entry("Alan Braxe", "Praia", "saturday", "16:00", "18:00"),
   entry("Arrogance Arrogance", "Praia", "saturday", "18:00", "21:00"),
@@ -82,7 +86,7 @@ const slots = [
   entry("Shackleton", "Praia", "sunday", "00:00", "01:00"),
   entry("Olgica", "Praia", "sunday", "01:00", "03:00"),
   entry("Upsammy x Gyrofield", "Praia", "sunday", "03:00", "06:00"),
-  entry("a pausa", "Praia", "sunday", "06:00", "14:00"),
+  entry("a pausa", "Praia", "sunday", "06:00", "14:00", "sunday", pause),
   entry("Selecta Fontes", "Praia", "sunday", "14:00", "16:00"),
   entry("Vixen Sound", "Praia", "sunday", "16:00", "18:00"),
   entry("Simply Rockers Sound System", "Praia", "sunday", "18:00", "20:00"),
@@ -141,7 +145,7 @@ const slots = [
   entry("Magda & Mike Servito", "Floresta", "thursday", "01:00", "04:00"),
   entry("Tina", "Floresta", "thursday", "04:00", "07:00"),
   entry("mad miran", "Floresta", "thursday", "07:00", "10:00"),
-  entry("a pausa", "Floresta", "thursday", "10:00", "14:00"),
+  entry("a pausa", "Floresta", "thursday", "10:00", "14:00", "thursday", pause),
   entry("DJ Trystero", "Floresta", "thursday", "14:00", "17:00"),
   entry("Vlada", "Floresta", "thursday", "17:00", "20:00"),
   entry("CCL", "Floresta", "thursday", "20:00", "23:00"),
@@ -149,20 +153,20 @@ const slots = [
   entry("69db presents Wave Arising", "Floresta", "friday", "02:00", "04:00"),
   entry("Haruka", "Floresta", "friday", "04:00", "07:00"),
   entry("Konduku", "Floresta", "friday", "07:00", "10:00"),
-  entry("a pausa", "Floresta", "friday", "10:00", "14:00"),
+  entry("a pausa", "Floresta", "friday", "10:00", "14:00", "friday", pause),
   entry("Nathalie Seres", "Floresta", "friday", "14:00", "17:00"),
   entry("Rhadoo", "Floresta", "friday", "17:00", "23:00"),
   entry("Tiago", "Floresta", "friday", "23:00", "03:00"),
   entry("Koodoo & Lamaz", "Floresta", "saturday", "03:00", "07:00"),
   entry("Paquita Gordon", "Floresta", "saturday", "07:00", "10:00"),
-  entry("a pausa", "Floresta", "saturday", "10:00", "14:00"),
+  entry("a pausa", "Floresta", "saturday", "10:00", "14:00", "saturday", pause),
   entry("Dana Kuehr", "Floresta", "saturday", "14:00", "17:00"),
   entry("Serginho", "Floresta", "saturday", "17:00", "20:00"),
   entry("Prosumer", "Floresta", "saturday", "20:00", "00:00"),
   entry("BASHKKA", "Floresta", "sunday", "00:00", "04:00"),
   entry("Amelia Holt", "Floresta", "sunday", "04:00", "07:00"),
   entry("DVDE", "Floresta", "sunday", "07:00", "10:00"),
-  entry("a pausa", "Floresta", "sunday", "10:00", "14:00"),
+  entry("a pausa", "Floresta", "sunday", "10:00", "14:00", "sunday", pause),
   entry("Katatonic Silentio", "Floresta", "sunday", "14:00", "15:00"),
   entry("Valody", "Floresta", "sunday", "15:00", "17:30"),
   entry("2JACK4U", "Floresta", "sunday", "17:30", "20:00"),

@@ -44,7 +44,8 @@
       "endTime": "12:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "placeholderKind": "pause"
     },
     {
       "id": "om-unit-acid-dub-studies-praia-thursday-12-00",
@@ -116,7 +117,8 @@
       "endTime": "12:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "placeholderKind": "pause"
     },
     {
       "id": "o-ghett-o-praia-friday-12-00",
@@ -188,7 +190,8 @@
       "endTime": "12:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "placeholderKind": "pause"
     },
     {
       "id": "hugo-sanchez-praia-saturday-12-00",
@@ -260,7 +263,8 @@
       "endTime": "14:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "placeholderKind": "pause"
     },
     {
       "id": "selecta-fontes-praia-sunday-14-00",
@@ -729,7 +733,8 @@
       "endTime": "14:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "placeholderKind": "pause"
     },
     {
       "id": "dj-trystero-floresta-thursday-14-00",
@@ -801,7 +806,8 @@
       "endTime": "14:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "placeholderKind": "pause"
     },
     {
       "id": "nathalie-seres-floresta-friday-14-00",
@@ -855,7 +861,8 @@
       "endTime": "14:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "placeholderKind": "pause"
     },
     {
       "id": "dana-kuehr-floresta-saturday-14-00",
@@ -918,7 +925,8 @@
       "endTime": "14:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "placeholderKind": "pause"
     },
     {
       "id": "katatonic-silentio-floresta-sunday-14-00",
