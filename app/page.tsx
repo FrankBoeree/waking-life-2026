@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import TimetableView from "@/components/timetable-view"
 import LineupView from "@/components/lineup-view"
 import { InstallPrompt } from "@/components/install-prompt"
+import { AppInfoPanel } from "@/components/app-info-panel"
 import { useOfflineData } from "@/hooks/use-offline-data"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
@@ -159,6 +160,8 @@ export default function Home() {
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
               </Button>
             )}
+
+            <AppInfoPanel />
 
             {mounted && (
               <Button
