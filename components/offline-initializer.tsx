@@ -1,13 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { initializeOfflineCapabilities, offlineStorage } from "@/lib/offline-storage"
+import { initializeOfflineCapabilities } from "@/lib/offline-storage"
 import { useFavorites } from "@/contexts/favorites-context"
 import { Badge } from "@/components/ui/badge"
 import { Wifi, WifiOff } from "lucide-react"
 
 export function OfflineInitializer() {
-  const [isInitialized, setIsInitialized] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
   const { isOnline } = useFavorites()
 
@@ -15,14 +14,12 @@ export function OfflineInitializer() {
     const init = async () => {
       try {
         await initializeOfflineCapabilities()
-        setIsInitialized(true)
         
         // Show status briefly on first load
         setShowStatus(true)
         setTimeout(() => setShowStatus(false), 3000)
       } catch (error) {
         console.error('Failed to initialize offline capabilities:', error)
-        setIsInitialized(true) // Still set to true to not block the app
       }
     }
 

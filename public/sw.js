@@ -1,6 +1,6 @@
-const CACHE_NAME = 'festival-timetable-v1';
-const STATIC_CACHE = 'festival-static-v1';
-const DATA_CACHE = 'festival-data-v1';
+const CACHE_NAME = 'festival-timetable-v2';
+const STATIC_CACHE = 'festival-static-v2';
+const DATA_CACHE = 'festival-data-v2';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [

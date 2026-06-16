@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { Wifi, WifiOff, HardDrive, RefreshCw, Download } from 'lucide-react'
+import { Wifi, WifiOff, HardDrive, RefreshCw } from 'lucide-react'
 import { offlineStorage } from '@/lib/offline-storage'
 import { useOfflineData } from '@/hooks/use-offline-data'
 

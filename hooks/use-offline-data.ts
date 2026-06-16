@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { offlineStorage, OfflineData } from '@/lib/offline-storage'
 import { timetable } from '@/data/timetable'
+import { FESTIVAL_CONFIG } from '@/lib/festival-config'
 
 interface UseOfflineDataReturn {
   data: OfflineData | null
@@ -31,17 +32,22 @@ export function useOfflineData(): UseOfflineDataReturn {
       }
 
       // If no data in IndexedDB or IndexedDB failed, use static imports
-      if (!offlineData || !offlineData.timetable.length) {
+      if (
+        !offlineData ||
+        !offlineData.timetable.length ||
+        offlineData.version !== FESTIVAL_CONFIG.dataVersion
+      ) {
         offlineData = {
           timetable,
           favorites: offlineData?.favorites || [],
           lastSync: Date.now(),
-          version: '1.0.0'
+          version: FESTIVAL_CONFIG.dataVersion
         }
 
         // Try to save to IndexedDB (but don't fail if it doesn't work)
         try {
           await offlineStorage.saveData('timetable', timetable)
+          await offlineStorage.saveData('data-version', FESTIVAL_CONFIG.dataVersion)
         } catch (saveError) {
           console.warn('Failed to save to IndexedDB:', saveError)
         }
@@ -57,7 +63,7 @@ export function useOfflineData(): UseOfflineDataReturn {
         timetable,
         favorites: [],
         lastSync: Date.now(),
-        version: '1.0.0'
+        version: FESTIVAL_CONFIG.dataVersion
       })
     } finally {
       setIsLoading(false)

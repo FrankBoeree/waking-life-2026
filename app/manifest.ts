@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 export const dynamic = "force-static"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Waking Life 2025 Timetable",
+    name: FESTIVAL_CONFIG.manifestName,
     short_name: "Waking Life",
-    description: "Festival timetable and lineup for Waking Life 2025 - Works offline!",
+    description: FESTIVAL_CONFIG.manifestDescription,
     start_url: "/",
     display: "standalone",
     background_color: "#000000",

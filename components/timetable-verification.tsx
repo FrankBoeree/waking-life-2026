@@ -1,12 +1,12 @@
 "use client"
 
-import { timetable } from "@/data/timetable"
+import { timetable, type Artist } from "@/data/timetable"
 
 export default function TimetableVerification() {
   const HOUR_WIDTH = 200
   const timelineStartHour = 13
 
-  const verifyArtistPosition = (artist: any) => {
+  const verifyArtistPosition = (artist: Artist) => {
     const [startHour, startMinute] = artist.startTime.split(":").map(Number)
     const [endHour, endMinute] = artist.endTime.split(":").map(Number)
 

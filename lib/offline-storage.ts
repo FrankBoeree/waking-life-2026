@@ -1,6 +1,9 @@
+import { timetable, type Artist } from "@/data/timetable"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+
 // Offline storage utility using IndexedDB for better performance
 export interface OfflineData {
-  timetable: any[]
+  timetable: Artist[]
   favorites: string[]
   lastSync: number
   version: string
@@ -29,7 +32,7 @@ class OfflineStorage {
     })
   }
 
-  async saveData(type: string, data: any): Promise<void> {
+  async saveData<T>(type: string, data: T): Promise<void> {
     const db = await this.initDB()
     return new Promise((resolve, reject) => {
       const transaction = db.transaction([this.storeName], 'readwrite')
@@ -47,7 +50,7 @@ class OfflineStorage {
     })
   }
 
-  async getData(type: string): Promise<any> {
+  async getData<T>(type: string): Promise<T | null> {
     const db = await this.initDB()
     return new Promise((resolve, reject) => {
       const transaction = db.transaction([this.storeName], 'readonly')
@@ -62,16 +65,17 @@ class OfflineStorage {
   }
 
   async getAllData(): Promise<OfflineData> {
-    const [timetable, favorites] = await Promise.all([
-      this.getData('timetable'),
-      this.getData('favorites')
+    const [timetable, favorites, version] = await Promise.all([
+      this.getData<Artist[]>('timetable'),
+      this.getData<string[]>('favorites'),
+      this.getData<string>('data-version')
     ])
 
     return {
       timetable: timetable || [],
       favorites: favorites || [],
       lastSync: Date.now(),
-      version: '1.0.0'
+      version: version || 'legacy'
     }
   }
 
@@ -129,11 +133,9 @@ export async function initializeOfflineCapabilities(): Promise<void> {
 
   // Pre-cache essential data
   if (typeof window !== 'undefined') {
-    // Import data modules
-    const { timetable } = await import('@/data/timetable')
-
     // Save to IndexedDB
     await offlineStorage.saveData('timetable', timetable)
+    await offlineStorage.saveData('data-version', FESTIVAL_CONFIG.dataVersion)
 
     // Load favorites from localStorage and save to IndexedDB
     const storedFavorites = localStorage.getItem('festival-favorites')

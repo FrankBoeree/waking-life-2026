@@ -14,7 +14,7 @@ export default function OfflinePage() {
           </div>
           <CardTitle className="text-white text-2xl">No internet connection found</CardTitle>
           <CardDescription className="text-gray-300">
-            Don't worry! This app works completely offline. You can still:
+            Don&apos;t worry! This app works completely offline. You can still:
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

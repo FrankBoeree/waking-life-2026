@@ -5,17 +5,18 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { FavoritesProvider } from "@/contexts/favorites-context"
 import { OfflineInitializer } from "@/components/offline-initializer"
 import { GoogleAnalytics } from "@/components/google-analytics"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Waking Life 2025 - Timetable",
-  description: "Festival timetable and lineup for Waking Life 2025",
+  title: FESTIVAL_CONFIG.appTitle,
+  description: FESTIVAL_CONFIG.description,
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Waking Life 2025",
+    title: FESTIVAL_CONFIG.title,
   },
   formatDetection: {
     telephone: false,
@@ -40,7 +41,7 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Waking Life 2025" />
+        <meta name="apple-mobile-web-app-title" content={FESTIVAL_CONFIG.title} />
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/icon-192x192.png" />
@@ -61,7 +62,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

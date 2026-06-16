@@ -1,17 +1,20 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Mic, Calendar, Star, RefreshCw } from "lucide-react"
+import { Mic, Calendar, Star, RefreshCw, Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import TimetableView from "@/components/timetable-view"
 import LineupView from "@/components/lineup-view"
 import { InstallPrompt } from "@/components/install-prompt"
-import { useFavorites } from "@/contexts/favorites-context"
 import { useOfflineData } from "@/hooks/use-offline-data"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 export default function Home() {
   const [activeView, setActiveView] = useState<"timetable" | "lineup">("timetable")
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+  const [manualThemeOverride, setManualThemeOverride] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
   const { refreshData, isLoading } = useOfflineData()
   const [countdown, setCountdown] = useState<{
     days: number
@@ -26,9 +29,19 @@ export default function Home() {
     await refreshData()
   }
 
-  // Countdown to Wednesday 21:00
+  const shouldUseDarkMode = () => {
+    const hour = new Date().getHours()
+    return hour >= 21 || hour < 7
+  }
+
+  const handleThemeToggle = () => {
+    setManualThemeOverride(true)
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }
+
+  // Countdown to the official 2026 festival start date.
   useEffect(() => {
-    const targetDate = new Date('2025-06-18T21:00:00')
+    const targetDate = new Date(FESTIVAL_CONFIG.officialStartDateTime)
     
     const updateCountdown = () => {
       const now = new Date()
@@ -57,26 +70,39 @@ export default function Home() {
     setMounted(true)
   }, [])
 
+  useEffect(() => {
+    if (!mounted || manualThemeOverride) return
+
+    const updateThemeForTime = () => {
+      setTheme(shouldUseDarkMode() ? "dark" : "light")
+    }
+
+    updateThemeForTime()
+    const interval = setInterval(updateThemeForTime, 60 * 1000)
+
+    return () => clearInterval(interval)
+  }, [manualThemeOverride, mounted, setTheme])
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen waking-life-shell text-[#222] dark:text-[#f7f3e7]">
       {/* Countdown Banner */}
       {mounted && countdown.show && (
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white text-center py-3 px-4">
-          <div className="flex items-center justify-center gap-4 text-sm font-medium">
-            <span>🎵 Waking Life starts in:</span>
+        <div className="border-b-2 border-black bg-white/70 text-[#222] text-center py-3 px-4 mix-blend-multiply dark:border-white dark:bg-black/70 dark:text-[#f7f3e7] dark:mix-blend-normal">
+          <div className="flex items-center justify-center gap-4 text-sm font-bold lowercase">
+            <span>{FESTIVAL_CONFIG.title} starts in:</span>
             <div className="flex gap-2">
               {countdown.days > 0 && (
-                <span className="bg-pink-700 px-2 py-1 rounded">
+                <span className="border border-black px-2 py-1 dark:border-white">
                   {countdown.days}d
                 </span>
               )}
-              <span className="bg-pink-700 px-2 py-1 rounded">
+              <span className="border border-black px-2 py-1 dark:border-white">
                 {countdown.hours.toString().padStart(2, '0')}h
               </span>
-              <span className="bg-pink-700 px-2 py-1 rounded">
+              <span className="border border-black px-2 py-1 dark:border-white">
                 {countdown.minutes.toString().padStart(2, '0')}m
               </span>
-              <span className="bg-pink-700 px-2 py-1 rounded">
+              <span className="border border-black px-2 py-1 dark:border-white">
                 {countdown.seconds.toString().padStart(2, '0')}s
               </span>
             </div>
@@ -85,9 +111,9 @@ export default function Home() {
       )}
 
       {/* Page Header - not clickable */}
-      <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+      <header className="sticky top-0 z-50 border-b-2 border-black bg-white/75 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/75 dark:mix-blend-normal">
         <div className="px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-2xl font-bold lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
             {activeView === "timetable" ? "Timetable" : "Lineup"}
           </h1>
           
@@ -99,8 +125,8 @@ export default function Home() {
                 size="sm"
                 className={`${
                   showFavoritesOnly
-                    ? "bg-yellow-500 hover:bg-yellow-600 text-black"
-                    : "border-gray-600 text-gray-300 hover:bg-gray-800"
+                    ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black"
+                    : "border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                 }`}
                 onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
               >
@@ -116,9 +142,26 @@ export default function Home() {
                 size="sm"
                 onClick={handleRefresh}
                 disabled={isLoading}
-                className="text-gray-300 hover:bg-gray-800"
+                className="text-[#222] hover:bg-black hover:text-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+              </Button>
+            )}
+
+            {mounted && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleThemeToggle}
+                className="border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+                aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                title={resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
+              >
+                {resolvedTheme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
               </Button>
             )}
           </div>
@@ -130,21 +173,21 @@ export default function Home() {
         {activeView === "timetable" ? (
           <TimetableView />
         ) : (
-          <LineupView showFavoritesOnly={showFavoritesOnly} setShowFavoritesOnly={setShowFavoritesOnly} />
+          <LineupView showFavoritesOnly={showFavoritesOnly} />
         )}
       </main>
 
       {/* Bottom Navigation - always visible */}
-      <div className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-gray-800 z-50">
+      <div className="fixed bottom-0 left-0 right-0 border-t-2 border-black bg-white/75 backdrop-blur-sm mix-blend-multiply z-50 dark:border-white dark:bg-black/75 dark:mix-blend-normal">
         <div className="flex justify-center items-center py-4 px-4">
           <div className="flex gap-2">
             <Button
               variant={activeView === "timetable" ? "default" : "secondary"}
               size="lg"
-              className={`rounded-full px-4 py-3 ${
+              className={`rounded-none border border-black px-4 py-3 font-bold lowercase ${
                 activeView === "timetable" 
-                  ? "bg-pink-500 hover:bg-pink-600 text-white" 
-                  : "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                  ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black" 
+                  : "bg-transparent hover:bg-black text-[#222] hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
               }`}
               onClick={() => setActiveView("timetable")}
             >
@@ -154,10 +197,10 @@ export default function Home() {
             <Button
               variant={activeView === "lineup" ? "default" : "secondary"}
               size="lg"
-              className={`rounded-full px-4 py-3 ${
+              className={`rounded-none border border-black px-4 py-3 font-bold lowercase ${
                 activeView === "lineup" 
-                  ? "bg-pink-500 hover:bg-pink-600 text-white" 
-                  : "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                  ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black" 
+                  : "bg-transparent hover:bg-black text-[#222] hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
               }`}
               onClick={() => setActiveView("lineup")}
             >

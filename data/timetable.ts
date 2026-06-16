@@ -1,3 +1,5 @@
+import { PROGRAM_DAY_ORDER } from "@/lib/festival-config"
+
 export interface Artist {
   id: string
   name: string
@@ -28,12 +30,12 @@ export interface Day {
 }
 
 export const days: Day[] = [
-  { id: "wednesday", name: "Wednesday", date: "2025-06-18" },
-  { id: "thursday", name: "Thursday", date: "2025-06-19" },
-  { id: "friday", name: "Friday", date: "2025-06-20" },
-  { id: "saturday", name: "Saturday", date: "2025-06-21" },
-  { id: "sunday", name: "Sunday", date: "2025-06-22" },
-  { id: "monday", name: "Monday", date: "2025-06-23" },
+  { id: "wednesday", name: "Wednesday", date: "2026-06-17" },
+  { id: "thursday", name: "Thursday", date: "2026-06-18" },
+  { id: "friday", name: "Friday", date: "2026-06-19" },
+  { id: "saturday", name: "Saturday", date: "2026-06-20" },
+  { id: "sunday", name: "Sunday", date: "2026-06-21" },
+  { id: "monday", name: "Monday", date: "2026-06-22" },
 ]
 
 export const stages: Stage[] = [
@@ -64,10 +66,9 @@ function mapLegacyDays(artists: Artist[]): Artist[] {
       let endDay = artist.day;
       if (endHour < startHour) {
         // Determine the endDay
-        const dayOrder = ["wednesday", "thursday", "friday", "saturday", "sunday", "monday"];
-        const currentDayIndex = dayOrder.indexOf(artist.day);
-        if (currentDayIndex !== -1 && currentDayIndex < dayOrder.length - 1) {
-          endDay = dayOrder[currentDayIndex + 1];
+        const currentDayIndex = PROGRAM_DAY_ORDER.indexOf(artist.day as typeof PROGRAM_DAY_ORDER[number]);
+        if (currentDayIndex !== -1 && currentDayIndex < PROGRAM_DAY_ORDER.length - 1) {
+          endDay = PROGRAM_DAY_ORDER[currentDayIndex + 1];
         }
       }
       
