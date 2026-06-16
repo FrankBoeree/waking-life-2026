@@ -127,7 +127,7 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
       >
         <SheetContent
           side="bottom"
-          className="flex h-[70vh] flex-col border-2 border-b-0 border-black bg-[#f7f3e7] p-0 text-[#222] dark:border-white dark:bg-black dark:text-[#f7f3e7]"
+          className="flex h-[70vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
         >
           {selectedArtist && (
             <>
@@ -236,7 +236,7 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
                 )}
               </div>
 
-              <SheetFooter className="relative z-10 shrink-0 flex-col border-t border-black/25 bg-[#f7f3e7] px-5 py-4 dark:border-white/25 dark:bg-black sm:flex-col sm:space-x-0">
+              <SheetFooter className="relative z-10 shrink-0 flex-col border-t border-black/25 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-white/25 dark:bg-[#111]/95 sm:flex-col sm:space-x-0">
                 <Button
                   type="button"
                   onClick={() => toggleFavorite(selectedArtist.id)}

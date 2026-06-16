@@ -111,7 +111,7 @@ export default function Home() {
       )}
 
       {/* Page Header - not clickable */}
-      <header className="sticky top-0 z-50 border-b-2 border-black bg-white/75 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/75 dark:mix-blend-normal">
+      <header className="sticky top-0 z-50 border-b-2 border-black bg-white/95 backdrop-blur-md dark:border-white dark:bg-[#111]/95">
         <div className="px-4 py-4 flex items-center justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wide text-[#555] dark:text-[#d8d1bd]">
@@ -190,7 +190,7 @@ export default function Home() {
       </main>
 
       {/* Bottom Navigation - always visible */}
-      <div className="fixed bottom-0 left-0 right-0 border-t-2 border-black bg-white/75 backdrop-blur-sm mix-blend-multiply z-50 dark:border-white dark:bg-black/75 dark:mix-blend-normal">
+      <div className="fixed bottom-0 left-0 right-0 border-t-2 border-black bg-white/95 backdrop-blur-md z-50 dark:border-white dark:bg-[#111]/95">
         <div className="flex justify-center items-center py-4 px-4">
           <div className="flex gap-2">
             <Button
