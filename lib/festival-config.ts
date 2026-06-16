@@ -16,6 +16,7 @@ export const FESTIVAL_CONFIG = {
   title: "Waking Life 2026",
   appTitle: "Waking Life 2026 - Timetable",
   manifestName: "Waking Life 2026 Timetable",
+  siteUrl: "https://waking-life-2026.netlify.app",
   description: `Festival timetable and lineup for Waking Life 2026 (${FESTIVAL_OFFICIAL_DATE_RANGE})`,
   manifestDescription: `Festival timetable and lineup for Waking Life 2026 (${FESTIVAL_OFFICIAL_DATE_RANGE}) - Works offline!`,
   officialDateRange: FESTIVAL_OFFICIAL_DATE_RANGE,

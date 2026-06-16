@@ -113,9 +113,19 @@ export default function Home() {
       {/* Page Header - not clickable */}
       <header className="sticky top-0 z-50 border-b-2 border-black bg-white/75 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/75 dark:mix-blend-normal">
         <div className="px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
-            {activeView === "timetable" ? "Timetable" : "Lineup"}
-          </h1>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wide text-[#555] dark:text-[#d8d1bd]">
+              {FESTIVAL_CONFIG.officialDateRange}
+            </p>
+            <h1 className="text-2xl font-bold lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
+              {activeView === "timetable"
+                ? `${FESTIVAL_CONFIG.title} timetable`
+                : `${FESTIVAL_CONFIG.title} lineup`}
+            </h1>
+            <p className="sr-only">
+              Festival timetable and lineup for Waking Life 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.
+            </p>
+          </div>
           
           <div className="flex items-center gap-3">
             {/* Show Favorites button - only visible in lineup view */}
