@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet"
 import type { Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
-import { getArtistInfo, getResidentAdvisorProfileUrl, type ArtistInfo } from "@/lib/artist-info"
+import { getArtistInfo, getArtistSourceLink, getResidentAdvisorProfileUrl, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
 
@@ -119,6 +119,7 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
   const residentAdvisorProfileUrl = artistInfo
     ? getResidentAdvisorProfileUrl(artistInfo.residentAdvisorUrl)
     : undefined
+  const sourceLink = artistInfo ? getArtistSourceLink(artistInfo) : null
 
   return (
     <Sheet
@@ -250,14 +251,14 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                   </div>
                 )}
 
-              {artistInfo?.sourceUrl && (
+              {sourceLink && (
                 <a
-                  href={artistInfo.sourceUrl}
+                  href={sourceLink.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold lowercase text-black/60 underline decoration-2 underline-offset-4 hover:text-black dark:text-white/60 dark:hover:text-white"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-black/60 underline decoration-2 underline-offset-4 hover:text-black dark:text-white/60 dark:hover:text-white"
                 >
-                  {artistInfo.sourceLabel}
+                  {sourceLink.label}
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               )}
