@@ -16,6 +16,7 @@ import type { Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
 import { getArtistInfo, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
+import { toArtistFavoriteId } from "@/lib/artist-id"
 import type { OfflineData } from "@/lib/offline-storage"
 
 interface LineupArtist {
@@ -27,15 +28,6 @@ interface LineupArtist {
 interface LineupViewProps {
   showFavoritesOnly: boolean
   data: OfflineData | null
-}
-
-function toLineupId(name: string) {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
 }
 
 function isOpenEndTime(time: string) {
@@ -113,7 +105,7 @@ export default function LineupView({ showFavoritesOnly, data }: LineupViewProps)
     for (const slot of data?.timetable || []) {
       if (slot.placeholderKind || slot.name.toLowerCase() === "a pausa") continue
 
-      const id = toLineupId(slot.name)
+      const id = toArtistFavoriteId(slot.name)
       const existing = byId.get(id)
       if (existing) {
         existing.slots.push(slot)

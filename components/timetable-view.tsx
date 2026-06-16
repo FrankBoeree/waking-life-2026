@@ -6,6 +6,7 @@ import { stages, days, type Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
+import { toArtistFavoriteId } from "@/lib/artist-id"
 
 const HOUR_WIDTH = 240
 const MINUTES_PER_DAY = 24 * 60
@@ -450,7 +451,8 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                     {getStageArtists(stage.id, timetable, totalMinutes).map((artist) => {
                       const left = getMinutesSinceFestivalStart(artist) * PIXELS_PER_MINUTE;
                       const width = getArtistDuration(artist) * PIXELS_PER_MINUTE;
-                      const isFav = isFavorite(artist.id);
+                      const favoriteId = toArtistFavoriteId(artist.name);
+                      const isFav = isFavorite(favoriteId);
                       const isPlaceholder = Boolean(artist.placeholderKind);
                       const isInteractive = !isPlaceholder;
                       return (
@@ -464,12 +466,12 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                             width: `${width}px`,
                             minWidth: "60px",
                           }}
-                          onClick={isInteractive ? () => toggleFavorite(artist.id) : undefined}
+                          onClick={isInteractive ? () => toggleFavorite(favoriteId) : undefined}
                         >
                           {isInteractive && (
                             <div className="absolute top-1 right-1 z-10">
                               <span
-                                onClick={e => { e.stopPropagation(); toggleFavorite(artist.id); }}
+                                onClick={e => { e.stopPropagation(); toggleFavorite(favoriteId); }}
                                 className="inline-flex items-center justify-center"
                               >
                                 <FavoriteStarIcon filled={isFav} />
