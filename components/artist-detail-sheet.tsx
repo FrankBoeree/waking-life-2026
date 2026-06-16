@@ -141,7 +141,12 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                       {artistInfo.country}
                     </span>
                   )}
-                  {artistInfo?.tags.slice(0, 2).map((tag) => (
+                  {artistInfo?.isLive !== undefined && (
+                    <span className="border border-black px-2 py-1 text-xs font-bold uppercase tracking-normal dark:border-white">
+                      {artistInfo.isLive ? "live" : "dj set"}
+                    </span>
+                  )}
+                  {artistInfo?.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
                       className="border border-black/35 px-2 py-1 text-xs font-bold uppercase text-black/65 dark:border-white/35 dark:text-white/65"

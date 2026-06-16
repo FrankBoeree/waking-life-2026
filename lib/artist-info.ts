@@ -5,6 +5,8 @@ export interface ArtistInfo {
   country?: string
   countryCode?: string
   flag?: string
+  /** True when the festival performance is a live act (not a DJ set). */
+  isLive?: boolean
   tags: string[]
   labels: string[]
   festivals: string[]
