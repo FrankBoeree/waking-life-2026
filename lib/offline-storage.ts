@@ -127,6 +127,38 @@ export async function registerServiceWorker(): Promise<ServiceWorkerRegistration
   return null
 }
 
+export async function clearAppCaches(): Promise<void> {
+  if (typeof window === 'undefined' || !('caches' in window)) return
+
+  const cacheNames = await caches.keys()
+  await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
+}
+
+export async function refreshAppShell(): Promise<void> {
+  if (typeof window === 'undefined') return
+
+  await clearAppCaches()
+
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration()
+      if (registration) {
+        await registration.update()
+
+        const waitingWorker = registration.waiting
+        if (waitingWorker) {
+          waitingWorker.postMessage({ type: 'SKIP_WAITING' })
+          await new Promise((resolve) => setTimeout(resolve, 300))
+        }
+      }
+    } catch (error) {
+      console.warn('Service worker refresh failed:', error)
+    }
+  }
+
+  window.location.reload()
+}
+
 export async function clearOfflineAppData(): Promise<void> {
   if (typeof window === 'undefined') return
 
@@ -136,11 +168,7 @@ export async function clearOfflineAppData(): Promise<void> {
     offlineStorage.clearData().catch((error) => {
       console.warn('Failed to clear IndexedDB cache:', error)
     }),
-    'caches' in window
-      ? caches.keys().then((cacheNames) =>
-          Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
-        )
-      : Promise.resolve(),
+    clearAppCaches(),
   ])
 
   if (storedFavorites) {
@@ -168,6 +196,14 @@ export async function initializeOfflineCapabilities(): Promise<ServiceWorkerRegi
 
   // Register service worker
   const registration = await registerServiceWorker()
+
+  if (registration) {
+    try {
+      await registration.update()
+    } catch (error) {
+      console.warn('Service worker update check failed:', error)
+    }
+  }
 
   // Pre-cache essential data
   if (typeof window !== 'undefined') {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { offlineStorage, OfflineData } from '@/lib/offline-storage'
+import { offlineStorage, refreshAppShell, OfflineData } from '@/lib/offline-storage'
 import { timetable, type Artist } from '@/data/timetable'
 import { FESTIVAL_CONFIG } from '@/lib/festival-config'
 
@@ -149,7 +149,38 @@ export function useOfflineData(): UseOfflineDataReturn {
   }
 
   const refreshData = async () => {
-    await loadData(true)
+    if (!navigator.onLine) {
+      setError('Connect to the internet to refresh the app')
+      return
+    }
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const latestData = await fetchLatestFestivalData()
+      const offlineData = await offlineStorage.getAllData().catch(() => null)
+      const lastSync = Date.now()
+
+      setData({
+        timetable: latestData.timetable,
+        favorites: offlineData?.favorites || [],
+        lastSync,
+        version: latestData.version,
+      })
+
+      try {
+        await offlineStorage.saveData('timetable', latestData.timetable)
+        await offlineStorage.saveData('data-version', latestData.version)
+        await offlineStorage.saveData('last-sync', lastSync)
+      } catch (saveError) {
+        console.warn('Failed to save refreshed data to IndexedDB:', saveError)
+      }
+    } catch (err) {
+      console.warn('Failed to refresh festival data before app reload:', err)
+    }
+
+    await refreshAppShell()
   }
 
   // Monitor online/offline status

@@ -1,6 +1,6 @@
-const CACHE_NAME = 'festival-timetable-v4';
-const STATIC_CACHE = 'festival-static-v4';
-const DATA_CACHE = 'festival-data-v4';
+const CACHE_NAME = 'festival-timetable-v5';
+const STATIC_CACHE = 'festival-static-v5';
+const DATA_CACHE = 'festival-data-v5';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -48,6 +48,12 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Always fetch update metadata from the network.
+  if (url.pathname === '/sw.js' || url.pathname === '/app-version.json') {
+    event.respondWith(fetch(request));
+    return;
+  }
+
   // Handle festival data network-first so the refresh button can pick up a new deploy.
   if (url.pathname === '/festival-data.json') {
     event.respondWith(
@@ -64,6 +70,26 @@ self.addEventListener('fetch', (event) => {
               const cachedResponse = await cache.match('/festival-data.json');
               return cachedResponse || Response.error();
             });
+        })
+    );
+    return;
+  }
+
+  // Navigation: network-first so new deploys reach installed PWAs.
+  if (request.mode === 'navigate' || request.destination === 'document') {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(STATIC_CACHE)
+              .then((cache) => cache.put(request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(async () => {
+          const cachedResponse = await caches.match(request);
+          return cachedResponse || caches.match('/offline');
         })
     );
     return;

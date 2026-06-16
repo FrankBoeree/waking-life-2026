@@ -24,5 +24,5 @@ export const FESTIVAL_CONFIG = {
   programStartDay: "wednesday" as ProgramDayId,
   programStartTime: "21:00",
   dataVersion: "2026.2.3",
-  cacheVersion: "v4",
+  cacheVersion: "v5",
 } as const

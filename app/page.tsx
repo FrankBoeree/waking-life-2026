@@ -153,8 +153,8 @@ export default function Home() {
                 onClick={handleRefresh}
                 disabled={isLoading}
                 className="text-[#222] hover:bg-black hover:text-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
-                aria-label="Refresh timetable data"
-                title="Refresh timetable data"
+                aria-label="Refresh app and timetable"
+                title="Refresh app and timetable"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
               </Button>

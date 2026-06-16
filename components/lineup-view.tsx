@@ -1,7 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { Search, Star } from "lucide-react"
+import { useMemo, useRef, useState } from "react"
+import { Search, Star, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import type { Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
@@ -31,6 +31,7 @@ function sortSlots(slots: Artist[]) {
 
 export default function LineupView({ showFavoritesOnly, data }: LineupViewProps) {
   const [searchTerm, setSearchTerm] = useState("")
+  const searchInputRef = useRef<HTMLInputElement>(null)
   const [selectedArtist, setSelectedArtist] = useState<ArtistWithSlots | null>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
 
@@ -71,11 +72,26 @@ export default function LineupView({ showFavoritesOnly, data }: LineupViewProps)
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/55 dark:text-white/60 w-4 h-4" />
         <Input
+          ref={searchInputRef}
           placeholder="Search artists..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="rounded-none border-2 border-black bg-white/70 pl-10 font-bold lowercase text-[#222] placeholder:text-black/45 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-white dark:bg-black/60 dark:text-[#f7f3e7] dark:placeholder:text-white/45"
+          className="rounded-none border-2 border-black bg-white/70 pl-10 pr-10 font-bold lowercase text-[#222] placeholder:text-black/45 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-white dark:bg-black/60 dark:text-[#f7f3e7] dark:placeholder:text-white/45"
         />
+        {searchTerm && (
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => {
+              setSearchTerm("")
+              searchInputRef.current?.focus()
+            }}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-black/55 hover:text-black dark:text-white/60 dark:hover:text-white"
+            aria-label="Clear search"
+          >
+            <X className="h-4 w-4" strokeWidth={2} />
+          </button>
+        )}
       </div>
 
       {/* Artists Grid */}
