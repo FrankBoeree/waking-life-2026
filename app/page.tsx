@@ -118,7 +118,7 @@ export default function Home() {
             <p className="text-xs font-bold uppercase tracking-wide text-[#555] dark:text-[#d8d1bd]">
               {FESTIVAL_CONFIG.officialDateRange}
             </p>
-            <h1 className="text-2xl font-bold lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
+            <h1 className="text-2xl font-bold leading-none text-[#222] dark:text-[#f7f3e7]">
               {FESTIVAL_CONFIG.title}
             </h1>
             <p className="sr-only">
