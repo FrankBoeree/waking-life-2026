@@ -12,9 +12,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
-import { stages, days, type Artist } from "@/data/timetable"
+import { likelyLineup, type LineupArtist } from "@/data/lineup"
 import { useFavorites } from "@/contexts/favorites-context"
-import { useOfflineData } from "@/hooks/use-offline-data"
 import { getArtistInfo, type ArtistInfo } from "@/lib/artist-info"
 
 interface LineupViewProps {
@@ -23,37 +22,16 @@ interface LineupViewProps {
 
 export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null)
+  const [selectedArtist, setSelectedArtist] = useState<LineupArtist | null>(null)
   const [artistInfo, setArtistInfo] = useState<ArtistInfo | null>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
-  const { data, isLoading, error } = useOfflineData()
 
-  // Use offline data if available, fallback to static imports
-  const timetable = data?.timetable || []
-
-  const filteredArtists = timetable
+  const filteredArtists = likelyLineup
     .filter((artist) =>
       artist.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter((artist) => !showFavoritesOnly || isFavorite(artist.id))
     .sort((a, b) => a.name.localeCompare(b.name))
-
-  // Helper function to format date DD-MM-YYYY
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const day = date.getDate().toString().padStart(2, '0')
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const year = date.getFullYear()
-    return `${day}-${month}-${year}`
-  }
-
-  // Helper function to get day info
-  const getDayInfo = (artist: Artist) => {
-    // Use startDay if available, otherwise fall back to day
-    const dayId = artist.startDay || artist.day
-    const day = days.find((d) => d.id === dayId)
-    return day ? { name: day.name, date: formatDate(day.date) } : { name: 'Unknown', date: 'Unknown' }
-  }
 
   useEffect(() => {
     if (!selectedArtist) {
@@ -64,38 +42,18 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
     setArtistInfo(getArtistInfo(selectedArtist.name))
   }, [selectedArtist])
 
-  const selectedStage = selectedArtist
-    ? stages.find((stage) => stage.id === selectedArtist.stage)
-    : undefined
-  const selectedDayInfo = selectedArtist ? getDayInfo(selectedArtist) : undefined
   const selectedIsFavorite = selectedArtist
     ? isFavorite(selectedArtist.id)
     : false
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="p-4">
-        <div className="text-center py-12 text-black/60 dark:text-white/60">
-          <p>Loading lineup...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // Show error state
-  if (error) {
-    return (
-      <div className="p-4">
-        <div className="text-center py-12 text-red-700 dark:text-red-300">
-          <p>Error loading lineup: {error}</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="p-4 text-[#222] dark:text-[#f7f3e7]">
+      <div className="mb-5 border-2 border-black bg-white/75 p-4 font-bold lowercase mix-blend-multiply dark:border-white dark:bg-black/65 dark:mix-blend-normal">
+        <p className="text-base leading-6">
+          The exact timetable is not available yet. This lineup shows artists who are very likely to play Waking Life 2026, without times or stages.
+        </p>
+      </div>
+
       {/* Search */}
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/55 dark:text-white/60 w-4 h-4" />
@@ -107,12 +65,10 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
         />
       </div>
 
-      {/* Artists Grid - using timetable-style cards */}
+      {/* Artists Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredArtists.map((artist) => {
           const isFav = isFavorite(artist.id)
-          const stage = stages.find((s) => s.id === artist.stage)
-          const dayInfo = getDayInfo(artist)
           
           return (
             <div 
@@ -137,30 +93,17 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
               {/* Content */}
               <div className="p-4 h-full flex flex-col justify-between">
                 {/* Artist name */}
-                <div className="truncate text-lg font-bold lowercase leading-tight">
+                <div className="pr-8 text-lg font-bold lowercase leading-tight">
                   {artist.name}
                 </div>
                 
-                {/* Day and date */}
+                {/* Timetable status */}
                 <div className={`text-sm font-bold lowercase ${
                   isFav
                     ? 'text-white/80 dark:text-black/75'
                     : 'text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75'
                 }`}>
-                  {dayInfo.name} • {artist.startTime} - {artist.endTime}
-                </div>
-                
-                {/* Stage name */}
-                <div className={`flex items-center gap-2 text-sm font-bold lowercase ${
-                  isFav
-                    ? 'text-white/80 dark:text-black/75'
-                    : 'text-black/70 group-hover:text-white/80 dark:text-white/70 dark:group-hover:text-black/75'
-                }`}>
-                  <div 
-                    className="w-3 h-3 flex-shrink-0 border border-current"
-                    style={{ backgroundColor: stage?.color || "#ec4899" }}
-                  />
-                  {stage?.name || 'Unknown Stage'}
+                  time and stage to be announced
                 </div>
               </div>
             </div>
@@ -227,19 +170,8 @@ export default function LineupView({ showFavoritesOnly }: LineupViewProps) {
               </SheetHeader>
 
               <div className="min-h-0 flex-1 basis-0 overflow-y-auto overflow-x-hidden px-5 pb-10 pt-5">
-                <div className="mb-5 grid gap-3 text-sm font-bold lowercase text-black/70 dark:text-white/70">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="h-3 w-3 flex-shrink-0 border border-current"
-                      style={{ backgroundColor: selectedStage?.color || "#ec4899" }}
-                    />
-                    {selectedStage?.name || "Unknown Stage"}
-                  </div>
-                  {selectedDayInfo && (
-                    <div>
-                      {selectedDayInfo.name} • {selectedArtist.startTime} - {selectedArtist.endTime}
-                    </div>
-                  )}
+                <div className="mb-5 border border-black/30 p-3 text-sm font-bold lowercase text-black/70 dark:border-white/30 dark:text-white/70">
+                  timetable not published yet
                 </div>
 
                 {artistInfo && (

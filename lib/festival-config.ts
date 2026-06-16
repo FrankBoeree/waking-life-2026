@@ -9,7 +9,7 @@ export const PROGRAM_DAY_ORDER = [
 
 export type ProgramDayId = (typeof PROGRAM_DAY_ORDER)[number]
 
-export const FESTIVAL_OFFICIAL_DATE_RANGE = "16-22 juni 2026"
+export const FESTIVAL_OFFICIAL_DATE_RANGE = "16-22 June 2026"
 
 export const FESTIVAL_CONFIG = {
   year: 2026,
@@ -23,6 +23,6 @@ export const FESTIVAL_CONFIG = {
   officialStartDateTime: "2026-06-16T00:00:00",
   programStartDay: "wednesday" as ProgramDayId,
   programStartTime: "21:00",
-  dataVersion: "2026.0.0",
-  cacheVersion: "v2",
+  dataVersion: "2026.1.0",
+  cacheVersion: "v3",
 } as const

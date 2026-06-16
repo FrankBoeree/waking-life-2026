@@ -69,13 +69,13 @@ export function OfflineStatus() {
             Offline Status
           </CardTitle>
           <CardDescription>
-            App status en opslag informatie
+            App status and storage information
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Connection Status */}
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Verbinding:</span>
+            <span className="text-sm font-medium">Connection:</span>
             <Badge variant={isOnline ? "default" : "destructive"}>
               {isOnline ? (
                 <>
@@ -96,13 +96,13 @@ export function OfflineStatus() {
             <div className="flex items-center justify-between text-sm">
               <span>Timetable:</span>
               <Badge variant={data?.timetable.length ? "default" : "secondary"}>
-                {data?.timetable.length || 0} artiesten
+                {data?.timetable.length || 0} artists
               </Badge>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span>Favorieten:</span>
+              <span>Favorites:</span>
               <Badge variant={data?.favorites.length ? "default" : "secondary"}>
-                {data?.favorites.length || 0} favorieten
+                {data?.favorites.length || 0} favorites
               </Badge>
             </div>
           </div>
@@ -111,12 +111,12 @@ export function OfflineStatus() {
           {storageInfo && (
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Opslag gebruikt:</span>
+                <span>Storage used:</span>
                 <span>{formatBytes(storageInfo.used)}</span>
               </div>
               <Progress value={getStoragePercentage()} className="h-2" />
               <div className="text-xs text-muted-foreground">
-                {formatBytes(storageInfo.used)} van {formatBytes(storageInfo.available)} gebruikt
+                {formatBytes(storageInfo.used)} of {formatBytes(storageInfo.available)} used
               </div>
             </div>
           )}
@@ -124,7 +124,7 @@ export function OfflineStatus() {
           {/* Last Sync */}
           {data?.lastSync && (
             <div className="text-xs text-muted-foreground">
-              Laatste synchronisatie: {new Date(data.lastSync).toLocaleString('nl-NL')}
+              Last sync: {new Date(data.lastSync).toLocaleString('en-US')}
             </div>
           )}
 
@@ -138,7 +138,7 @@ export function OfflineStatus() {
               className="flex-1"
             >
               <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-              Vernieuwen
+              Refresh
             </Button>
             <Button
               variant="outline"
@@ -146,7 +146,7 @@ export function OfflineStatus() {
               onClick={() => setShowDetails(false)}
               className="flex-1"
             >
-              Sluiten
+              Close
             </Button>
           </div>
         </CardContent>

@@ -34,7 +34,6 @@ export function useOfflineData(): UseOfflineDataReturn {
       // If no data in IndexedDB or IndexedDB failed, use static imports
       if (
         !offlineData ||
-        !offlineData.timetable.length ||
         offlineData.version !== FESTIVAL_CONFIG.dataVersion
       ) {
         offlineData = {

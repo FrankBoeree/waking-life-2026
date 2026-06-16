@@ -4,7 +4,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FavoritesProvider } from "@/contexts/favorites-context"
 import { OfflineInitializer } from "@/components/offline-initializer"
-import { GoogleAnalytics } from "@/components/google-analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -129,20 +128,19 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6WZZY6VE5"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CQJY9XWXS"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-L6WZZY6VE5');
+              gtag('config', 'G-2CQJY9XWXS');
             `
           }}
         />
       </head>
       <body className={inter.className}>
-        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

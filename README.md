@@ -1,6 +1,6 @@
 # Festival Timetable PWA - Offline First
 
-A Progressive Web App (PWA) for the Waking Life Festival 2026 (16-22 juni 2026) that works completely offline. All data is stored locally and the app continues to function without an internet connection.
+A Progressive Web App (PWA) for the Waking Life Festival 2026 (16-22 June 2026) that works completely offline. All data is stored locally and the app continues to function without an internet connection.
 
 ## 🚀 Features
 

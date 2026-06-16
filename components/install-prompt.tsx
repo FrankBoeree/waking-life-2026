@@ -76,7 +76,7 @@ export function InstallPrompt() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-white text-lg flex items-center gap-2">
               <Download className="h-5 w-5" />
-              Installeer App
+              Install app
             </CardTitle>
             <Button
               variant="ghost"
@@ -94,11 +94,11 @@ export function InstallPrompt() {
         <CardContent className="space-y-3">
           <div className="flex items-center gap-2 text-sm text-purple-200">
             <Smartphone className="h-4 w-4" />
-            <span>Toegang vanaf je startscherm</span>
+            <span>Access from your home screen</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-purple-200">
             <WifiOff className="h-4 w-4" />
-            <span>Werkt volledig offline</span>
+            <span>Works fully offline</span>
           </div>
           
           <div className="flex gap-2 pt-2">
@@ -107,7 +107,7 @@ export function InstallPrompt() {
               className="flex-1 bg-white text-purple-900 hover:bg-purple-100"
             >
               <Download className="h-4 w-4 mr-2" />
-              Installeren
+              Install
             </Button>
             <Button
               variant="outline"

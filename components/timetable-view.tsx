@@ -236,8 +236,13 @@ export default function TimetableView() {
   // Show fallback if no data
   if (!timetable || timetable.length === 0) {
     return (
-      <div className="text-center py-12 text-black/60 dark:text-white/60">
-        <p>No timetable data available.</p>
+      <div className="flex h-full items-center justify-center px-4 py-12 text-[#222] dark:text-[#f7f3e7]">
+        <div className="max-w-xl border-2 border-black bg-white/75 p-6 text-center mix-blend-multiply dark:border-white dark:bg-black/65 dark:mix-blend-normal">
+          <p className="mb-3 text-2xl font-black lowercase">timetable not available yet</p>
+          <p className="text-base font-bold lowercase leading-7 text-black/65 dark:text-white/65">
+            Exact times and stages for Waking Life 2026 have not been published yet. When an update is ready, the app will show a banner so you can hard reset the offline cache.
+          </p>
+        </div>
       </div>
     )
   }

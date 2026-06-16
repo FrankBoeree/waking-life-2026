@@ -1,6 +1,6 @@
-const CACHE_NAME = 'festival-timetable-v2';
-const STATIC_CACHE = 'festival-static-v2';
-const DATA_CACHE = 'festival-data-v2';
+const CACHE_NAME = 'festival-timetable-v3';
+const STATIC_CACHE = 'festival-static-v3';
+const DATA_CACHE = 'festival-data-v3';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -19,7 +19,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
   );
 });
 
@@ -36,6 +35,12 @@ self.addEventListener('activate', (event) => {
       );
     }).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 // Fetch event - serve from cache, fallback to network

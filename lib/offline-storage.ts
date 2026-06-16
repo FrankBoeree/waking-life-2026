@@ -126,10 +126,47 @@ export async function registerServiceWorker(): Promise<ServiceWorkerRegistration
   return null
 }
 
+export async function clearOfflineAppData(): Promise<void> {
+  if (typeof window === 'undefined') return
+
+  const storedFavorites = localStorage.getItem('festival-favorites')
+
+  await Promise.all([
+    offlineStorage.clearData().catch((error) => {
+      console.warn('Failed to clear IndexedDB cache:', error)
+    }),
+    'caches' in window
+      ? caches.keys().then((cacheNames) =>
+          Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
+        )
+      : Promise.resolve(),
+  ])
+
+  if (storedFavorites) {
+    localStorage.setItem('festival-favorites', storedFavorites)
+  }
+}
+
 // Initialize offline capabilities
-export async function initializeOfflineCapabilities(): Promise<void> {
+export async function initializeOfflineCapabilities(): Promise<ServiceWorkerRegistration | null> {
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof window !== 'undefined') {
+      if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations()
+        await Promise.all(registrations.map((registration) => registration.unregister()))
+      }
+
+      if ('caches' in window) {
+        const cacheNames = await caches.keys()
+        await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
+      }
+    }
+
+    return null
+  }
+
   // Register service worker
-  await registerServiceWorker()
+  const registration = await registerServiceWorker()
 
   // Pre-cache essential data
   if (typeof window !== 'undefined') {
@@ -144,4 +181,6 @@ export async function initializeOfflineCapabilities(): Promise<void> {
       await offlineStorage.saveData('favorites', favorites)
     }
   }
+
+  return registration
 } 
