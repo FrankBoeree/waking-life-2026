@@ -48,8 +48,7 @@ export function AppSharePanel() {
 
           <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-10 pt-5">
             <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
-              scan this code to open the app on another phone — pass it along to friends so
-              everyone has the schedule handy.
+              scan this code to open the app on another phone.
             </p>
             <div className="mt-6 flex justify-center">
               <div className="border-2 border-black bg-white p-4 dark:border-white">

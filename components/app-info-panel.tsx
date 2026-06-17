@@ -112,8 +112,9 @@ export function AppInfoPanel() {
               </div>
 
               <div className="border-t border-black/25 pt-5 text-center dark:border-white/25">
-                <p className="mb-3 text-xs font-black uppercase text-black/50 dark:text-white/50">
-                  made with love
+                <p className="mb-5 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                  updated for this year&apos;s edition and rebuilt with a lot of love. still
+                  imperfect, still unofficial, still no substitute for wandering around on your own.
                 </p>
                 <a
                   href="https://revolut.me/frank_frank"
