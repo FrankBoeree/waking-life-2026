@@ -1,4 +1,5 @@
 export const PROGRAM_DAY_ORDER = [
+  "tuesday",
   "wednesday",
   "thursday",
   "friday",
@@ -21,8 +22,8 @@ export const FESTIVAL_CONFIG = {
   manifestDescription: `Festival timetable and lineup for Waking Life 2026 (${FESTIVAL_OFFICIAL_DATE_RANGE}) - Works offline!`,
   officialDateRange: FESTIVAL_OFFICIAL_DATE_RANGE,
   officialStartDateTime: "2026-06-16T00:00:00",
-  programStartDay: "wednesday" as ProgramDayId,
-  programStartTime: "21:00",
-  dataVersion: "2026.2.3",
+  programStartDay: "tuesday" as ProgramDayId,
+  programStartTime: "16:00",
+  dataVersion: "2026.2.4",
   cacheVersion: "v5",
 } as const

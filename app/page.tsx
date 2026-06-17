@@ -9,6 +9,7 @@ import LineupView from "@/components/lineup-view"
 import { InstallPrompt } from "@/components/install-prompt"
 import { AppInfoPanel } from "@/components/app-info-panel"
 import { useOfflineData } from "@/hooks/use-offline-data"
+import { trackViewSwitch } from "@/lib/analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 export default function Home() {
@@ -25,6 +26,11 @@ export default function Home() {
     show: boolean
   }>({ days: 0, hours: 0, minutes: 0, seconds: 0, show: true })
   const [mounted, setMounted] = useState(false)
+
+  const handleViewChange = (view: "timetable" | "lineup") => {
+    setActiveView(view)
+    trackViewSwitch(view)
+  }
 
   const handleRefresh = async () => {
     await refreshData()
@@ -202,7 +208,7 @@ export default function Home() {
                   ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black" 
                   : "bg-transparent hover:bg-black text-[#222] hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
               }`}
-              onClick={() => setActiveView("timetable")}
+              onClick={() => handleViewChange("timetable")}
             >
               <Calendar className="w-4 h-4 mr-1" />
               Timetable
@@ -215,7 +221,7 @@ export default function Home() {
                   ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black" 
                   : "bg-transparent hover:bg-black text-[#222] hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
               }`}
-              onClick={() => setActiveView("lineup")}
+              onClick={() => handleViewChange("lineup")}
             >
               <Mic className="w-4 h-4 mr-1" />
               Lineup

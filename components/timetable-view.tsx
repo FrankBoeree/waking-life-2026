@@ -7,6 +7,7 @@ import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
+import { getArtistCategory } from "@/lib/categories"
 import {
   ArtistDetailSheet,
   buildArtistWithSlots,
@@ -441,7 +442,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                 <div key={stage.id} className="relative" style={{ height: "80px", width: timelineWidth, marginBottom: "16px" }}>
                   {/* Sticky stagenaam above the artist row */}
                   <div
-                    className="text-xs font-bold text-black px-2 py-1 z-30 border border-black sticky left-0 lowercase mix-blend-multiply dark:border-white dark:mix-blend-normal"
+                    className="pointer-events-none text-xs font-bold text-black px-2 py-1 z-30 border border-black sticky left-0 lowercase mix-blend-multiply dark:border-white dark:mix-blend-normal"
                     style={{ 
                       backgroundColor: stage.color,
                       width: '200px',
@@ -468,7 +469,11 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                       return (
                         <div
                           key={artist.id}
-                          className={`absolute top-0 h-full border transition-colors group flex flex-col justify-between mix-blend-multiply dark:mix-blend-normal ${
+                          role={isInteractive ? "button" : undefined}
+                          tabIndex={isInteractive ? 0 : undefined}
+                          className={`absolute top-0 z-10 h-full border transition-colors group flex flex-col justify-between ${
+                            isInteractive ? "dark:mix-blend-normal" : "mix-blend-multiply dark:mix-blend-normal"
+                          } ${
                             getArtistBlockClassName(artist, isFav)
                           } ${isInteractive ? "cursor-pointer" : ""}`}
                           style={{
@@ -481,11 +486,28 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                               ? () => setSelectedArtist(buildArtistWithSlots(artist.name, timetable))
                               : undefined
                           }
+                          onKeyDown={
+                            isInteractive
+                              ? (event) => {
+                                  if (event.key === "Enter" || event.key === " ") {
+                                    event.preventDefault()
+                                    setSelectedArtist(buildArtistWithSlots(artist.name, timetable))
+                                  }
+                                }
+                              : undefined
+                          }
                         >
                           {isInteractive && (
                             <div className="absolute top-1 right-1 z-10">
                               <span
-                                onClick={e => { e.stopPropagation(); toggleFavorite(favoriteId); }}
+                                onClick={e => {
+                                  e.stopPropagation()
+                                  toggleFavorite(favoriteId, {
+                                    artistName: artist.name,
+                                    artistCategory: getArtistCategory(artist),
+                                    source: "timetable",
+                                  })
+                                }}
                                 className="inline-flex items-center justify-center"
                               >
                                 <FavoriteStarIcon filled={isFav} />
@@ -534,6 +556,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
       <ArtistDetailSheet
         artist={selectedArtist}
         onClose={() => setSelectedArtist(null)}
+        source="timetable"
       />
     </div>
   )

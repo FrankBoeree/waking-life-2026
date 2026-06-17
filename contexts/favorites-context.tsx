@@ -3,11 +3,18 @@
 import type React from "react"
 
 import { createContext, useContext, useEffect, useState } from "react"
+import { trackFavoriteChange, type FavoriteSource } from "@/lib/analytics"
 import { offlineStorage } from "@/lib/offline-storage"
+
+export interface FavoriteToggleMeta {
+  artistName?: string
+  artistCategory?: string
+  source: FavoriteSource
+}
 
 interface FavoritesContextType {
   favorites: string[]
-  toggleFavorite: (artistId: string) => void
+  toggleFavorite: (artistId: string, meta?: FavoriteToggleMeta) => void
   isFavorite: (artistId: string) => boolean
   isLoading: boolean
   isOnline: boolean
@@ -68,11 +75,22 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  const toggleFavorite = async (artistId: string) => {
+  const toggleFavorite = async (artistId: string, meta?: FavoriteToggleMeta) => {
     setFavorites((prev) => {
-      const newFavorites = prev.includes(artistId) 
-        ? prev.filter((id) => id !== artistId) 
+      const isRemoving = prev.includes(artistId)
+      const newFavorites = isRemoving
+        ? prev.filter((id) => id !== artistId)
         : [...prev, artistId]
+
+      if (meta) {
+        trackFavoriteChange({
+          artistId,
+          artistName: meta.artistName,
+          artistCategory: meta.artistCategory,
+          source: meta.source,
+          action: isRemoving ? "remove" : "add",
+        })
+      }
 
       // Save to both localStorage and IndexedDB
       localStorage.setItem("festival-favorites", JSON.stringify(newFavorites))

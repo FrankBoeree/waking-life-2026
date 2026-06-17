@@ -1,5 +1,5 @@
 {
-  "version": "2026.2.3",
+  "version": "2026.2.4",
   "timetable": [
     {
       "id": "tristan-arp-praia-wednesday-21-00",
@@ -8,7 +8,8 @@
       "endTime": "22:00",
       "stage": "Praia",
       "startDay": "wednesday",
-      "endDay": "wednesday"
+      "endDay": "wednesday",
+      "category": "Music"
     },
     {
       "id": "party-smith-praia-wednesday-22-00",
@@ -17,7 +18,8 @@
       "endTime": "01:00",
       "stage": "Praia",
       "startDay": "wednesday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "dj-marcelle-praia-thursday-01-00",
@@ -26,7 +28,8 @@
       "endTime": "04:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "kiss-nuka-praia-thursday-04-00",
@@ -35,7 +38,8 @@
       "endTime": "06:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-praia-thursday-06-00",
@@ -45,6 +49,7 @@
       "stage": "Praia",
       "startDay": "thursday",
       "endDay": "thursday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -54,7 +59,8 @@
       "endTime": "13:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "e-l-e-m-e-n-t-a-l-praia-thursday-13-00",
@@ -63,7 +69,8 @@
       "endTime": "16:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "protodub-praia-thursday-16-00",
@@ -72,7 +79,8 @@
       "endTime": "19:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "marylou-praia-thursday-19-00",
@@ -81,7 +89,8 @@
       "endTime": "23:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "mia-koden-praia-thursday-23-00",
@@ -90,7 +99,8 @@
       "endTime": "02:00",
       "stage": "Praia",
       "startDay": "thursday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "mala-praia-friday-02-00",
@@ -99,7 +109,8 @@
       "endTime": "04:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "mix-elle-praia-friday-04-00",
@@ -108,7 +119,8 @@
       "endTime": "06:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-praia-friday-06-00",
@@ -118,6 +130,7 @@
       "stage": "Praia",
       "startDay": "friday",
       "endDay": "friday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -127,7 +140,8 @@
       "endTime": "14:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "dj-caring-praia-friday-14-00",
@@ -136,7 +150,8 @@
       "endTime": "17:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "nightmares-on-wax-praia-friday-17-00",
@@ -145,7 +160,8 @@
       "endTime": "20:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "ojoo-praia-friday-20-00",
@@ -154,7 +170,8 @@
       "endTime": "23:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "dj-godfather-praia-friday-23-00",
@@ -163,7 +180,8 @@
       "endTime": "00:00",
       "stage": "Praia",
       "startDay": "friday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "niknak-praia-saturday-00-00",
@@ -172,7 +190,8 @@
       "endTime": "01:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "nosedrip-praia-saturday-01-00",
@@ -181,7 +200,8 @@
       "endTime": "06:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-praia-saturday-06-00",
@@ -191,6 +211,7 @@
       "stage": "Praia",
       "startDay": "saturday",
       "endDay": "saturday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -200,7 +221,8 @@
       "endTime": "16:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "alan-braxe-praia-saturday-16-00",
@@ -209,7 +231,8 @@
       "endTime": "18:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "arrogance-arrogance-praia-saturday-18-00",
@@ -218,7 +241,8 @@
       "endTime": "21:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "natalia-escobar-praia-saturday-21-00",
@@ -227,7 +251,8 @@
       "endTime": "00:00",
       "stage": "Praia",
       "startDay": "saturday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "shackleton-praia-sunday-00-00",
@@ -236,7 +261,8 @@
       "endTime": "01:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "olgica-praia-sunday-01-00",
@@ -245,7 +271,8 @@
       "endTime": "03:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "upsammy-x-gyrofield-praia-sunday-03-00",
@@ -254,7 +281,8 @@
       "endTime": "06:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-praia-sunday-06-00",
@@ -264,6 +292,7 @@
       "stage": "Praia",
       "startDay": "sunday",
       "endDay": "sunday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -273,7 +302,8 @@
       "endTime": "16:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "vixen-sound-praia-sunday-16-00",
@@ -282,7 +312,8 @@
       "endTime": "18:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "simply-rockers-sound-system-praia-sunday-18-00",
@@ -291,7 +322,8 @@
       "endTime": "20:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "vedic-roots-praia-sunday-20-00",
@@ -300,7 +332,8 @@
       "endTime": "22:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "lion-s-den-praia-sunday-22-00",
@@ -309,7 +342,8 @@
       "endTime": "00:00",
       "stage": "Praia",
       "startDay": "sunday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "simply-rockers-sound-system-praia-monday-00-00",
@@ -318,7 +352,8 @@
       "endTime": "02:00",
       "stage": "Praia",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "edward-outro-lado-thursday-12-00",
@@ -327,7 +362,8 @@
       "endTime": "16:00",
       "stage": "Outro Lado",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "alton-miller-outro-lado-thursday-16-00",
@@ -336,7 +372,8 @@
       "endTime": "19:00",
       "stage": "Outro Lado",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "yamour-outro-lado-thursday-19-00",
@@ -345,7 +382,8 @@
       "endTime": "22:00",
       "stage": "Outro Lado",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "xdb-lowtec-outro-lado-thursday-22-00",
@@ -354,7 +392,8 @@
       "endTime": "01:00",
       "stage": "Outro Lado",
       "startDay": "thursday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "michael-j-blood-outro-lado-friday-01-00",
@@ -363,7 +402,8 @@
       "endTime": "04:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "flo-masse-outro-lado-friday-04-00",
@@ -372,7 +412,8 @@
       "endTime": "07:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "elli-outro-lado-friday-07-00",
@@ -381,7 +422,8 @@
       "endTime": "10:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "drama-outro-lado-friday-10-00",
@@ -390,7 +432,8 @@
       "endTime": "11:30",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "coco-maria-outro-lado-friday-11-30",
@@ -399,7 +442,8 @@
       "endTime": "14:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "millie-mckee-outro-lado-friday-14-00",
@@ -408,7 +452,8 @@
       "endTime": "16:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "pedro-tenreiro-outro-lado-friday-16-00",
@@ -417,7 +462,8 @@
       "endTime": "18:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "i-cube-outro-lado-friday-18-00",
@@ -426,7 +472,8 @@
       "endTime": "19:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "matthias-reiling-outro-lado-friday-19-00",
@@ -435,7 +482,8 @@
       "endTime": "22:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "keith-worthy-outro-lado-friday-22-00",
@@ -444,7 +492,8 @@
       "endTime": "01:00",
       "stage": "Outro Lado",
       "startDay": "friday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "cosmo-outro-lado-saturday-01-00",
@@ -453,7 +502,8 @@
       "endTime": "04:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "cassy-outro-lado-saturday-04-00",
@@ -462,7 +512,8 @@
       "endTime": "07:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "leafar-legov-outro-lado-saturday-07-00",
@@ -471,7 +522,8 @@
       "endTime": "10:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "margaux-gazur-outro-lado-saturday-10-00",
@@ -480,7 +532,8 @@
       "endTime": "11:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "alexandre-centeio-outro-lado-saturday-11-00",
@@ -489,7 +542,8 @@
       "endTime": "12:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "birds-tapes-outro-lado-saturday-12-00",
@@ -498,7 +552,8 @@
       "endTime": "13:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "ani-zakareishvili-outro-lado-saturday-13-00",
@@ -507,7 +562,8 @@
       "endTime": "14:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "lerosa-outro-lado-saturday-14-00",
@@ -516,7 +572,8 @@
       "endTime": "15:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "billi-outro-lado-saturday-15-00",
@@ -525,7 +582,8 @@
       "endTime": "18:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "aleksi-per-l-outro-lado-saturday-18-00",
@@ -534,7 +592,8 @@
       "endTime": "20:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "parallel-9-outro-lado-saturday-20-00",
@@ -543,7 +602,8 @@
       "endTime": "22:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "edward-konstantin-outro-lado-saturday-22-00",
@@ -552,7 +612,8 @@
       "endTime": "02:00",
       "stage": "Outro Lado",
       "startDay": "saturday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "tobias-outro-lado-sunday-02-00",
@@ -561,7 +622,8 @@
       "endTime": "04:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "serenne-outro-lado-sunday-04-00",
@@ -570,7 +632,8 @@
       "endTime": "06:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "snplo-outro-lado-sunday-06-00",
@@ -579,7 +642,8 @@
       "endTime": "10:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "jan-jelinek-outro-lado-sunday-10-00",
@@ -588,7 +652,8 @@
       "endTime": "11:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "sam-prekop-outro-lado-sunday-11-00",
@@ -597,7 +662,8 @@
       "endTime": "12:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "lina-outro-lado-sunday-12-00",
@@ -606,7 +672,8 @@
       "endTime": "14:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "tau-car-outro-lado-sunday-14-00",
@@ -615,7 +682,8 @@
       "endTime": "16:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "andr-s-zacco-outro-lado-sunday-16-00",
@@ -624,7 +692,8 @@
       "endTime": "18:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "jichael-mackson-outro-lado-sunday-18-00",
@@ -633,7 +702,8 @@
       "endTime": "20:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "lawrence-thomas-melchior-outro-lado-sunday-20-00",
@@ -642,7 +712,8 @@
       "endTime": "21:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "ulf-eriksson-outro-lado-sunday-21-00",
@@ -651,7 +722,8 @@
       "endTime": "00:00",
       "stage": "Outro Lado",
       "startDay": "sunday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "eduardo-de-la-calle-outro-lado-monday-00-00",
@@ -660,7 +732,8 @@
       "endTime": "01:00",
       "stage": "Outro Lado",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "jane-fitz-outro-lado-monday-01-00",
@@ -669,7 +742,8 @@
       "endTime": "05:00",
       "stage": "Outro Lado",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "vera-dj-dustin-mimi-vuur-outro-lado-monday-05-00",
@@ -679,6 +753,7 @@
       "stage": "Outro Lado",
       "startDay": "monday",
       "endDay": "monday",
+      "category": "Music",
       "durationMinutes": 360
     },
     {
@@ -688,7 +763,8 @@
       "endTime": "21:45",
       "stage": "Floresta",
       "startDay": "wednesday",
-      "endDay": "wednesday"
+      "endDay": "wednesday",
+      "category": "Music"
     },
     {
       "id": "yentl-floresta-wednesday-21-45",
@@ -697,7 +773,8 @@
       "endTime": "01:00",
       "stage": "Floresta",
       "startDay": "wednesday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "magda-mike-servito-floresta-thursday-01-00",
@@ -706,7 +783,8 @@
       "endTime": "04:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "tina-floresta-thursday-04-00",
@@ -715,7 +793,8 @@
       "endTime": "07:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "mad-miran-floresta-thursday-07-00",
@@ -724,7 +803,8 @@
       "endTime": "10:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-floresta-thursday-10-00",
@@ -734,6 +814,7 @@
       "stage": "Floresta",
       "startDay": "thursday",
       "endDay": "thursday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -743,7 +824,8 @@
       "endTime": "17:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "vlada-floresta-thursday-17-00",
@@ -752,7 +834,8 @@
       "endTime": "20:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "ccl-floresta-thursday-20-00",
@@ -761,7 +844,8 @@
       "endTime": "23:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "vil-floresta-thursday-23-00",
@@ -770,7 +854,8 @@
       "endTime": "02:00",
       "stage": "Floresta",
       "startDay": "thursday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "69db-presents-wave-arising-floresta-friday-02-00",
@@ -779,7 +864,8 @@
       "endTime": "04:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "haruka-floresta-friday-04-00",
@@ -788,7 +874,8 @@
       "endTime": "07:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "konduku-floresta-friday-07-00",
@@ -797,7 +884,8 @@
       "endTime": "10:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-floresta-friday-10-00",
@@ -807,6 +895,7 @@
       "stage": "Floresta",
       "startDay": "friday",
       "endDay": "friday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -816,7 +905,8 @@
       "endTime": "17:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "rhadoo-floresta-friday-17-00",
@@ -825,7 +915,8 @@
       "endTime": "23:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "tiago-floresta-friday-23-00",
@@ -834,7 +925,8 @@
       "endTime": "03:00",
       "stage": "Floresta",
       "startDay": "friday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "koodoo-lamaz-floresta-saturday-03-00",
@@ -843,7 +935,8 @@
       "endTime": "07:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "paquita-gordon-floresta-saturday-07-00",
@@ -852,7 +945,8 @@
       "endTime": "10:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-floresta-saturday-10-00",
@@ -862,6 +956,7 @@
       "stage": "Floresta",
       "startDay": "saturday",
       "endDay": "saturday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -871,7 +966,8 @@
       "endTime": "17:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "serginho-floresta-saturday-17-00",
@@ -880,7 +976,8 @@
       "endTime": "20:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "prosumer-floresta-saturday-20-00",
@@ -889,7 +986,8 @@
       "endTime": "00:00",
       "stage": "Floresta",
       "startDay": "saturday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "bashkka-floresta-sunday-00-00",
@@ -898,7 +996,8 @@
       "endTime": "04:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "amelia-holt-floresta-sunday-04-00",
@@ -907,7 +1006,8 @@
       "endTime": "07:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "dvde-floresta-sunday-07-00",
@@ -916,7 +1016,8 @@
       "endTime": "10:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "a-pausa-floresta-sunday-10-00",
@@ -926,6 +1027,7 @@
       "stage": "Floresta",
       "startDay": "sunday",
       "endDay": "sunday",
+      "category": "Music",
       "placeholderKind": "pause"
     },
     {
@@ -935,7 +1037,8 @@
       "endTime": "15:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "valody-floresta-sunday-15-00",
@@ -944,7 +1047,8 @@
       "endTime": "17:30",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "2jack4u-floresta-sunday-17-30",
@@ -953,7 +1057,8 @@
       "endTime": "20:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "carrier-gavsborg-floresta-sunday-20-00",
@@ -962,7 +1067,8 @@
       "endTime": "21:30",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "dasha-rush-floresta-sunday-21-30",
@@ -971,7 +1077,8 @@
       "endTime": "01:00",
       "stage": "Floresta",
       "startDay": "sunday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "polar-inertia-floresta-monday-01-00",
@@ -980,7 +1087,8 @@
       "endTime": "02:30",
       "stage": "Floresta",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "rene-wise-floresta-monday-02-30",
@@ -989,7 +1097,8 @@
       "endTime": "06:00",
       "stage": "Floresta",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "rroxymore-floresta-monday-06-00",
@@ -998,7 +1107,8 @@
       "endTime": "09:00",
       "stage": "Floresta",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "kia-richard-akingbehin-floresta-monday-09-00",
@@ -1007,7 +1117,8 @@
       "endTime": "13:00",
       "stage": "Floresta",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "kuba-97-floresta-monday-13-00",
@@ -1016,7 +1127,8 @@
       "endTime": "16:00",
       "stage": "Floresta",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "djrum-floresta-monday-16-00",
@@ -1026,6 +1138,7 @@
       "stage": "Floresta",
       "startDay": "monday",
       "endDay": "monday",
+      "category": "Music",
       "durationMinutes": 360
     },
     {
@@ -1035,7 +1148,8 @@
       "endTime": "21:45",
       "stage": "Cochilo",
       "startDay": "wednesday",
-      "endDay": "wednesday"
+      "endDay": "wednesday",
+      "category": "Music"
     },
     {
       "id": "mohammad-reza-mortazavi-cochilo-wednesday-22-00",
@@ -1044,7 +1158,8 @@
       "endTime": "23:00",
       "stage": "Cochilo",
       "startDay": "wednesday",
-      "endDay": "wednesday"
+      "endDay": "wednesday",
+      "category": "Music"
     },
     {
       "id": "n-dia-valentina-magaletti-cochilo-wednesday-23-30",
@@ -1053,7 +1168,8 @@
       "endTime": "00:15",
       "stage": "Cochilo",
       "startDay": "wednesday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "nkisi-cochilo-thursday-00-45",
@@ -1062,7 +1178,8 @@
       "endTime": "01:30",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "hhy-the-kampala-unit-cochilo-thursday-02-00",
@@ -1071,7 +1188,8 @@
       "endTime": "02:45",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "for-a-maior-cochilo-thursday-12-00",
@@ -1080,7 +1198,8 @@
       "endTime": "13:00",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "charlemagne-palestine-oren-ambarchi-daniel-o-sullivan-present-kkaarreenniinnaa-cochilo-thursday-16-10",
@@ -1089,7 +1208,8 @@
       "endTime": "17:00",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "holy-tongue-cochilo-thursday-19-00",
@@ -1098,7 +1218,8 @@
       "endTime": "20:00",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "ni-o-de-elche-cochilo-thursday-22-30",
@@ -1107,7 +1228,8 @@
       "endTime": "23:30",
       "stage": "Cochilo",
       "startDay": "thursday",
-      "endDay": "thursday"
+      "endDay": "thursday",
+      "category": "Music"
     },
     {
       "id": "takkak-takkak-cochilo-friday-01-00",
@@ -1116,7 +1238,8 @@
       "endTime": "02:00",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "djrum-cochilo-friday-12-00",
@@ -1125,7 +1248,8 @@
       "endTime": "14:00",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "samuel-rohrer-eivind-aarset-cochilo-friday-15-00",
@@ -1134,7 +1258,8 @@
       "endTime": "16:00",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "heith-tarawangawelas-present-duori-cochilo-friday-18-00",
@@ -1143,7 +1268,8 @@
       "endTime": "18:45",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "michelle-gurevich-cochilo-friday-21-00",
@@ -1152,7 +1278,8 @@
       "endTime": "22:15",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "friday"
+      "endDay": "friday",
+      "category": "Music"
     },
     {
       "id": "lip-sync-4-your-waking-life-cochilo-friday-23-30",
@@ -1161,7 +1288,8 @@
       "endTime": "02:00",
       "stage": "Cochilo",
       "startDay": "friday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "lula-pena-cochilo-saturday-12-00",
@@ -1170,7 +1298,8 @@
       "endTime": "13:00",
       "stage": "Cochilo",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "bonga-cochilo-saturday-16-00",
@@ -1179,7 +1308,8 @@
       "endTime": "17:00",
       "stage": "Cochilo",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "john-mcentire-sam-prekop-cochilo-saturday-18-00",
@@ -1188,7 +1318,8 @@
       "endTime": "19:00",
       "stage": "Cochilo",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "o-ghett-o-cochilo-saturday-20-30",
@@ -1197,7 +1328,8 @@
       "endTime": "22:00",
       "stage": "Cochilo",
       "startDay": "saturday",
-      "endDay": "saturday"
+      "endDay": "saturday",
+      "category": "Music"
     },
     {
       "id": "joshua-serafin-mario-barrantes-espinoza-w-fake-moss-cochilo-sunday-01-00",
@@ -1206,7 +1338,8 @@
       "endTime": "02:00",
       "stage": "Cochilo",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "kitty-daisy-lewis-cochilo-sunday-12-00",
@@ -1215,7 +1348,8 @@
       "endTime": "13:00",
       "stage": "Cochilo",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "asmaa-hamzaoui-bnat-timbouktou-cochilo-sunday-15-00",
@@ -1224,7 +1358,8 @@
       "endTime": "16:15",
       "stage": "Cochilo",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "pedrinho-xal-cochilo-sunday-17-30",
@@ -1233,7 +1368,8 @@
       "endTime": "18:30",
       "stage": "Cochilo",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "ata-kak-cochilo-sunday-20-30",
@@ -1242,7 +1378,8 @@
       "endTime": "21:30",
       "stage": "Cochilo",
       "startDay": "sunday",
-      "endDay": "sunday"
+      "endDay": "sunday",
+      "category": "Music"
     },
     {
       "id": "decius-cochilo-monday-00-00",
@@ -1251,7 +1388,8 @@
       "endTime": "01:15",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "e-tape-cochilo-monday-07-00",
@@ -1260,7 +1398,8 @@
       "endTime": "10:00",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "alexi-per-l-cochilo-monday-10-00",
@@ -1269,7 +1408,8 @@
       "endTime": "12:00",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "devon-rexi-cochilo-monday-15-00",
@@ -1278,7 +1418,8 @@
       "endTime": "16:00",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "sonic-interventions-cochilo-monday-17-30",
@@ -1287,7 +1428,8 @@
       "endTime": "18:30",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "shahzad-ismaily-cochilo-monday-13-00",
@@ -1296,7 +1438,8 @@
       "endTime": "14:00",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "robert-aiki-aubrey-lowe-cochilo-monday-21-00",
@@ -1305,7 +1448,8 @@
       "endTime": "21:50",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
     },
     {
       "id": "colleen-presents-libres-antes-del-final-cochilo-monday-22-00",
@@ -1314,7 +1458,1205 @@
       "endTime": "22:55",
       "stage": "Cochilo",
       "startDay": "monday",
-      "endDay": "monday"
+      "endDay": "monday",
+      "category": "Music"
+    },
+    {
+      "id": "the-funeral-of-the-normal-apuro-wednesday-19-30",
+      "name": "The Funeral of the Normal",
+      "startTime": "19:30",
+      "endTime": "21:00",
+      "stage": "Apuro",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Performance",
+      "hosts": "Asquito Eso & Lawunda Richardson",
+      "description": "We spit on the ashes of \"should.\" A participatory un-becoming, composting the expected, resurrecting the shadow underneath sterile reality. Bring something to kill and something to grow."
+    },
+    {
+      "id": "fluid-stretch-kardio-with-a-k-apuro-thursday-10-00",
+      "name": "Fluid Stretch & Kardio with a K",
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Geri & IvankaXpress",
+      "description": "The festivities never stop, nor does our movement, so let's ride it & flow among stretching poses, slowing down into the crucial spots that help us sur-rave-ive the week. Then we aerobic with it for a deep, manic sweat. #ThisIsNotYoga"
+    },
+    {
+      "id": "permission-to-perform-apuro-thursday-12-00",
+      "name": "Permission to Perform",
+      "startTime": "12:00",
+      "endTime": "13:30",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "António Graça & Old Baby",
+      "description": "We've buried spontaneity under curated punchlines. A workshop in un-polishing, cancel performativity culture, embrace the stumble, the crack and the glorious fail."
+    },
+    {
+      "id": "a-dark-room-with-a-view-apuro-thursday-14-00",
+      "name": "A Dark Room with a View",
+      "startTime": "14:00",
+      "endTime": "15:30",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Suna (s)crew",
+      "description": "Tired of the same old pornographic tropes of sex dungeons and hook-up spots? Curious to curate a different kind of erotic space? Then schnap into our darkroom discourse circle and whet your appetite."
+    },
+    {
+      "id": "contested-territories-apuro-thursday-19-00",
+      "name": "Contested Territories",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Vasquez & Brandhi",
+      "description": "UK Garage was born to entertain soldiers. We trace the militarist-club nexus through Ayia Napa's haunted Cypriot psychogeography. A live improvised reckoning with bass and empire."
+    },
+    {
+      "id": "a-gift-to-ikoro-apuro-thursday-21-30",
+      "name": "A Gift to Ikoro",
+      "startTime": "21:30",
+      "endTime": "22:30",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Collectivo Afrontosas",
+      "description": "The great tree watches thresholds. Yoruba time-sorcery meets the dissident-transhuman body. A ritual of poetic contagion, you will most definitely not stay the same shape afterward."
+    },
+    {
+      "id": "lovage-apuro-thursday-23-30",
+      "name": "LOVAGE",
+      "startTime": "23:30",
+      "endTime": "01:00",
+      "stage": "Apuro",
+      "startDay": "thursday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Foundling & Rêyzen",
+      "description": "Witches Were Right. A collective conjuring of the unseen forces we possess. A sonic bed invoking the powers and wisdom of the roots running across the veil of the seen and unseen. Vibrations that resonate from the depths and live in all our bones."
+    },
+    {
+      "id": "from-ball-culture-to-catwalk-apuro-friday-10-00",
+      "name": "From Ball Culture to Catwalk",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Fuego 007 & Felicia",
+      "description": "Category is: dance or die. Face, European Runway, Old Way Vogue, Femme. Ballroom as queer survival technology. Learn moves, grab attention, thrive in self-love and the warm, sassy hug of community."
+    },
+    {
+      "id": "banana-rage-apuro-friday-12-00",
+      "name": "Banana Rage",
+      "startTime": "12:00",
+      "endTime": "13:30",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Mario Barrantes Espinoza",
+      "description": "\"by the banana plantations??? you won't make it back!\" A performative excavation of plantation history, extractive destruction, and the banana as a memory-charged object. Maxhete's presence says: rage is myth, rage is force, rage is the dancefloor.\n\n*Maxhete will be presented Saturday at Cochilo as part of Fractured Divinities."
+    },
+    {
+      "id": "the-erotics-of-destruction-apuro-friday-14-00",
+      "name": "The Erotics of Destruction",
+      "startTime": "14:00",
+      "endTime": "15:30",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Sepideh khodarahmi",
+      "description": "Smash. Crush. Eat. Ruin. Transform. A performance-workshop where objects become sacrilege, and composting becomes kink. What lives at the edge of the ruins? You."
+    },
+    {
+      "id": "above-the-raveyard-apuro-friday-17-30",
+      "name": "Above the Raveyard",
+      "startTime": "17:30",
+      "endTime": "19:00",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "become the bass",
+      "description": "Harness the pulse. Become the bass. Become the gospel. (The rest is a secret the grave won't keep.) The commodification of the rave will not stand. Group thoughts on the dancefloor industrial complex."
+    },
+    {
+      "id": "under-the-lake-apuro-friday-21-00",
+      "name": "Under the Lake",
+      "startTime": "21:00",
+      "endTime": "22:30",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Kluster Collective",
+      "description": "A gremlin-nymph rises through frequencies and mist. Not human, not myth, just pure, delightful weird. Descend with us, shed some heaviness, resurface a little more tender and porous."
+    },
+    {
+      "id": "submissa-apuro-friday-22-30",
+      "name": "SubMissa",
+      "startTime": "22:30",
+      "endTime": "00:00",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "REZMORAH and Mahfoud",
+      "description": "A DEBAUCHEROUS SPELL. Progressive music, effective words, metaphysical realness. Audience invited to move choreographically. sstillnnessabused. The frequency of EVERYthing. The elemental PEOPLECY ++++humOUR essential."
+    },
+    {
+      "id": "a-sonic-s-ance-apuro-friday-02-00",
+      "name": "A Sonic Séance",
+      "startTime": "02:00",
+      "endTime": "09:00",
+      "stage": "Apuro",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "infinity rug & guests",
+      "description": "A durational sonic séance of deep frequencies, strings, chants, herbal potions, and an altar for the departed. Mourning as collective resonance. Rest among ghosts. Dawn comes tender. Come lay with us."
+    },
+    {
+      "id": "trancebreath-apuro-saturday-10-00",
+      "name": "Trancebreath",
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Greiderer & Jenkin",
+      "description": "In-tense. Out-tense. Sus-tense. Psychedelic breathwork to transcend, rewire, and return replenished. Breathe like you mean it."
+    },
+    {
+      "id": "needle-as-nectar-apuro-saturday-13-00",
+      "name": "Needle as Nectar",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Naoun, Salandin, Fabbretti",
+      "description": "Pain into pleasure. Vulnerability, trust, consent. Permanent marks from a still-shaping angle. Tattoo as collective transformation."
+    },
+    {
+      "id": "elemental-group-massage-apuro-saturday-15-00",
+      "name": "Elemental group massage",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "em~amir",
+      "description": "Touch your friends. Touch like a river. Touch like a rock. Gift them fire, blow on them like wind. A collaborative touch-gift ecology opens."
+    },
+    {
+      "id": "let-s-talk-about-sex-work-apuro-saturday-17-00",
+      "name": "Let's Talk About Sex Work",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Workshops & Talks",
+      "hosts": "Azizz, Marquez, Sanchez",
+      "description": "When intimacy meets currency, what do we learn about ourselves? No judgment. Just real talk from those who know. Come into the circle."
+    },
+    {
+      "id": "roots-in-resonance-south-asian-diaspora-apuro-saturday-20-00",
+      "name": "Roots in Resonance — South Asian Diaspora",
+      "startTime": "20:00",
+      "endTime": "00:00",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Majja x Masala Movement",
+      "description": "A welcome ceremony. Decolonising yoga over childhood snacks. Tracing queer histories. Bharatnatyam & Kuchipudi dance performance. How our migrant backgrounds shape the way we show up in the world and tinge our artistic expressions in electronic music."
+    },
+    {
+      "id": "shibari-x-gong-apuro-saturday-00-30",
+      "name": "Shibari x Gong",
+      "startTime": "00:30",
+      "endTime": "01:30",
+      "stage": "Apuro",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Julim Rosa & Marcos Mangani",
+      "description": "Tension. Limits. Release. Rope and resonance in the space-in-between. Witness what's possible when edges become portals and the skin the primary organ of sense-making."
+    },
+    {
+      "id": "performing-with-pride-ft-brian-the-non-binary-lion-apuro-sunday-12-00",
+      "name": "Performing with Pride ft. Brian the non-binary Lion",
+      "startTime": "12:00",
+      "endTime": "13:30",
+      "stage": "Apuro",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Brook Tate",
+      "description": "A musical theatre werkshop focusing on queer expression, character embodiment and finding power in voice. Part storytelling, part vocal technique and full on musical-theatre-showtime.. roar :)"
+    },
+    {
+      "id": "conducted-improv-apuro-sunday-13-30",
+      "name": "Conducted improv",
+      "startTime": "13:30",
+      "endTime": "14:30",
+      "stage": "Apuro",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Shahzad Ismaily",
+      "description": "Butch Morris gesture based conduction tradition. Enter sonic improv with your full cellves. No net. No fear. Just game."
+    },
+    {
+      "id": "communitilting-apuro-sunday-16-30",
+      "name": "Communitilting",
+      "startTime": "16:30",
+      "endTime": "18:30",
+      "stage": "Apuro",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "a sonic love cult",
+      "description": "Strangers become waves. Touch = gospel. Sound = glue. A sonic love cult. Dive in or drift away. The flow is giving aliveness. Not a performance but a melthood, ooze in?"
+    },
+    {
+      "id": "spirit-theatre-apuro-sunday-21-30",
+      "name": "Spirit Theatre",
+      "startTime": "21:30",
+      "endTime": "22:30",
+      "stage": "Apuro",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Chen Ting & Shahzad Ismaily",
+      "description": "An interactive telepathic performance where the boundaries between minds dissolve. Through sound, ritual, and immersive magic, a portal to the invisible realm opens. Dark secrets are revealed. Unspoken questions find their answers. Personal messages are channeled from the unseen."
+    },
+    {
+      "id": "raw-life-is-beautiful-apuro-sunday-23-30",
+      "name": "Raw Life is Beautiful",
+      "startTime": "23:30",
+      "endTime": "00:30",
+      "stage": "Apuro",
+      "startDay": "sunday",
+      "endDay": "monday",
+      "category": "Performance",
+      "hosts": "Onwunali, FES., Malur, Andy",
+      "description": "Poetry with a live band. A sensory reckoning. No polish. No filter. Just beautiful, bleeding raw life."
+    },
+    {
+      "id": "once-upon-a-moon-moonscreen-thursday-22-00",
+      "name": "Once Upon a Moon",
+      "startTime": "22:00",
+      "endTime": "23:00",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "a quiet inauguration",
+      "description": "A quiet inauguration; revealing, unveiling. We invite weary and curious bodies into our amphitheater of denim and dust. Let the first images of the weekend wash over you. Some things are better discovered than described. Schnap into it!"
+    },
+    {
+      "id": "hazaz-collective-land-unrealities-moonscreen-thursday-23-15",
+      "name": "Hazaz Collective: Land unrealities",
+      "startTime": "23:15",
+      "endTime": "00:15",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "live score Nicolas Baviere",
+      "description": "Drawing on archival and everyday footage – often shaped by a colonial gaze – three films reclaim and reimagine perceptions of Palestine through experimental image-making that blurs documentary and fiction.\n\nUNDR by Kamal Al Jafaari\nThe flowers stand silently witnessing by Theo Panagopoulos\nHome Movies Gaza by Basma Al Shari"
+    },
+    {
+      "id": "well-well-well-moonscreen-thursday-00-30",
+      "name": "Well Well Well",
+      "startTime": "00:30",
+      "endTime": "01:00",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Horta & Meerwein",
+      "description": "A camera tethered to a 100-meter cord descends into a single well – continuously, spiraling, without arrival. Inspired by early phantom ride films of the late 19th century, this work redirects cinema's oldest illusion of motion downward into geological and psychic depths. Stone becomes echo. Engineering becomes oracle."
+    },
+    {
+      "id": "rawy-presents-moonscreen-thursday-01-00",
+      "name": "Rawy Presents",
+      "startTime": "01:00",
+      "endTime": "02:00",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Film & AV",
+      "hosts": "SWANA cinema shorts",
+      "description": "A Berlin-based collective of filmmakers and cinephiles dedicated to independent SWANA (Southwest Asia & North Africa) cinema. Through pop-up screenings worldwide, they scout raw talents and untold stories – bridging cultures, preserving heritage and amplifying voices that deserve a bigger screen.\n\nWhite Winged Horse by Mahyar Mandegar\nSultana's Reign by Hadi Moussally\nShip of Fools by Alia Haju"
+    },
+    {
+      "id": "tiny-man-festival-experimental-animated-shots-moonscreen-thursday-02-00",
+      "name": "Tiny Man Festival: Experimental Animated Shots",
+      "startTime": "02:00",
+      "endTime": "03:00",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "description": "Tiny Man, the interplanetary creature of extraordinary dimensions, returns to Earth for another round of terrestrial displays of stories being told. A yearly challenge, we ask for creatives of all shapes to tell their best tales based on a theme. Short and animated, this is an anthology of trips, Trips and TRIPS from around the world, done exclusively for the Tiny Man."
+    },
+    {
+      "id": "mountains-that-weep-moonscreen-thursday-03-00",
+      "name": "Mountains That Weep",
+      "startTime": "03:00",
+      "endTime": "04:00",
+      "stage": "Moonscreen",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Film & AV",
+      "hosts": "Aurora Solá",
+      "description": "Three black mountains blink down on aeons of human doing and undoing, while a geologist and an indigenous poet search the Amazonian landscape for clues from which to reconstruct a fast vanishing past."
+    },
+    {
+      "id": "a-homage-to-tiny-companions-with-diaskoop-moonscreen-friday-21-30",
+      "name": "A Homage to Tiny Companions with Diaskoop",
+      "startTime": "21:30",
+      "endTime": "22:00",
+      "stage": "Moonscreen",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Landcare Club & Diaskoop",
+      "description": "These small compositions were made earlier at the Landcare Club. Join us for an appreciation of seed fluffs & flower petals to discover more about the land, or just because they're beautiful!"
+    },
+    {
+      "id": "k-moonscreen-friday-22-00",
+      "name": "K",
+      "startTime": "22:00",
+      "endTime": "23:30",
+      "stage": "Moonscreen",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Mathieu Erlacher",
+      "description": "K is a solo that explores the body as a field of forces in transformation. In dialogue with space and environment, sound, light, and movement intertwine to create an intense and immersive WOW. A performance that e x p a n d s perception."
+    },
+    {
+      "id": "unheld-iii-moonscreen-friday-00-00",
+      "name": "Unheld III",
+      "startTime": "00:00",
+      "endTime": "01:00",
+      "stage": "Moonscreen",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Ehteshamzadeh & Koochakzadeh-Yazdi",
+      "description": "This evening offers two works by Iranian women – each finding their own language for displacement, memory and what the body carries across borders.\n\nUnheld III explores tender moments of disassociation in female bodies – a requiem for displacement, holding fragments of home while embracing an identity that can only emerge at a distance. Through improvised yet carefully mapped performance, Kimia's wearable Alloy Resonator transforms her body into instrument & Saghi's intimate archive of haptic encounters with flora and female tenderness builds a world between dislocation and connection."
+    },
+    {
+      "id": "curated-by-curtas-maryam-tafakory-moonscreen-friday-01-00",
+      "name": "Curated by Curtas: Maryam Tafakory",
+      "startTime": "01:00",
+      "endTime": "02:00",
+      "stage": "Moonscreen",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "Portuguese shorts",
+      "description": "Maryam Tafakory layers poetry, archival fragments and speculative nonfiction into films that move through historical gaps and unspoken rules. Her practice traces quiet acts of erasure – upon bodies, intimacies, histories – giving space to concealed queer stories and what is too often dismissed as excessive or trivial.\n\nNazarbazi\nRazeh-Del\nDaria's Night Flower"
+    },
+    {
+      "id": "curated-by-suna-erotic-film-festival-barcelona-moonscreen-friday-02-00",
+      "name": "Curated by SUNA & Erotic Film Festival Barcelona",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Moonscreen",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Film & AV",
+      "hosts": "sexy shorts & shadowplay",
+      "description": "Erotic Film Festival Barcelona and Suna present a juicy selection of films that explore desire, bodies and sexuality with nuance: playful, political, intimate, challenging. The night then climaxes in a participatory performance streamed live to the big screen straight from across the road in Suna."
+    },
+    {
+      "id": "shcuro-maria-amor-moonscreen-saturday-20-00",
+      "name": "Shcuro & Maria Amor",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "downtempo dj set",
+      "description": "Founders of decade-old Lisbon label Paraíso and producers of the eponymous documentary. Their DJ set pays homage to the chillout rooms of 90s raves – downtempo, low BPM, unhurried.."
+    },
+    {
+      "id": "para-so-moonscreen-saturday-22-00",
+      "name": "Paraíso",
+      "startTime": "22:00",
+      "endTime": "23:30",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Daniel Mota — 90s rave doc",
+      "description": "In the early 90s, Portugal ignited its own dance music explosion – wild raves birthing a sound uniquely its own. Through exclusive footage and interviews with DJs, producers, dancers and promoters, this documentary traces the rise of Portuguese rave culture and its lasting echo in electronic music worldwide."
+    },
+    {
+      "id": "serendipity-moonscreen-saturday-23-30",
+      "name": "Serendipity",
+      "startTime": "23:30",
+      "endTime": "00:00",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Camila Padilha ft. The Sunshine Boys",
+      "description": "Two clubber friends, separated by time and space, meet again by chance on a dancefloor in the future. What unites them? The same \"hot track\" that rocked their last party together. Logidy is treating us with a live version of his soundtrack in collaboration with his studio companion Flo. Aka, The Sunshine Boys."
+    },
+    {
+      "id": "modular-youth-moonscreen-saturday-00-00",
+      "name": "Modular Youth",
+      "startTime": "00:00",
+      "endTime": "00:15",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Luisa Lukas",
+      "description": "Scenographer Luisa Lukas weaves digitised home videos from 1998–2004 into a live audiovisual meditation on the fragility of early childhood. Through datamoshing, pixel distortion and layering, images dissolve as memories do - into fragments and emotional traces. Sound and image unite, built intuitively, collapsing into silence. Each iteration is unique, specially reworked for Moonscreen."
+    },
+    {
+      "id": "phase-space-field-moonscreen-saturday-00-15",
+      "name": "Phase Space: Field",
+      "startTime": "00:15",
+      "endTime": "01:15",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Gwenan & Danimation",
+      "description": "Episodic memories are distilled into sense impressions. Where last year's Drift was pre-recorded, introspective, rising from a nighttime stillness into a din at dawn, Field is live, connected, beginning in the commotion of a daylight gathering & landing us softly back where we started: a quiet lake shore at night."
+    },
+    {
+      "id": "who-owns-you-moonscreen-saturday-01-15",
+      "name": "Who Owns You?",
+      "startTime": "01:15",
+      "endTime": "04:00",
+      "stage": "Moonscreen",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "notbinarycode — livecoding jam",
+      "description": "Globally, data is kept captive. Here, unshackled, it flows between machine, coders, and audience. Human-typed code generates art. No AI. Livecoding jam: we show our screens; you interpret the creation process. Visual and sonic landscapes, ephemeral and improvised through custom software. Breaking loops and looping breaks – notbinarycode strikes again."
+    },
+    {
+      "id": "486sx-moonscreen-sunday-19-00",
+      "name": "486SX",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "stage": "Moonscreen",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Phrex & Rasco.mov",
+      "description": "Where sonic memories from a distant past reverberate in dreams of an obscure postcapitalist future drowned in sedatives."
+    },
+    {
+      "id": "nomadica-moonscreen-sunday-22-00",
+      "name": "Nomadica",
+      "startTime": "22:00",
+      "endTime": "23:00",
+      "stage": "Moonscreen",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Film & AV",
+      "hosts": "cinema & the natural world",
+      "description": "Born on the slopes of Etna, untethered from any geography. Nomadica curates screenings, events and workshops at the crossroads of experimental arts. They explore the uncertain relationship between cinema's optical eye and the ever-changing natural world – a journey between forest floor and incandescent sky.\n\nDiscoveries on the Forest Floor by Charlotte Pryce\nLANDFILL 16 by Jennifer Reeves\nThrough the Lens by Cécile Fontaine\nUnder the Volcano by Colectivo Los Ingrávidos\nThe Astronomer's Dream by Julie Murray\nLuminous Variations in the City Skies by Giuseppe Spina\nSun Song by Joseph Bernard"
+    },
+    {
+      "id": "in-dreams-moonscreen-sunday-23-00",
+      "name": "In Dreams",
+      "startTime": "23:00",
+      "endTime": "00:30",
+      "stage": "Moonscreen",
+      "startDay": "sunday",
+      "endDay": "monday",
+      "category": "Film & AV",
+      "hosts": "luminous short films",
+      "description": "As our journey nears its end, drop into these dreamlike short films. Luminous works that create a gentle space for processing the week's ride.\n\nSubtle Matter Fluid Hands by Maika Garnica\nJoon by Marian Aliabadi\nEarth Body I by Arran Gregory\nTop View of My Brain as a Crime Scene by Luzia Johow\nThe Cast by Leon Billerbeck\nGáthra by Camilla Dubhe and White Houston\nA shell of (for) you by Julia Chetwood\nUM)bigo by Sofia Santa-Rita\nSunset Special by Nicolas Gebbe\nBaile do Sol by Miguel Tavares"
+    },
+    {
+      "id": "resonance-moonscreen-sunday-00-40",
+      "name": "Resonance",
+      "startTime": "00:40",
+      "endTime": "01:10",
+      "stage": "Moonscreen",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Gizem Öz & Lova Ranung",
+      "description": "Sound unfolds as pure material: vibration, decay, interference. Visually, a drifting ecosystem of particles, spores and abstracted organic forms. Image and sound remain in deliberate tension, sustaining an atmosphere that refuses to resolve."
+    },
+    {
+      "id": "morada-aberta-onde-o-gesto-cura-moonscreen-sunday-01-20",
+      "name": "Morada Aberta: Onde o Gesto Cura",
+      "startTime": "01:20",
+      "endTime": "02:00",
+      "stage": "Moonscreen",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Tânia Dinis — closing",
+      "description": "Three interconnected moments, unfolding across languages, spaces and temporalities. Drawing from personal memory and the landscapes of North Portugal, Alto Minho and Galiza, this expanded cinema work follows working women - guardians of ancestral knowledge tied to land, sea and natural cycles. Between documentary and fiction, it traces the invisible gestures that sustain communities and keep sacred knowledge alive."
+    },
+    {
+      "id": "shiatsu-ayurveda-massage-suna-thursday-17-00",
+      "name": "Shiatsu & Ayurveda massage",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Suna",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Sara",
+      "description": "An experiment in listening, observing and renegotiating through touch."
+    },
+    {
+      "id": "why-so-serious-suna-thursday-19-00",
+      "name": "Why so serious?",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "stage": "Suna",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Performance",
+      "hosts": "Rezmorah",
+      "description": "A performance of rebellion, pleasure, and power. Bondage, dominance, joy, tenderness and a touch of brute force. Transmasc-coded, it casts the cystem into oblivion. Pursuing mutual destruction and pleasure while paying homage to dyke and faggot ancestries. Worshipping the body over capitalism, only to desecrate it. No sacred spaces, no virtue. The body is a spell, a weapon, a Molotov cocktail of sweat, spit, cum and defiance."
+    },
+    {
+      "id": "how-to-threesome-suna-thursday-21-00",
+      "name": "How to threesome",
+      "startTime": "21:00",
+      "endTime": "01:00",
+      "stage": "Suna",
+      "startDay": "thursday",
+      "endDay": "friday",
+      "category": "Workshops & Talks",
+      "hosts": "Sonja & Ale",
+      "description": "Did you ever have a threesome that didn't go so well? Are you dreaming of having a threesome? Or are you a professional threesomer and want to play?"
+    },
+    {
+      "id": "queer-collective-sociodrama-suna-thursday-21-00",
+      "name": "Queer Collective Sociodrama",
+      "startTime": "21:00",
+      "endTime": "23:00",
+      "stage": "Suna",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Workshops & Talks",
+      "hosts": "Manuela · *Femmes Tipi",
+      "description": "A safe container to process. For anyone affected by patriarchy."
+    },
+    {
+      "id": "diy-porn-suna-friday-16-00",
+      "name": "DIY Porn",
+      "startTime": "16:00",
+      "endTime": "17:30",
+      "stage": "Suna",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Workshops & Talks",
+      "hosts": "Felipe",
+      "description": "Felipe Andrat is a Brazilian filmmaker and image-maker based in Lisbon, porn enthusiast, open exhibitionist, and lover of collective mischief."
+    },
+    {
+      "id": "fisting-a-practical-workshop-suna-friday-18-00",
+      "name": "FISTING: A practical workshop",
+      "startTime": "18:00",
+      "endTime": "19:30",
+      "stage": "Suna",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Workshops & Talks",
+      "hosts": "Carmo",
+      "description": "This workshop is both practical and expansive. We'll cover preparation, technique and aftercare — the how. But we'll also hold space for the why: What lineage are we part of when we do this? What are we invoking when we go this deep?"
+    },
+    {
+      "id": "fantasy-mixer-queer-play-party-suna-friday-20-00",
+      "name": "Fantasy Mixer (queer play party)",
+      "startTime": "20:00",
+      "endTime": "00:00",
+      "stage": "Suna",
+      "startDay": "friday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Em",
+      "description": "A space to connect with fantasies (your own and others'), express them anonymously, and make some of them come true. ~ to support us in transitioning to an open play space."
+    },
+    {
+      "id": "ask-a-hoe-suna-friday-20-00",
+      "name": "Ask a Hoe",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Suna",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Workshops & Talks",
+      "hosts": "Sabrina · *Femmes Tipi",
+      "description": "Everything you were always too afraid to ask a sexworker."
+    },
+    {
+      "id": "moonsuna-suna-friday-02-00",
+      "name": "Moonsuna",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Suna",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Performance",
+      "hosts": "w/ Moonscreen — EFF Barcelona",
+      "description": "Erotic Film Festival Barcelona and Suna present a juicy selection of films that explore desire, bodies and sexuality with nuance: playful, political, intimate, challenging. The night then climaxes in a participatory performance streamed live to the big screen straight from across the road in Suna."
+    },
+    {
+      "id": "whipping-worship-suna-saturday-16-00",
+      "name": "Whipping & Worship",
+      "startTime": "16:00",
+      "endTime": "17:30",
+      "stage": "Suna",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Goddess Eileen & Slave Rui",
+      "description": "A brief intro on the use of impact toys (whips, paddles, crops and canes) and a discussion on the psychic and spiritual aspects of dominance and submission. There will be lots of toys available and ample time for free play."
+    },
+    {
+      "id": "eco-bdsm-your-femmasc-power-suna-saturday-18-00",
+      "name": "Eco BDSM: Your Femmasc Power",
+      "startTime": "18:00",
+      "endTime": "19:30",
+      "stage": "Suna",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "Aria & Annalisa",
+      "description": "A somatic investigation into the power power structures that fragment the experience of pleasure. Through the lenses of Eco-Sex and Eco-Porn, we aim to dismantle the hierarchical binaries of \"Man/Woman\" and \"Culture/Nature.\""
+    },
+    {
+      "id": "ipponawa-bdsm-play-party-suna-saturday-20-00",
+      "name": "Ipponawa (BDSM play party)",
+      "startTime": "20:00",
+      "endTime": "00:00",
+      "stage": "Suna",
+      "startDay": "saturday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Miranda, Himawari, Sad.ropes…",
+      "description": "A shibari workshop where, through the use of a single rope, you can explore the connection with your own body and with another person. Discover how one rope can become a bridge for playful interaction and trust."
+    },
+    {
+      "id": "pleasure-activism-101-suna-saturday-20-00",
+      "name": "Pleasure Activism 101",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Suna",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "*Femmes Tipi",
+      "description": "From Educational to Somatic sensual exploration of the power of pleasure and Self pleasure."
+    },
+    {
+      "id": "the-rabbit-and-the-magic-man-suna-saturday-02-00",
+      "name": "The Rabbit and the Magic Man",
+      "startTime": "02:00",
+      "endTime": "04:00",
+      "stage": "Suna",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Performance",
+      "hosts": "bondage, joy, brute force",
+      "description": "Bondage, dominance, joy, tenderness and a touch of brute force. A performance of rebellion, pleasure, and power. Transmasc-coded, it casts the cystem into oblivion. Pursuing mutual destruction and pleasure while paying homage to dyke and faggot ancestries. Worshipping the body over capitalism, only to desecrate it. No sacred spaces, no virtue. The body is a spell, a weapon, a Molotov cocktail of sweat, spit, cum and defiance."
+    },
+    {
+      "id": "foraging-pleasure-suna-sunday-16-00",
+      "name": "Foraging pleasure",
+      "startTime": "16:00",
+      "endTime": "17:30",
+      "stage": "Suna",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Gigi & Mari",
+      "description": "An ecosexuality workshop that explores pleasure and softness as a way of reconnecting the body with the non-human world through consent-based sensorial practices."
+    },
+    {
+      "id": "get-nakie-suna-sunday-18-00",
+      "name": "Get Nakie!",
+      "startTime": "18:00",
+      "endTime": "19:30",
+      "stage": "Suna",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Rodrigo",
+      "description": "What is the potential of baring the skin?"
+    },
+    {
+      "id": "collective-erotic-play-suna-sunday-20-00",
+      "name": "Collective Erotic Play",
+      "startTime": "20:00",
+      "endTime": "00:00",
+      "stage": "Suna",
+      "startDay": "sunday",
+      "endDay": "monday",
+      "category": "Performance",
+      "hosts": "Jairo & Julia",
+      "description": "A consent-centered journey where NO becomes grounding, desire becomes dialogue, and touch unfolds as conscious, collective co-creation."
+    },
+    {
+      "id": "who-let-the-girls-out-suna-sunday-20-00",
+      "name": "Who let the girls out",
+      "startTime": "20:00",
+      "endTime": "22:00",
+      "stage": "Suna",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Performance",
+      "hosts": "Didi & Teresa · *Femmes Tipi",
+      "description": "Ourselves, darling. connect with what turns you on in a warm, sensuous, gurl to grrl steam room. leave appeasement at the door, come feel pleasure from below. For femme & trans folkx only."
+    },
+    {
+      "id": "the-thread-throughout-tudo-bem-tuesday-16-00",
+      "name": "The Thread Throughout",
+      "startTime": "16:00",
+      "endTime": "17:30",
+      "stage": "Tudo Bem",
+      "startDay": "tuesday",
+      "endDay": "tuesday",
+      "category": "Body & Wellness",
+      "hosts": "Yulfri & Anna"
+    },
+    {
+      "id": "knocking-on-the-door-of-tomorrow-tudo-bem-tuesday-16-00",
+      "name": "Knocking on the Door of Tomorrow",
+      "startTime": "16:00",
+      "endTime": "17:30",
+      "stage": "Tudo Bem",
+      "startDay": "tuesday",
+      "endDay": "tuesday",
+      "category": "Body & Wellness",
+      "hosts": "Filipa"
+    },
+    {
+      "id": "bow-to-the-wow-tudo-bem-tuesday-18-00",
+      "name": "Bow to the Wow",
+      "startTime": "18:00",
+      "endTime": "19:30",
+      "stage": "Tudo Bem",
+      "startDay": "tuesday",
+      "endDay": "tuesday",
+      "category": "Body & Wellness",
+      "hosts": "Tudo Bem"
+    },
+    {
+      "id": "invisible-knots-tudo-bem-tuesday-20-00",
+      "name": "Invisible Knots",
+      "startTime": "20:00",
+      "endTime": "21:30",
+      "stage": "Tudo Bem",
+      "startDay": "tuesday",
+      "endDay": "tuesday",
+      "category": "Body & Wellness",
+      "hosts": "Julim & Marcos"
+    },
+    {
+      "id": "the-great-cosmic-guffaw-tudo-bem-wednesday-09-00",
+      "name": "The Great Cosmic Guffaw",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "stage": "Tudo Bem",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Body & Wellness",
+      "hosts": "Charlie"
+    },
+    {
+      "id": "somatised-tudo-bem-wednesday-11-00",
+      "name": "Somatised",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "stage": "Tudo Bem",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Body & Wellness",
+      "hosts": "Ollie"
+    },
+    {
+      "id": "alone-together-tudo-bem-wednesday-13-00",
+      "name": "Alone Together",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Tudo Bem",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Body & Wellness",
+      "hosts": "Anna Eva"
+    },
+    {
+      "id": "quantum-boogie-tudo-bem-wednesday-15-00",
+      "name": "Quantum Boogie",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Tudo Bem",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Body & Wellness",
+      "hosts": "Saida"
+    },
+    {
+      "id": "the-creature-we-are-tudo-bem-wednesday-17-00",
+      "name": "The Creature We Are",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Tudo Bem",
+      "startDay": "wednesday",
+      "endDay": "wednesday",
+      "category": "Body & Wellness",
+      "hosts": "Arturo & Julia"
+    },
+    {
+      "id": "space-between-things-tudo-bem-thursday-09-00",
+      "name": "Space Between Things…",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Victoria"
+    },
+    {
+      "id": "rest-as-resistance-tudo-bem-thursday-11-00",
+      "name": "Rest as Resistance",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Sangeeta"
+    },
+    {
+      "id": "oxygen-other-miracles-tudo-bem-thursday-13-00",
+      "name": "Oxygen & Other Miracles",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Dima"
+    },
+    {
+      "id": "a-gentle-grapple-tudo-bem-thursday-15-00",
+      "name": "A Gentle Grapple",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Oryx"
+    },
+    {
+      "id": "physical-linguistics-tudo-bem-thursday-17-00",
+      "name": "Physical Linguistics",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Phoenix"
+    },
+    {
+      "id": "tango-without-panic-tudo-bem-thursday-19-00",
+      "name": "Tango Without Panic",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Diego"
+    },
+    {
+      "id": "listening-beneath-the-skin-tudo-bem-thursday-21-00",
+      "name": "Listening Beneath the Skin",
+      "startTime": "21:00",
+      "endTime": "22:30",
+      "stage": "Tudo Bem",
+      "startDay": "thursday",
+      "endDay": "thursday",
+      "category": "Body & Wellness",
+      "hosts": "Raghdan"
+    },
+    {
+      "id": "a-false-idea-of-control-tudo-bem-friday-09-00",
+      "name": "A False Idea of Control",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Victoria"
+    },
+    {
+      "id": "crystal-clear-tudo-bem-friday-11-00",
+      "name": "Crystal Clear",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Sophie"
+    },
+    {
+      "id": "living-sculpture-tudo-bem-friday-13-00",
+      "name": "Living Sculpture",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Oryx"
+    },
+    {
+      "id": "astro-drama-tudo-bem-friday-15-00",
+      "name": "Astro Drama",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Daniel"
+    },
+    {
+      "id": "wave-arising-tudo-bem-friday-17-00",
+      "name": "Wave Arising",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Seb & Kynsie"
+    },
+    {
+      "id": "enter-the-ronda-tudo-bem-friday-19-00",
+      "name": "Enter the Ronda",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Diego"
+    },
+    {
+      "id": "vibrations-other-invisible-friends-tudo-bem-friday-21-00",
+      "name": "Vibrations & Other Invisible Friends",
+      "startTime": "21:00",
+      "endTime": "22:30",
+      "stage": "Tudo Bem",
+      "startDay": "friday",
+      "endDay": "friday",
+      "category": "Body & Wellness",
+      "hosts": "Ceci & Julim"
+    },
+    {
+      "id": "a-quiet-place-for-quiet-people-tudo-bem-saturday-09-00",
+      "name": "A Quiet Place for Quiet People",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Anna Eva"
+    },
+    {
+      "id": "silent-signals-tudo-bem-saturday-11-00",
+      "name": "Silent Signals",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Ollie"
+    },
+    {
+      "id": "astro-descent-tudo-bem-saturday-13-00",
+      "name": "Astro Descent",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Daniel"
+    },
+    {
+      "id": "silence-moves-us-tudo-bem-saturday-15-00",
+      "name": "Silence Moves Us",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Robyn"
+    },
+    {
+      "id": "primordial-vibration-tudo-bem-saturday-17-00",
+      "name": "Primordial Vibration",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Sophie"
+    },
+    {
+      "id": "the-non-fearful-body-tudo-bem-saturday-19-00",
+      "name": "The Non-fearful Body",
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Phoenix"
+    },
+    {
+      "id": "summer-songstice-tudo-bem-saturday-21-00",
+      "name": "Summer Songstice",
+      "startTime": "21:00",
+      "endTime": "22:00",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Danilo & Fifi"
+    },
+    {
+      "id": "what-emerges-between-us-tudo-bem-saturday-22-00",
+      "name": "What Emerges Between Us",
+      "startTime": "22:00",
+      "endTime": "23:00",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "saturday",
+      "category": "Body & Wellness",
+      "hosts": "Raghdan"
+    },
+    {
+      "id": "bathing-in-40-hz-tudo-bem-saturday-23-00",
+      "name": "Bathing in 40 Hz",
+      "startTime": "23:00",
+      "endTime": "00:00",
+      "stage": "Tudo Bem",
+      "startDay": "saturday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Asa"
+    },
+    {
+      "id": "el-cuento-tudo-bem-sunday-07-00",
+      "name": "El Cuento",
+      "startTime": "07:00",
+      "endTime": "08:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "ECHO ECHO"
+    },
+    {
+      "id": "body-as-receiver-tudo-bem-sunday-09-00",
+      "name": "Body as Receiver",
+      "startTime": "09:00",
+      "endTime": "10:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Robyn"
+    },
+    {
+      "id": "gentle-reassembly-tudo-bem-sunday-11-00",
+      "name": "Gentle Reassembly",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Saida"
+    },
+    {
+      "id": "low-frequency-surrender-tudo-bem-sunday-13-00",
+      "name": "Low Frequency Surrender",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Asa & Dima"
+    },
+    {
+      "id": "soft-cell-tudo-bem-sunday-15-00",
+      "name": "Soft Cell",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Charlie"
+    },
+    {
+      "id": "tudo-bem-tudo-bom-tudo-bem-sunday-17-00",
+      "name": "Tudo Bem, Tudo Bom",
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "stage": "Tudo Bem",
+      "startDay": "sunday",
+      "endDay": "sunday",
+      "category": "Body & Wellness",
+      "hosts": "Danilo & Fifi"
     }
   ]
 }

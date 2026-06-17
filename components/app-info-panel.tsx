@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Info, Smartphone, Beer } from "lucide-react"
+import { Info, Smartphone, Beer, Share2 } from "lucide-react"
+import QRCode from "react-qr-code"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -10,6 +11,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+
+const TIMETABLE_URL = "https://wakinglife.netlify.app/"
 
 function InstallSteps({ title, steps }: { title: string; steps: string[] }) {
   return (
@@ -79,6 +82,27 @@ export function AppInfoPanel() {
                   please keep phones off the dance floor. no filming, no flashlights, no screens
                   between you and the music. check your timetable before you step in — then dance.
                 </p>
+              </div>
+
+              <div className="border-2 border-black p-4 dark:border-white">
+                <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wide text-black/50 dark:text-white/50">
+                  <Share2 className="h-3.5 w-3.5" />
+                  share the timetable
+                </div>
+                <p className="mt-2 text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
+                  scan this code to open the app on another phone — pass it along to friends so
+                  everyone has the schedule handy.
+                </p>
+                <div className="mt-4 flex justify-center">
+                  <div className="border-2 border-black bg-white p-3 dark:border-white">
+                    <QRCode
+                      value={TIMETABLE_URL}
+                      size={160}
+                      level="M"
+                      aria-label={`QR code linking to ${TIMETABLE_URL}`}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div>

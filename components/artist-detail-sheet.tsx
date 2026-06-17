@@ -16,6 +16,8 @@ import { useFavorites } from "@/contexts/favorites-context"
 import { getArtistInfo, getArtistSourceLink, getResidentAdvisorProfileUrl, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
+import { trackExternalLink, trackViewArtist, type ArtistViewSource } from "@/lib/analytics"
+import { getArtistCategory } from "@/lib/categories"
 
 export interface ArtistWithSlots {
   id: string
@@ -29,6 +31,10 @@ const STAGE_COLORS: Record<string, string> = {
   "Outro Lado": "#10b981",
   Mimo: "#f59e0b",
   Cochilo: "#84cc16",
+  Apuro: "#f97316",
+  Moonscreen: "#6366f1",
+  Suna: "#f43f5e",
+  "Tudo Bem": "#0ea5e9",
 }
 
 function isOpenEndTime(time: string) {
@@ -100,9 +106,10 @@ export function buildArtistWithSlots(name: string, timetable: Artist[]): ArtistW
 interface ArtistDetailSheetProps {
   artist: ArtistWithSlots | null
   onClose: () => void
+  source: ArtistViewSource
 }
 
-export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
+export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheetProps) {
   const [artistInfo, setArtistInfo] = useState<ArtistInfo | null>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
 
@@ -113,7 +120,15 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
     }
 
     setArtistInfo(getArtistInfo(artist.name))
-  }, [artist])
+
+    const primarySlot = artist.slots[0]
+    trackViewArtist({
+      artistId: artist.id,
+      artistName: artist.name,
+      artistCategory: primarySlot ? getArtistCategory(primarySlot) : undefined,
+      source,
+    })
+  }, [artist, source])
 
   const selectedIsFavorite = artist ? isFavorite(artist.id) : false
   const residentAdvisorProfileUrl = artistInfo
@@ -132,7 +147,7 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
     >
       <SheetContent
         side="bottom"
-        className="flex h-[90vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
+        className="z-[70] flex h-[90vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
       >
         {artist && (
           <>
@@ -150,7 +165,7 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                       {artistInfo.isLive ? "live" : "dj set"}
                     </span>
                   )}
-                  {artistInfo?.tags.slice(0, 3).map((tag) => (
+                  {artistInfo?.tags?.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
                       className="border border-black/35 px-2 py-1 text-xs font-bold uppercase text-black/65 dark:border-white/35 dark:text-white/65"
@@ -170,6 +185,14 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                     href={residentAdvisorProfileUrl}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() =>
+                      trackExternalLink({
+                        artistId: artist.id,
+                        artistName: artist.name,
+                        linkType: "resident_advisor",
+                        url: residentAdvisorProfileUrl,
+                      })
+                    }
                     className="mt-4 inline-flex items-center gap-2 border border-black px-3 py-2 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                   >
                     Resident Advisor profile & events
@@ -185,13 +208,28 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                   <div className="mb-2 text-xs font-black uppercase text-black/50 dark:text-white/50">
                     timetable
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {artist.slots.map((slot) => (
                       <div
                         key={slot.id}
                         className="text-sm font-bold lowercase text-black/75 dark:text-white/75"
                       >
                         <SlotLine slot={slot} />
+                        {slot.hosts && (
+                          <div className="mt-1 text-black/55 dark:text-white/55">
+                            {slot.hosts}
+                          </div>
+                        )}
+                        {slot.description && (
+                          <p className="mt-2 text-sm font-bold leading-6 text-black/65 dark:text-white/65">
+                            {slot.description}
+                          </p>
+                        )}
+                        <div className="mt-2">
+                          <span className="border border-black/35 px-2 py-0.5 text-xs font-black uppercase text-black/55 dark:border-white/35 dark:text-white/55">
+                            {getArtistCategory(slot).toLowerCase()}
+                          </span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -256,6 +294,14 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                   href={sourceLink.url}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() =>
+                    trackExternalLink({
+                      artistId: artist.id,
+                      artistName: artist.name,
+                      linkType: "source",
+                      url: sourceLink.url,
+                    })
+                  }
                   className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-black/60 underline decoration-2 underline-offset-4 hover:text-black dark:text-white/60 dark:hover:text-white"
                 >
                   {sourceLink.label}
@@ -264,11 +310,19 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
               )}
             </div>
 
-            <SheetFooter className="relative z-10 shrink-0 flex-col border-t border-black/25 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-white/25 dark:bg-[#111]/95 sm:flex-col sm:space-x-0">
+            <SheetFooter className="relative z-10 shrink-0 flex-col gap-3 border-t border-black/25 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-white/25 dark:bg-[#111]/95 sm:flex-col sm:space-x-0">
               <Button
                 type="button"
-                onClick={() => toggleFavorite(artist.id)}
-                className={`h-12 rounded-none border-2 text-base font-black lowercase ${
+                onClick={() =>
+                  toggleFavorite(artist.id, {
+                    artistName: artist.name,
+                    artistCategory: artist.slots[0]
+                      ? getArtistCategory(artist.slots[0])
+                      : undefined,
+                    source: "detail_sheet",
+                  })
+                }
+                className={`h-12 w-full rounded-none border-2 text-base font-black lowercase ${
                   selectedIsFavorite
                     ? "border-black bg-black text-white hover:bg-black/85 dark:border-white dark:bg-white dark:text-black dark:hover:bg-white/85"
                     : "border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
@@ -279,6 +333,13 @@ export function ArtistDetailSheet({ artist, onClose }: ArtistDetailSheetProps) {
                   strokeWidth={1.75}
                 />
                 {selectedIsFavorite ? "remove from favorites" : "add to favorites"}
+              </Button>
+              <Button
+                type="button"
+                onClick={onClose}
+                className="h-12 w-full rounded-none border-2 border-black bg-black text-base font-black lowercase text-white hover:bg-black/85 dark:border-white dark:bg-white dark:text-black dark:hover:bg-white/85"
+              >
+                close
               </Button>
             </SheetFooter>
           </>

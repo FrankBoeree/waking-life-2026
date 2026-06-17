@@ -1,9 +1,9 @@
-import { writeFileSync } from "node:fs"
+import { writeFileSync, readFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DAYS = ["wednesday", "thursday", "friday", "saturday", "sunday", "monday"]
+const DAYS = ["tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday"]
 
 function slugify(name, stage, startDay, startTime) {
   return `${name}-${stage}-${startDay}-${startTime}`
@@ -27,6 +27,7 @@ function entry(name, stage, startDay, startTime, endTime, endDay = startDay, opt
       stage,
       startDay,
       endDay: startDay,
+      category: "Music",
       durationMinutes: options.durationMinutes ?? 360,
       ...(options.placeholderKind ? { placeholderKind: options.placeholderKind } : {}),
     }
@@ -45,6 +46,7 @@ function entry(name, stage, startDay, startTime, endTime, endDay = startDay, opt
     stage,
     startDay,
     endDay: resolvedEndDay,
+    category: "Music",
     ...(options.placeholderKind ? { placeholderKind: options.placeholderKind } : {}),
   }
 }
@@ -223,8 +225,12 @@ const slots = [
   entry("Colleen presents Libres Antes del Final", "Cochilo", "monday", "22:00", "22:55"),
 ]
 
+const actsPath = join(__dirname, "../data/acts.json")
+const acts = JSON.parse(readFileSync(actsPath, "utf8"))
+const allSlots = [...slots, ...acts]
+
 const ids = new Set()
-for (const slot of slots) {
+for (const slot of allSlots) {
   if (ids.has(slot.id)) {
     throw new Error(`Duplicate id: ${slot.id}`)
   }
@@ -232,10 +238,10 @@ for (const slot of slots) {
 }
 
 const payload = {
-  version: "2026.2.3",
-  timetable: slots,
+  version: "2026.2.4",
+  timetable: allSlots,
 }
 
 const outputPath = join(__dirname, "../public/festival-data.json")
 writeFileSync(outputPath, `${JSON.stringify(payload, null, 2)}\n`)
-console.log(`Wrote ${slots.length} timetable entries to ${outputPath}`)
+console.log(`Wrote ${allSlots.length} timetable entries to ${outputPath}`)

@@ -9,6 +9,9 @@ export interface Artist {
   day?: string
   startDay?: string
   endDay?: string
+  category?: string
+  hosts?: string
+  description?: string
   /** Used when endTime is "..:.." or "--" to size the block on the timeline */
   durationMinutes?: number
   /** Generated timetable rows (e.g. Mimo has no published schedule) */
@@ -27,7 +30,16 @@ export interface Day {
   date: string
 }
 
+export const MUSIC_STAGES = new Set([
+  "Floresta",
+  "Praia",
+  "Outro Lado",
+  "Mimo",
+  "Cochilo",
+])
+
 export const days: Day[] = [
+  { id: "tuesday", name: "Tuesday", date: "2026-06-16" },
   { id: "wednesday", name: "Wednesday", date: "2026-06-17" },
   { id: "thursday", name: "Thursday", date: "2026-06-18" },
   { id: "friday", name: "Friday", date: "2026-06-19" },
@@ -42,6 +54,10 @@ export const stages: Stage[] = [
   { id: "Outro Lado", name: "Outro Lado", color: "#10b981" },
   { id: "Mimo", name: "Mimo", color: "#f59e0b" },
   { id: "Cochilo", name: "Cochilo", color: "#84cc16" },
+  { id: "Apuro", name: "Apuro", color: "#f97316" },
+  { id: "Moonscreen", name: "Moonscreen", color: "#6366f1" },
+  { id: "Suna", name: "Suna", color: "#f43f5e" },
+  { id: "Tudo Bem", name: "Tudo Bem", color: "#0ea5e9" },
 ]
 
 // Bundled fallback; runtime refresh loads /festival-data.json.
