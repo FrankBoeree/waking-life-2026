@@ -1,20 +1,20 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Mic, Calendar, Star, RefreshCw, Moon, Sun } from "lucide-react"
+import { Mic, Calendar, RefreshCw, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import TimetableView from "@/components/timetable-view"
 import LineupView from "@/components/lineup-view"
 import { InstallPrompt } from "@/components/install-prompt"
 import { AppInfoPanel } from "@/components/app-info-panel"
+import { AppSharePanel } from "@/components/app-share-panel"
 import { useOfflineData } from "@/hooks/use-offline-data"
 import { trackViewSwitch } from "@/lib/analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 export default function Home() {
   const [activeView, setActiveView] = useState<"timetable" | "lineup">("timetable")
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   const [manualThemeOverride, setManualThemeOverride] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const { data, refreshData, isLoading, error } = useOfflineData()
@@ -133,23 +133,6 @@ export default function Home() {
           </div>
           
           <div className="flex items-center gap-3">
-            {/* Show Favorites button - only visible in lineup view */}
-            {activeView === "lineup" && (
-              <Button
-                variant={showFavoritesOnly ? "default" : "outline"}
-                size="sm"
-                className={`${
-                  showFavoritesOnly
-                    ? "bg-black hover:bg-black text-white dark:bg-white dark:text-black"
-                    : "border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
-                }`}
-                onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-              >
-                <Star className={`w-4 h-4 mr-2 ${showFavoritesOnly ? "fill-current" : ""}`} />
-                {showFavoritesOnly ? "Show All" : "Show Favorites"}
-              </Button>
-            )}
-            
             {/* Refresh button - only visible in timetable view */}
             {activeView === "timetable" && (
               <Button
@@ -165,6 +148,7 @@ export default function Home() {
               </Button>
             )}
 
+            <AppSharePanel />
             <AppInfoPanel />
 
             {mounted && (
@@ -192,7 +176,7 @@ export default function Home() {
         {activeView === "timetable" ? (
           <TimetableView data={data} isLoading={isLoading} error={error} />
         ) : (
-          <LineupView showFavoritesOnly={showFavoritesOnly} data={data} />
+          <LineupView data={data} />
         )}
       </main>
 

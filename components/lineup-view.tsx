@@ -17,7 +17,6 @@ import {
 } from "@/components/artist-detail-sheet"
 
 interface LineupViewProps {
-  showFavoritesOnly: boolean
   data: OfflineData | null
 }
 
@@ -31,9 +30,10 @@ function sortSlots(slots: Artist[]) {
   return [...slots].sort((a, b) => slotSortKey(a) - slotSortKey(b))
 }
 
-export default function LineupView({ showFavoritesOnly, data }: LineupViewProps) {
+export default function LineupView({ data }: LineupViewProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [selectedArtist, setSelectedArtist] = useState<ArtistWithSlots | null>(null)
   const { isFavorite, toggleFavorite } = useFavorites()
@@ -138,6 +138,18 @@ export default function LineupView({ showFavoritesOnly, data }: LineupViewProps)
           >
             all
           </button>
+          <button
+            type="button"
+            onClick={() => setShowFavoritesOnly((prev) => !prev)}
+            className={`inline-flex items-center gap-1.5 rounded-none border px-3 py-1.5 text-sm font-bold lowercase whitespace-nowrap transition-colors ${
+              showFavoritesOnly
+                ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
+                : "border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+            }`}
+          >
+            <Star className={`h-3.5 w-3.5 ${showFavoritesOnly ? "fill-current text-yellow-400" : ""}`} strokeWidth={2} />
+            favorites
+          </button>
           {categories.map((category) => (
             <button
               key={category}
@@ -238,7 +250,11 @@ export default function LineupView({ showFavoritesOnly, data }: LineupViewProps)
 
       {filteredArtists.length === 0 && (
         <div className="text-center py-12 text-black/60 dark:text-white/60">
-          <p>No artists found matching your search.</p>
+          <p>
+            {showFavoritesOnly
+              ? "No favorite artists found."
+              : "No artists found matching your search."}
+          </p>
         </div>
       )}
 

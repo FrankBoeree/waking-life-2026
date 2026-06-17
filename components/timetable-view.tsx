@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { stages, days, type Artist } from "@/data/timetable"
+import { stages, days, MUSIC_STAGES, type Artist } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
@@ -19,6 +19,9 @@ const MINUTES_PER_DAY = 24 * 60
 const PIXELS_PER_MINUTE = HOUR_WIDTH / 60
 const MIMO_PROGRAM_BLOCK_MINUTES = 4 * 60
 const MIMO_PAUSE_MINUTES = 2 * 60
+const SINGLE_LANE_HEIGHT = 56
+const STACKED_LANE_HEIGHT = 40
+const STACKED_LANE_GAP = 4
 
 function FavoriteStarIcon({ filled }: { filled: boolean }) {
   return (
@@ -183,6 +186,65 @@ function getStageArtists(stageId: string, timetable: Artist[], totalMinutes: num
   }
 
   return timetable.filter((artist) => artist.stage === stageId)
+}
+
+function getArtistInterval(artist: Artist) {
+  const start = getMinutesSinceFestivalStart(artist)
+  return { start, end: start + getArtistDuration(artist) }
+}
+
+function assignArtistLanes(artists: Artist[]) {
+  const sorted = [...artists].sort((a, b) => {
+    const startDiff = getMinutesSinceFestivalStart(a) - getMinutesSinceFestivalStart(b)
+    if (startDiff !== 0) return startDiff
+    return getArtistDuration(b) - getArtistDuration(a)
+  })
+
+  const laneEnds: number[] = []
+  const lanes = new Map<string, number>()
+
+  for (const artist of sorted) {
+    const { start, end } = getArtistInterval(artist)
+    let lane = laneEnds.findIndex((laneEnd) => laneEnd <= start)
+
+    if (lane === -1) {
+      lane = laneEnds.length
+      laneEnds.push(end)
+    } else {
+      laneEnds[lane] = end
+    }
+
+    lanes.set(artist.id, lane)
+  }
+
+  return { lanes, laneCount: Math.max(1, laneEnds.length) }
+}
+
+function getStageLaneLayout(stageId: string, artists: Artist[]) {
+  if (MUSIC_STAGES.has(stageId)) {
+    return {
+      laneCount: 1,
+      timelineHeight: SINGLE_LANE_HEIGHT,
+      getLane: () => 0,
+      getLaneTop: () => 0,
+      getLaneHeight: () => SINGLE_LANE_HEIGHT,
+    }
+  }
+
+  const { lanes, laneCount } = assignArtistLanes(artists)
+  const timelineHeight =
+    laneCount === 1
+      ? SINGLE_LANE_HEIGHT
+      : laneCount * STACKED_LANE_HEIGHT + (laneCount - 1) * STACKED_LANE_GAP
+
+  return {
+    laneCount,
+    timelineHeight,
+    getLane: (artistId: string) => lanes.get(artistId) ?? 0,
+    getLaneTop: (lane: number) =>
+      laneCount === 1 ? 0 : lane * (STACKED_LANE_HEIGHT + STACKED_LANE_GAP),
+    getLaneHeight: () => (laneCount === 1 ? SINGLE_LANE_HEIGHT : STACKED_LANE_HEIGHT),
+  }
 }
 
 function getArtistBlockClassName(artist: Artist, isFav: boolean) {
@@ -438,8 +500,13 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                   <div className="w-0.5 bg-black h-full dark:bg-white"></div>
                 </div>
               )}
-              {stages.map((stage) => (
-                <div key={stage.id} className="relative" style={{ height: "80px", width: timelineWidth, marginBottom: "16px" }}>
+              {stages.map((stage) => {
+                const stageArtists = getStageArtists(stage.id, timetable, totalMinutes)
+                const laneLayout = getStageLaneLayout(stage.id, stageArtists)
+                const stageRowHeight = 24 + 8 + laneLayout.timelineHeight
+
+                return (
+                <div key={stage.id} className="relative" style={{ height: `${stageRowHeight}px`, width: timelineWidth, marginBottom: "16px" }}>
                   {/* Sticky stagenaam above the artist row */}
                   <div
                     className="pointer-events-none text-xs font-bold text-black px-2 py-1 z-30 border border-black sticky left-0 lowercase mix-blend-multiply dark:border-white dark:mix-blend-normal"
@@ -458,20 +525,24 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                     {stage.name}
                   </div>
                   {/* Artist timeline */}
-                  <div className="relative" style={{ height: "56px", width: timelineWidth, marginTop: "8px" }}>
-                    {getStageArtists(stage.id, timetable, totalMinutes).map((artist) => {
+                  <div className="relative" style={{ height: `${laneLayout.timelineHeight}px`, width: timelineWidth, marginTop: "8px" }}>
+                    {stageArtists.map((artist) => {
                       const left = getMinutesSinceFestivalStart(artist) * PIXELS_PER_MINUTE;
                       const width = getArtistDuration(artist) * PIXELS_PER_MINUTE;
+                      const lane = laneLayout.getLane(artist.id);
+                      const laneTop = laneLayout.getLaneTop(lane);
+                      const laneHeight = laneLayout.getLaneHeight();
                       const favoriteId = toArtistFavoriteId(artist.name);
                       const isFav = isFavorite(favoriteId);
                       const isPlaceholder = Boolean(artist.placeholderKind);
                       const isInteractive = !isPlaceholder;
+                      const isStacked = laneLayout.laneCount > 1;
                       return (
                         <div
                           key={artist.id}
                           role={isInteractive ? "button" : undefined}
                           tabIndex={isInteractive ? 0 : undefined}
-                          className={`absolute top-0 z-10 h-full border transition-colors group flex flex-col justify-between ${
+                          className={`absolute z-10 border transition-colors group flex flex-col justify-between overflow-hidden ${
                             isInteractive ? "dark:mix-blend-normal" : "mix-blend-multiply dark:mix-blend-normal"
                           } ${
                             getArtistBlockClassName(artist, isFav)
@@ -479,6 +550,8 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                           style={{
                             left: `${left}px`,
                             width: `${width}px`,
+                            top: `${laneTop}px`,
+                            height: `${laneHeight}px`,
                             minWidth: "60px",
                           }}
                           onClick={
@@ -514,21 +587,25 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                               </span>
                             </div>
                           )}
-                          <div className="p-2 h-full flex flex-col justify-between">
+                          <div className={`h-full flex flex-col justify-between ${isStacked ? "p-1.5" : "p-2"}`}>
                             {artist.placeholderKind !== "pause" && (
                               <>
                                 <div 
-                                  className={`text-xs font-bold lowercase ${
+                                  className={`font-bold lowercase leading-tight ${
+                                    isStacked ? "text-[11px] line-clamp-2" : "text-xs truncate"
+                                  } ${
                                     artist.placeholderKind === "stage-program"
-                                      ? "text-black/70 leading-tight whitespace-normal dark:text-white/75"
+                                      ? "text-black/70 whitespace-normal dark:text-white/75"
                                       : isFav
-                                        ? "text-white truncate dark:text-black"
-                                        : "text-[#222] truncate group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black"
+                                        ? "text-white dark:text-black"
+                                        : "text-[#222] group-hover:text-white dark:text-[#f7f3e7] dark:group-hover:text-black"
                                   }`}
                                 >
                                   {artist.name}
                                 </div>
-                                <div className={`text-xs font-bold lowercase ${
+                                <div className={`font-bold lowercase ${
+                                  isStacked ? "text-[10px]" : "text-xs"
+                                } ${
                                   artist.placeholderKind
                                     ? "text-black/45 dark:text-white/45"
                                     : isFav
@@ -545,7 +622,8 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                     })}
                   </div>
                 </div>
-              ))}
+                )
+              })}
               {/* Add bottom padding for scroll space */}
               <div style={{ height: "80px" }}></div>
             </div>
