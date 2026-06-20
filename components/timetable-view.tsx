@@ -285,6 +285,21 @@ function getCurrentTimePosition(totalMinutes: number) {
   return minutes
 }
 
+function getActiveDayFromMinutes(
+  scrollMinutes: number,
+  dayStartMinutes: Record<ProgramDayId, number>,
+): ProgramDayId {
+  let foundDay: ProgramDayId = PROGRAM_DAY_ORDER[0]
+
+  for (const day of PROGRAM_DAY_ORDER) {
+    if (scrollMinutes >= dayStartMinutes[day]) {
+      foundDay = day
+    }
+  }
+
+  return foundDay
+}
+
 interface TimetableViewProps {
   data: OfflineData | null
   isLoading: boolean
@@ -293,6 +308,8 @@ interface TimetableViewProps {
 
 export default function TimetableView({ data, isLoading, error }: TimetableViewProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const dayTabsScrollRef = useRef<HTMLDivElement>(null)
+  const dayButtonRefs = useRef<Map<ProgramDayId, HTMLButtonElement>>(new Map())
   const { isFavorite, toggleFavorite } = useFavorites()
   const [currentTimePosition, setCurrentTimePosition] = useState<number | null>(null)
   const [activeDay, setActiveDay] = useState<ProgramDayId>(FESTIVAL_CONFIG.programStartDay)
@@ -361,6 +378,25 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     }
   }, [isLoading, currentTimePosition])
 
+  // Keep the active day tab visible in the horizontal day strip
+  useEffect(() => {
+    const container = dayTabsScrollRef.current
+    const activeDayButton = dayButtonRefs.current.get(activeDay)
+    if (!container || !activeDayButton) return
+
+    const containerRect = container.getBoundingClientRect()
+    const buttonRect = activeDayButton.getBoundingClientRect()
+    const buttonLeft = buttonRect.left - containerRect.left + container.scrollLeft
+    const buttonWidth = buttonRect.width
+    const containerWidth = containerRect.width
+    const targetScrollLeft = buttonLeft - (containerWidth - buttonWidth) / 2
+
+    container.scrollTo({
+      left: Math.max(0, targetScrollLeft),
+      behavior: "smooth",
+    })
+  }, [activeDay])
+
   // Scroll to day tab
   function scrollToDay(day: ProgramDayId) {
     if (!scrollRef.current) return
@@ -378,19 +414,8 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     // Calculate scroll position in minutes since festival start
     const scrollMinutes = scrollLeft / PIXELS_PER_MINUTE
     
-    // Determine which day is active based on scroll position
-    let foundDay: ProgramDayId = PROGRAM_DAY_ORDER[0]
-    
-    // Loop through all days to find which day is active
-    for (const day of PROGRAM_DAY_ORDER) {
-      const dayStartMin = dayStartMinutes[day]
-      
-      // If we're past the start point of this day, update the active day
-      if (scrollMinutes >= dayStartMin) {
-        foundDay = day
-      }
-    }
-    
+    const foundDay = getActiveDayFromMinutes(scrollMinutes, dayStartMinutes)
+
     if (foundDay !== activeDay) {
       setActiveDay(foundDay)
     }
@@ -432,11 +457,18 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     <div className="h-full flex flex-col bg-transparent text-[#222] dark:text-[#f7f3e7]">
       {/* Day tabs - horizontally scrollable (sticky) */}
       <div className="sticky top-0 z-40 border-b-2 border-black bg-white/70 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/70 dark:mix-blend-normal">
-        <div className="overflow-x-auto hide-scrollbar">
+        <div className="overflow-x-auto hide-scrollbar" ref={dayTabsScrollRef}>
           <div className="flex gap-2 px-4 py-3" style={{ minWidth: 'max-content' }}>
             {PROGRAM_DAY_ORDER.map((day) => (
               <Button
                 key={day}
+                ref={(element) => {
+                  if (element) {
+                    dayButtonRefs.current.set(day, element)
+                  } else {
+                    dayButtonRefs.current.delete(day)
+                  }
+                }}
                 variant={activeDay === day ? "default" : "outline"}
                 className={`rounded-none border border-black px-4 py-2 font-bold lowercase transition-colors whitespace-nowrap flex-shrink-0 ${
                   activeDay === day 
