@@ -1,0 +1,1358 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://wakinglife.netlify.app/#website",
+    "name": "Waking Life 2026 Timetable (Unofficial)",
+    "url": "https://wakinglife.netlify.app",
+    "description": "Unofficial fan-made festival timetable and lineup companion for Waking Life 2026.",
+    "inLanguage": "en",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Unofficial Waking Life Timetable",
+      "url": "https://wakinglife.netlify.app"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://wakinglife.netlify.app/#app",
+    "name": "Waking Life 2026 Timetable",
+    "url": "https://wakinglife.netlify.app",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript for interactive timetable UI",
+    "description": "Unofficial fan-made festival timetable and lineup for Waking Life 2026. Works offline as a PWA.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "isPartOf": {
+      "@id": "https://wakinglife.netlify.app/#website"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "@id": "https://wakinglife.netlify.app/#event",
+    "name": "Waking Life 2026",
+    "startDate": "2026-06-16",
+    "endDate": "2026-06-22",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "url": "https://wakinglife.pt/",
+    "description": "Waking Life is a music and arts festival at Quinta da Malada near Crato, Portugal.",
+    "location": {
+      "@type": "Place",
+      "name": "Quinta da Malada, Crato",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.284,
+        "longitude": -7.653
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Crato",
+        "addressRegion": "Alentejo",
+        "addressCountry": "PT"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Waking Life",
+      "url": "https://wakinglife.pt/"
+    },
+    "sameAs": [
+      "https://wakinglife.pt/",
+      "https://www.instagram.com/wakinglife.pt/"
+    ],
+    "subjectOf": {
+      "@type": "CreativeWork",
+      "name": "Unofficial timetable companion",
+      "url": "https://wakinglife.netlify.app",
+      "description": "Unofficial fan-made timetable data export; not published by festival organizers."
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": "https://wakinglife.netlify.app/#lineup",
+    "name": "Waking Life 2026 lineup (unofficial timetable)",
+    "numberOfItems": 239,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "2JACK4U"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "486SX"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "69db presents Wave Arising"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "A Dark Room with a View"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "A False Idea of Control"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "A Gentle Grapple"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "A Gift to Ikoro"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "A Homage to Tiny Companions with Diaskoop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "a pausa"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "name": "A Quiet Place for Quiet People"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "name": "A Sonic Séance"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "name": "Above the Raveyard"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Alan Braxe"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Aleksi Perälä"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Alexandre Centeio"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Alexi Perälä"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Alone Together"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Alton Miller"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Amelia Holt"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Andrés Zacco"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Ani Zakareishvili"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Arrogance Arrogance"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Ask a Hoe"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Asmaa Hamzaoui & Bnat Timbouktou"
+      },
+      {
+        "@type": "ListItem",
+        "position": 25,
+        "name": "Astro Descent"
+      },
+      {
+        "@type": "ListItem",
+        "position": 26,
+        "name": "Astro Drama"
+      },
+      {
+        "@type": "ListItem",
+        "position": 27,
+        "name": "Ata Kak"
+      },
+      {
+        "@type": "ListItem",
+        "position": 28,
+        "name": "Banana Rage"
+      },
+      {
+        "@type": "ListItem",
+        "position": 29,
+        "name": "BASHKKA"
+      },
+      {
+        "@type": "ListItem",
+        "position": 30,
+        "name": "Bathing in 40 Hz"
+      },
+      {
+        "@type": "ListItem",
+        "position": 31,
+        "name": "Billi"
+      },
+      {
+        "@type": "ListItem",
+        "position": 32,
+        "name": "Birds & Tapes"
+      },
+      {
+        "@type": "ListItem",
+        "position": 33,
+        "name": "Body as Receiver"
+      },
+      {
+        "@type": "ListItem",
+        "position": 34,
+        "name": "Bonga"
+      },
+      {
+        "@type": "ListItem",
+        "position": 35,
+        "name": "Bow to the Wow"
+      },
+      {
+        "@type": "ListItem",
+        "position": 36,
+        "name": "Carmen Villain"
+      },
+      {
+        "@type": "ListItem",
+        "position": 37,
+        "name": "Carrier & Gavsborg"
+      },
+      {
+        "@type": "ListItem",
+        "position": 38,
+        "name": "Cassy"
+      },
+      {
+        "@type": "ListItem",
+        "position": 39,
+        "name": "CCL"
+      },
+      {
+        "@type": "ListItem",
+        "position": 40,
+        "name": "Charlemagne Palestine, Oren Ambarchi & Daniel O'Sullivan present KKAARREENNIINNAA"
+      },
+      {
+        "@type": "ListItem",
+        "position": 41,
+        "name": "Coco Maria"
+      },
+      {
+        "@type": "ListItem",
+        "position": 42,
+        "name": "Collective Erotic Play"
+      },
+      {
+        "@type": "ListItem",
+        "position": 43,
+        "name": "Colleen presents Libres Antes del Final"
+      },
+      {
+        "@type": "ListItem",
+        "position": 44,
+        "name": "Communitilting"
+      },
+      {
+        "@type": "ListItem",
+        "position": 45,
+        "name": "Conducted improv"
+      },
+      {
+        "@type": "ListItem",
+        "position": 46,
+        "name": "Contested Territories"
+      },
+      {
+        "@type": "ListItem",
+        "position": 47,
+        "name": "Cosmo"
+      },
+      {
+        "@type": "ListItem",
+        "position": 48,
+        "name": "Crystal Clear"
+      },
+      {
+        "@type": "ListItem",
+        "position": 49,
+        "name": "Curated by Curtas: Maryam Tafakory"
+      },
+      {
+        "@type": "ListItem",
+        "position": 50,
+        "name": "Curated by SUNA & Erotic Film Festival Barcelona"
+      },
+      {
+        "@type": "ListItem",
+        "position": 51,
+        "name": "Dana Kuehr"
+      },
+      {
+        "@type": "ListItem",
+        "position": 52,
+        "name": "Dasha Rush"
+      },
+      {
+        "@type": "ListItem",
+        "position": 53,
+        "name": "Decius"
+      },
+      {
+        "@type": "ListItem",
+        "position": 54,
+        "name": "Devon Rexi"
+      },
+      {
+        "@type": "ListItem",
+        "position": 55,
+        "name": "DIY Porn"
+      },
+      {
+        "@type": "ListItem",
+        "position": 56,
+        "name": "Dj Caring"
+      },
+      {
+        "@type": "ListItem",
+        "position": 57,
+        "name": "Dj Godfather"
+      },
+      {
+        "@type": "ListItem",
+        "position": 58,
+        "name": "Dj Marcelle"
+      },
+      {
+        "@type": "ListItem",
+        "position": 59,
+        "name": "DJ Trystero"
+      },
+      {
+        "@type": "ListItem",
+        "position": 60,
+        "name": "Djrum"
+      },
+      {
+        "@type": "ListItem",
+        "position": 61,
+        "name": "Drama"
+      },
+      {
+        "@type": "ListItem",
+        "position": 62,
+        "name": "DVDE"
+      },
+      {
+        "@type": "ListItem",
+        "position": 63,
+        "name": "e l e m e n t a l"
+      },
+      {
+        "@type": "ListItem",
+        "position": 64,
+        "name": "e/tape"
+      },
+      {
+        "@type": "ListItem",
+        "position": 65,
+        "name": "Eco BDSM: Your Femmasc Power"
+      },
+      {
+        "@type": "ListItem",
+        "position": 66,
+        "name": "Eduardo de la Calle"
+      },
+      {
+        "@type": "ListItem",
+        "position": 67,
+        "name": "Edward"
+      },
+      {
+        "@type": "ListItem",
+        "position": 68,
+        "name": "Edward & Konstantin"
+      },
+      {
+        "@type": "ListItem",
+        "position": 69,
+        "name": "El Cuento"
+      },
+      {
+        "@type": "ListItem",
+        "position": 70,
+        "name": "Elemental group massage"
+      },
+      {
+        "@type": "ListItem",
+        "position": 71,
+        "name": "Elli"
+      },
+      {
+        "@type": "ListItem",
+        "position": 72,
+        "name": "Enter the Ronda"
+      },
+      {
+        "@type": "ListItem",
+        "position": 73,
+        "name": "Fantasy Mixer (queer play party)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 74,
+        "name": "FISTING: A practical workshop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 75,
+        "name": "Flo Masse"
+      },
+      {
+        "@type": "ListItem",
+        "position": 76,
+        "name": "Fluid Stretch & Kardio with a K"
+      },
+      {
+        "@type": "ListItem",
+        "position": 77,
+        "name": "Foraging pleasure"
+      },
+      {
+        "@type": "ListItem",
+        "position": 78,
+        "name": "Força Maior"
+      },
+      {
+        "@type": "ListItem",
+        "position": 79,
+        "name": "From Ball Culture to Catwalk"
+      },
+      {
+        "@type": "ListItem",
+        "position": 80,
+        "name": "Gentle Reassembly"
+      },
+      {
+        "@type": "ListItem",
+        "position": 81,
+        "name": "Get Nakie!"
+      },
+      {
+        "@type": "ListItem",
+        "position": 82,
+        "name": "Haruka"
+      },
+      {
+        "@type": "ListItem",
+        "position": 83,
+        "name": "Hazaz Collective: Land unrealities"
+      },
+      {
+        "@type": "ListItem",
+        "position": 84,
+        "name": "Heith & Tarawangawelas present Duori"
+      },
+      {
+        "@type": "ListItem",
+        "position": 85,
+        "name": "HHY & The Kampala Unit"
+      },
+      {
+        "@type": "ListItem",
+        "position": 86,
+        "name": "Holy Tongue"
+      },
+      {
+        "@type": "ListItem",
+        "position": 87,
+        "name": "How to threesome"
+      },
+      {
+        "@type": "ListItem",
+        "position": 88,
+        "name": "Hugo Sanchez"
+      },
+      {
+        "@type": "ListItem",
+        "position": 89,
+        "name": "I:Cube"
+      },
+      {
+        "@type": "ListItem",
+        "position": 90,
+        "name": "In Dreams"
+      },
+      {
+        "@type": "ListItem",
+        "position": 91,
+        "name": "Invisible Knots"
+      },
+      {
+        "@type": "ListItem",
+        "position": 92,
+        "name": "Ipponawa (BDSM play party)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 93,
+        "name": "Jan Jelinek"
+      },
+      {
+        "@type": "ListItem",
+        "position": 94,
+        "name": "Jane Fitz"
+      },
+      {
+        "@type": "ListItem",
+        "position": 95,
+        "name": "Jichael Mackson"
+      },
+      {
+        "@type": "ListItem",
+        "position": 96,
+        "name": "John McEntire & Sam Prekop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 97,
+        "name": "Joshua Serafin & Mario Barrantes Espinoza w/ Fake Moss"
+      },
+      {
+        "@type": "ListItem",
+        "position": 98,
+        "name": "K"
+      },
+      {
+        "@type": "ListItem",
+        "position": 99,
+        "name": "Katatonic Silentio"
+      },
+      {
+        "@type": "ListItem",
+        "position": 100,
+        "name": "Keith Worthy"
+      },
+      {
+        "@type": "ListItem",
+        "position": 101,
+        "name": "Kia & Richard Akingbehin"
+      },
+      {
+        "@type": "ListItem",
+        "position": 102,
+        "name": "Kiss Nuka"
+      },
+      {
+        "@type": "ListItem",
+        "position": 103,
+        "name": "Kitty Daisy & Lewis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 104,
+        "name": "Knocking on the Door of Tomorrow"
+      },
+      {
+        "@type": "ListItem",
+        "position": 105,
+        "name": "Konduku"
+      },
+      {
+        "@type": "ListItem",
+        "position": 106,
+        "name": "Koodoo & Lamaz"
+      },
+      {
+        "@type": "ListItem",
+        "position": 107,
+        "name": "Kuba'97"
+      },
+      {
+        "@type": "ListItem",
+        "position": 108,
+        "name": "Lawrence & Thomas Melchior"
+      },
+      {
+        "@type": "ListItem",
+        "position": 109,
+        "name": "Leafar Legov"
+      },
+      {
+        "@type": "ListItem",
+        "position": 110,
+        "name": "Lerosa"
+      },
+      {
+        "@type": "ListItem",
+        "position": 111,
+        "name": "Let's Talk About Sex Work"
+      },
+      {
+        "@type": "ListItem",
+        "position": 112,
+        "name": "Lina"
+      },
+      {
+        "@type": "ListItem",
+        "position": 113,
+        "name": "Lion's Den"
+      },
+      {
+        "@type": "ListItem",
+        "position": 114,
+        "name": "Lip Sync 4 your Waking Life"
+      },
+      {
+        "@type": "ListItem",
+        "position": 115,
+        "name": "Listening Beneath the Skin"
+      },
+      {
+        "@type": "ListItem",
+        "position": 116,
+        "name": "Living Sculpture"
+      },
+      {
+        "@type": "ListItem",
+        "position": 117,
+        "name": "LOVAGE"
+      },
+      {
+        "@type": "ListItem",
+        "position": 118,
+        "name": "Low Frequency Surrender"
+      },
+      {
+        "@type": "ListItem",
+        "position": 119,
+        "name": "Lula Pena"
+      },
+      {
+        "@type": "ListItem",
+        "position": 120,
+        "name": "mad miran"
+      },
+      {
+        "@type": "ListItem",
+        "position": 121,
+        "name": "Magda & Mike Servito"
+      },
+      {
+        "@type": "ListItem",
+        "position": 122,
+        "name": "Mala"
+      },
+      {
+        "@type": "ListItem",
+        "position": 123,
+        "name": "Margaux Gazur"
+      },
+      {
+        "@type": "ListItem",
+        "position": 124,
+        "name": "Marylou"
+      },
+      {
+        "@type": "ListItem",
+        "position": 125,
+        "name": "Matthias Reiling"
+      },
+      {
+        "@type": "ListItem",
+        "position": 126,
+        "name": "Mia Koden"
+      },
+      {
+        "@type": "ListItem",
+        "position": 127,
+        "name": "Michael J Blood"
+      },
+      {
+        "@type": "ListItem",
+        "position": 128,
+        "name": "Michelle Gurevich"
+      },
+      {
+        "@type": "ListItem",
+        "position": 129,
+        "name": "Millie McKee"
+      },
+      {
+        "@type": "ListItem",
+        "position": 130,
+        "name": "Mix'Elle"
+      },
+      {
+        "@type": "ListItem",
+        "position": 131,
+        "name": "Modular Youth"
+      },
+      {
+        "@type": "ListItem",
+        "position": 132,
+        "name": "Mohammad Reza Mortazavi"
+      },
+      {
+        "@type": "ListItem",
+        "position": 133,
+        "name": "Moonsuna"
+      },
+      {
+        "@type": "ListItem",
+        "position": 134,
+        "name": "Morada Aberta: Onde o Gesto Cura"
+      },
+      {
+        "@type": "ListItem",
+        "position": 135,
+        "name": "Mountains That Weep"
+      },
+      {
+        "@type": "ListItem",
+        "position": 136,
+        "name": "Natalia Escobar"
+      },
+      {
+        "@type": "ListItem",
+        "position": 137,
+        "name": "Nathalie Seres"
+      },
+      {
+        "@type": "ListItem",
+        "position": 138,
+        "name": "Needle as Nectar"
+      },
+      {
+        "@type": "ListItem",
+        "position": 139,
+        "name": "Nídia & Valentina Magaletti"
+      },
+      {
+        "@type": "ListItem",
+        "position": 140,
+        "name": "Nightmares on Wax"
+      },
+      {
+        "@type": "ListItem",
+        "position": 141,
+        "name": "NikNak"
+      },
+      {
+        "@type": "ListItem",
+        "position": 142,
+        "name": "Niño de Elche"
+      },
+      {
+        "@type": "ListItem",
+        "position": 143,
+        "name": "Nkisi"
+      },
+      {
+        "@type": "ListItem",
+        "position": 144,
+        "name": "Nomadica"
+      },
+      {
+        "@type": "ListItem",
+        "position": 145,
+        "name": "Nosedrip"
+      },
+      {
+        "@type": "ListItem",
+        "position": 146,
+        "name": "o ghettão"
+      },
+      {
+        "@type": "ListItem",
+        "position": 147,
+        "name": "O Ghettão"
+      },
+      {
+        "@type": "ListItem",
+        "position": 148,
+        "name": "Ojoo"
+      },
+      {
+        "@type": "ListItem",
+        "position": 149,
+        "name": "Olgica"
+      },
+      {
+        "@type": "ListItem",
+        "position": 150,
+        "name": "Om Unit Acid Dub Studies"
+      },
+      {
+        "@type": "ListItem",
+        "position": 151,
+        "name": "Once Upon a Moon"
+      },
+      {
+        "@type": "ListItem",
+        "position": 152,
+        "name": "Otto Landsberg & Shin Hyo Jin"
+      },
+      {
+        "@type": "ListItem",
+        "position": 153,
+        "name": "Oxygen & Other Miracles"
+      },
+      {
+        "@type": "ListItem",
+        "position": 154,
+        "name": "Paquita Gordon"
+      },
+      {
+        "@type": "ListItem",
+        "position": 155,
+        "name": "Paraíso"
+      },
+      {
+        "@type": "ListItem",
+        "position": 156,
+        "name": "Parallel 9"
+      },
+      {
+        "@type": "ListItem",
+        "position": 157,
+        "name": "Party Smith"
+      },
+      {
+        "@type": "ListItem",
+        "position": 158,
+        "name": "Pedrinho Xalé"
+      },
+      {
+        "@type": "ListItem",
+        "position": 159,
+        "name": "Pedro Tenreiro"
+      },
+      {
+        "@type": "ListItem",
+        "position": 160,
+        "name": "Performing with Pride ft. Brian the non-binary Lion"
+      },
+      {
+        "@type": "ListItem",
+        "position": 161,
+        "name": "Permission to Perform"
+      },
+      {
+        "@type": "ListItem",
+        "position": 162,
+        "name": "Phase Space: Field"
+      },
+      {
+        "@type": "ListItem",
+        "position": 163,
+        "name": "Physical Linguistics"
+      },
+      {
+        "@type": "ListItem",
+        "position": 164,
+        "name": "Pleasure Activism 101"
+      },
+      {
+        "@type": "ListItem",
+        "position": 165,
+        "name": "Polar Inertia"
+      },
+      {
+        "@type": "ListItem",
+        "position": 166,
+        "name": "Primordial Vibration"
+      },
+      {
+        "@type": "ListItem",
+        "position": 167,
+        "name": "Prosumer"
+      },
+      {
+        "@type": "ListItem",
+        "position": 168,
+        "name": "protodub"
+      },
+      {
+        "@type": "ListItem",
+        "position": 169,
+        "name": "Quantum Boogie"
+      },
+      {
+        "@type": "ListItem",
+        "position": 170,
+        "name": "Queer Collective Sociodrama"
+      },
+      {
+        "@type": "ListItem",
+        "position": 171,
+        "name": "Raw Life is Beautiful"
+      },
+      {
+        "@type": "ListItem",
+        "position": 172,
+        "name": "Rawy Presents"
+      },
+      {
+        "@type": "ListItem",
+        "position": 173,
+        "name": "Rene Wise"
+      },
+      {
+        "@type": "ListItem",
+        "position": 174,
+        "name": "Resonance"
+      },
+      {
+        "@type": "ListItem",
+        "position": 175,
+        "name": "Rest as Resistance"
+      },
+      {
+        "@type": "ListItem",
+        "position": 176,
+        "name": "Rhadoo"
+      },
+      {
+        "@type": "ListItem",
+        "position": 177,
+        "name": "Robert Aiki Aubrey Lowe"
+      },
+      {
+        "@type": "ListItem",
+        "position": 178,
+        "name": "Roots in Resonance — South Asian Diaspora"
+      },
+      {
+        "@type": "ListItem",
+        "position": 179,
+        "name": "rRoxymore"
+      },
+      {
+        "@type": "ListItem",
+        "position": 180,
+        "name": "Sam Prekop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 181,
+        "name": "Samuel Rohrer & Eivind Aarset"
+      },
+      {
+        "@type": "ListItem",
+        "position": 182,
+        "name": "Selecta Fontes"
+      },
+      {
+        "@type": "ListItem",
+        "position": 183,
+        "name": "Serendipity"
+      },
+      {
+        "@type": "ListItem",
+        "position": 184,
+        "name": "Serenne"
+      },
+      {
+        "@type": "ListItem",
+        "position": 185,
+        "name": "Serginho"
+      },
+      {
+        "@type": "ListItem",
+        "position": 186,
+        "name": "Shackleton"
+      },
+      {
+        "@type": "ListItem",
+        "position": 187,
+        "name": "Shahzad Ismaily"
+      },
+      {
+        "@type": "ListItem",
+        "position": 188,
+        "name": "Shcuro & Maria Amor"
+      },
+      {
+        "@type": "ListItem",
+        "position": 189,
+        "name": "Shiatsu & Ayurveda massage"
+      },
+      {
+        "@type": "ListItem",
+        "position": 190,
+        "name": "Shibari x Gong"
+      },
+      {
+        "@type": "ListItem",
+        "position": 191,
+        "name": "Silence Moves Us"
+      },
+      {
+        "@type": "ListItem",
+        "position": 192,
+        "name": "Silent Signals"
+      },
+      {
+        "@type": "ListItem",
+        "position": 193,
+        "name": "Simply Rockers Sound System"
+      },
+      {
+        "@type": "ListItem",
+        "position": 194,
+        "name": "SnPLO"
+      },
+      {
+        "@type": "ListItem",
+        "position": 195,
+        "name": "Soft Cell"
+      },
+      {
+        "@type": "ListItem",
+        "position": 196,
+        "name": "Somatised"
+      },
+      {
+        "@type": "ListItem",
+        "position": 197,
+        "name": "Sonic Interventions"
+      },
+      {
+        "@type": "ListItem",
+        "position": 198,
+        "name": "Space Between Things…"
+      },
+      {
+        "@type": "ListItem",
+        "position": 199,
+        "name": "Spirit Theatre"
+      },
+      {
+        "@type": "ListItem",
+        "position": 200,
+        "name": "SubMissa"
+      },
+      {
+        "@type": "ListItem",
+        "position": 201,
+        "name": "Summer Songstice"
+      },
+      {
+        "@type": "ListItem",
+        "position": 202,
+        "name": "Takkak Takkak"
+      },
+      {
+        "@type": "ListItem",
+        "position": 203,
+        "name": "Tango Without Panic"
+      },
+      {
+        "@type": "ListItem",
+        "position": 204,
+        "name": "Tau Car"
+      },
+      {
+        "@type": "ListItem",
+        "position": 205,
+        "name": "The Creature We Are"
+      },
+      {
+        "@type": "ListItem",
+        "position": 206,
+        "name": "The Erotics of Destruction"
+      },
+      {
+        "@type": "ListItem",
+        "position": 207,
+        "name": "The Funeral of the Normal"
+      },
+      {
+        "@type": "ListItem",
+        "position": 208,
+        "name": "The Great Cosmic Guffaw"
+      },
+      {
+        "@type": "ListItem",
+        "position": 209,
+        "name": "The Non-fearful Body"
+      },
+      {
+        "@type": "ListItem",
+        "position": 210,
+        "name": "The Rabbit and the Magic Man"
+      },
+      {
+        "@type": "ListItem",
+        "position": 211,
+        "name": "The Thread Throughout"
+      },
+      {
+        "@type": "ListItem",
+        "position": 212,
+        "name": "Tiago"
+      },
+      {
+        "@type": "ListItem",
+        "position": 213,
+        "name": "Tina"
+      },
+      {
+        "@type": "ListItem",
+        "position": 214,
+        "name": "Tiny Man Festival: Experimental Animated Shots"
+      },
+      {
+        "@type": "ListItem",
+        "position": 215,
+        "name": "Tobias."
+      },
+      {
+        "@type": "ListItem",
+        "position": 216,
+        "name": "Trancebreath"
+      },
+      {
+        "@type": "ListItem",
+        "position": 217,
+        "name": "Tristan Arp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 218,
+        "name": "Tudo Bem, Tudo Bom"
+      },
+      {
+        "@type": "ListItem",
+        "position": 219,
+        "name": "Ulf Eriksson"
+      },
+      {
+        "@type": "ListItem",
+        "position": 220,
+        "name": "Under the Lake"
+      },
+      {
+        "@type": "ListItem",
+        "position": 221,
+        "name": "Unheld III"
+      },
+      {
+        "@type": "ListItem",
+        "position": 222,
+        "name": "Upsammy x Gyrofield"
+      },
+      {
+        "@type": "ListItem",
+        "position": 223,
+        "name": "Valody"
+      },
+      {
+        "@type": "ListItem",
+        "position": 224,
+        "name": "Vedic Roots"
+      },
+      {
+        "@type": "ListItem",
+        "position": 225,
+        "name": "Vera, DJ Dustin, Mimi, Vuur, ..."
+      },
+      {
+        "@type": "ListItem",
+        "position": 226,
+        "name": "Vibrations & Other Invisible Friends"
+      },
+      {
+        "@type": "ListItem",
+        "position": 227,
+        "name": "VIL"
+      },
+      {
+        "@type": "ListItem",
+        "position": 228,
+        "name": "Vixen Sound"
+      },
+      {
+        "@type": "ListItem",
+        "position": 229,
+        "name": "Vlada"
+      },
+      {
+        "@type": "ListItem",
+        "position": 230,
+        "name": "Wave Arising"
+      },
+      {
+        "@type": "ListItem",
+        "position": 231,
+        "name": "Well Well Well"
+      },
+      {
+        "@type": "ListItem",
+        "position": 232,
+        "name": "What Emerges Between Us"
+      },
+      {
+        "@type": "ListItem",
+        "position": 233,
+        "name": "Whipping & Worship"
+      },
+      {
+        "@type": "ListItem",
+        "position": 234,
+        "name": "Who let the girls out"
+      },
+      {
+        "@type": "ListItem",
+        "position": 235,
+        "name": "Who Owns You?"
+      },
+      {
+        "@type": "ListItem",
+        "position": 236,
+        "name": "Why so serious?"
+      },
+      {
+        "@type": "ListItem",
+        "position": 237,
+        "name": "XDB & Lowtec"
+      },
+      {
+        "@type": "ListItem",
+        "position": 238,
+        "name": "Yamour"
+      },
+      {
+        "@type": "ListItem",
+        "position": 239,
+        "name": "Yentl."
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is wakinglife.netlify.app the official Waking Life website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. https://wakinglife.netlify.app is an unofficial fan-made timetable companion and is not affiliated with Waking Life organizers. The official site is https://wakinglife.pt/"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is Waking Life 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Waking Life 2026 runs 16-22 June 2026 in Crato, Portugal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Waking Life held?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Waking Life takes place at Quinta da Malada / Barragem das Nascentes near Crato, Alentejo, Portugal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I get Waking Life 2026 tickets?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tickets are sold through the official Waking Life raffle and ticket process at https://wakinglife.pt/tickets"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I find the Waking Life 2026 timetable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This unofficial companion publishes machine-readable timetable data at https://wakinglife.netlify.app/festival-data.json and a readable summary at https://wakinglife.netlify.app/lineup-summary.md"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Waking Life 2026 unofficial timetable data",
+    "description": "Unofficial fan-compiled festival timetable slots with stage, day, and time information.",
+    "url": "https://wakinglife.netlify.app/festival-data.json",
+    "version": "2026.2.4",
+    "creator": {
+      "@type": "Organization",
+      "name": "Unofficial Waking Life Timetable",
+      "url": "https://wakinglife.netlify.app"
+    },
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://wakinglife.netlify.app/festival-data.json"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://wakinglife.netlify.app/artist-info.json"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/markdown",
+        "contentUrl": "https://wakinglife.netlify.app/lineup-summary.md"
+      }
+    ],
+    "isBasedOn": "https://wakinglife.pt/"
+  }
+]

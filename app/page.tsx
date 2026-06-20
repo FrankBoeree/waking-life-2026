@@ -9,9 +9,11 @@ import LineupView from "@/components/lineup-view"
 import { InstallPrompt } from "@/components/install-prompt"
 import { AppInfoPanel } from "@/components/app-info-panel"
 import { AppSharePanel } from "@/components/app-share-panel"
+import { PostFestivalSheet } from "@/components/post-festival-sheet"
 import { useOfflineData } from "@/hooks/use-offline-data"
 import { trackViewSwitch } from "@/lib/analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+import { isBeforeFestivalStart } from "@/lib/festival-dates"
 
 export default function Home() {
   const [activeView, setActiveView] = useState<"timetable" | "lineup">("timetable")
@@ -46,15 +48,15 @@ export default function Home() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
 
-  // Countdown to the official 2026 festival start date.
+  // Countdown until the official festival start — hidden once the festival begins.
   useEffect(() => {
     const targetDate = new Date(FESTIVAL_CONFIG.officialStartDateTime)
-    
+
     const updateCountdown = () => {
       const now = new Date()
       const difference = targetDate.getTime() - now.getTime()
-      
-      if (difference <= 0) {
+
+      if (!isBeforeFestivalStart(now)) {
         setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0, show: false })
         return
       }
@@ -216,6 +218,8 @@ export default function Home() {
       
       {/* Install Prompt */}
       <InstallPrompt />
+
+      <PostFestivalSheet timetable={data?.timetable} />
     </div>
   )
 }

@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "node scripts/write-app-version.mjs && next build",
-    "netlify-build": "node scripts/write-app-version.mjs && next build",
+    "dev": "node scripts/generate-geo-assets.mjs && next dev",
+    "build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && next build",
+    "netlify-build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && next build",
+    "generate:geo": "node scripts/generate-geo-assets.mjs",
     "start": "next start",
     "import:artist-info": "node scripts/import-artist-info-from-excel.mjs",
     "import:acts": "node scripts/import-acts-from-excel.mjs",

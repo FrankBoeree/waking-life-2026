@@ -5,26 +5,25 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { FavoritesProvider } from "@/contexts/favorites-context"
 import { OfflineInitializer } from "@/components/offline-initializer"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+import { structuredData } from "@/lib/structured-data"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const siteUrl = new URL(FESTIVAL_CONFIG.siteUrl)
+const ogImagePath = "/waking-life-background.jpg"
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: FESTIVAL_CONFIG.appTitle,
   description: FESTIVAL_CONFIG.description,
   applicationName: FESTIVAL_CONFIG.manifestName,
-  keywords: [
-    "Waking Life 2026",
-    "Waking Life timetable",
-    "Waking Life lineup",
-    "Waking Life festival 2026",
-    "Waking Life schedule",
-  ],
+  keywords: [...FESTIVAL_CONFIG.seoKeywords],
   manifest: "/manifest.json",
   alternates: {
     canonical: "/",
+    types: {
+      "text/markdown": "/lineup-summary.md",
+    },
   },
   openGraph: {
     type: "website",
@@ -34,10 +33,10 @@ export const metadata: Metadata = {
     description: FESTIVAL_CONFIG.description,
     images: [
       {
-        url: "/waking-life-background.jpg",
+        url: ogImagePath,
         width: 1200,
         height: 630,
-        alt: "Waking Life 2026 timetable and lineup",
+        alt: "Waking Life 2026 unofficial timetable and lineup",
       },
     ],
   },
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: FESTIVAL_CONFIG.appTitle,
     description: FESTIVAL_CONFIG.description,
-    images: ["/waking-life-background.jpg"],
+    images: [ogImagePath],
   },
   robots: {
     index: true,
@@ -76,37 +75,6 @@ export const viewport: Viewport = {
   themeColor: "#ec4899",
 }
 
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: FESTIVAL_CONFIG.manifestName,
-    url: FESTIVAL_CONFIG.siteUrl,
-    applicationCategory: "LifestyleApplication",
-    operatingSystem: "Any",
-    description: FESTIVAL_CONFIG.description,
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "MusicEvent",
-    name: FESTIVAL_CONFIG.title,
-    startDate: "2026-06-16",
-    endDate: "2026-06-22",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
-    url: FESTIVAL_CONFIG.siteUrl,
-    description: FESTIVAL_CONFIG.description,
-    location: {
-      "@type": "Place",
-      name: "Waking Life",
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "PT",
-      },
-    },
-  },
-]
-
 export default function RootLayout({
   children,
 }: {
@@ -115,6 +83,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="llms-txt" href="/llms.txt" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={FESTIVAL_CONFIG.title} />
@@ -141,6 +110,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <noscript>
+          Unofficial Waking Life 2026 timetable companion ({FESTIVAL_CONFIG.officialDateRange}).
+          Full schedule summary: {FESTIVAL_CONFIG.siteUrl}/lineup-summary.md
+        </noscript>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
