@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Info, Smartphone, Beer } from "lucide-react"
+import { Info, Smartphone, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
 function InstallSteps({ title, steps }: { title: string; steps: string[] }) {
   return (
@@ -116,14 +117,17 @@ export function AppInfoPanel() {
                   updated for this year&apos;s edition and rebuilt with a lot of love. still
                   imperfect, still unofficial, still no substitute for wandering around on your own.
                 </p>
+                <p className="mb-3 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                  enjoyed using this little compass? a tiny spark keeps it alive for next year.
+                </p>
                 <a
-                  href="https://revolut.me/frank_frank"
+                  href={FESTIVAL_CONFIG.beerDonationUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 border-2 border-black px-4 py-3 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                 >
-                  <Beer className="h-4 w-4" />
-                  buy me a beer
+                  <Sparkles className="h-4 w-4" />
+                  send a spark
                 </a>
               </div>
             </div>
