@@ -488,8 +488,11 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
         <div className="flex h-full">
           {/* Scrollable timeline (inclusief tijdlabels) */}
           <div className="flex-1 overflow-auto timetable-scrollbar" ref={scrollRef} onScroll={handleScroll}>
-            {/* Time labels - nu onderdeel van de scrollbare timeline */}
-            <div className="flex relative px-4" style={{ width: timelineWidth }}>
+            {/* Time labels - sticky top so they stay visible while scrolling stages */}
+            <div
+              className="sticky top-0 z-30 flex relative px-4 border-b border-black/15 bg-white/80 backdrop-blur-sm mix-blend-multiply dark:border-white/15 dark:bg-black/80 dark:mix-blend-normal"
+              style={{ width: timelineWidth }}
+            >
               {hourLabels.map((h) => (
                 <div
                   key={h}
