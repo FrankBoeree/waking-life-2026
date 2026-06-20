@@ -23,6 +23,21 @@ const SINGLE_LANE_HEIGHT = 56
 const STACKED_LANE_HEIGHT = 40
 const STACKED_LANE_GAP = 4
 
+function HourGridLines({ hours }: { hours: number }) {
+  return (
+    <>
+      {Array.from({ length: hours + 1 }, (_, hour) => (
+        <div
+          key={hour}
+          aria-hidden="true"
+          className="absolute top-0 bottom-0 w-px bg-black/[0.06] dark:bg-white/[0.08]"
+          style={{ left: `${hour * HOUR_WIDTH}px` }}
+        />
+      ))}
+    </>
+  )
+}
+
 function FavoriteStarIcon({ filled }: { filled: boolean }) {
   return (
     <svg
@@ -185,7 +200,9 @@ function getStageArtists(stageId: string, timetable: Artist[], totalMinutes: num
     return generateMimoPlaceholderBlocks(totalMinutes)
   }
 
-  return timetable.filter((artist) => artist.stage === stageId)
+  return timetable.filter(
+    (artist) => artist.stage === stageId && artist.placeholderKind !== "pause",
+  )
 }
 
 function getArtistInterval(artist: Artist) {
@@ -493,6 +510,9 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
               className="sticky top-0 z-30 flex relative px-4 bg-white/80 backdrop-blur-sm mix-blend-multiply dark:bg-black/80 dark:mix-blend-normal"
               style={{ width: timelineWidth }}
             >
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                <HourGridLines hours={totalHours} />
+              </div>
               {hourLabels.map((h) => (
                 <div
                   key={h}
@@ -522,6 +542,9 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
             </div>
             {/* Artists per stage */}
             <div className="flex flex-col relative" style={{ width: timelineWidth }}>
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                <HourGridLines hours={totalHours} />
+              </div>
               {/* Now indicator for artists section */}
               {currentTimePosition !== null && (
                 <div
