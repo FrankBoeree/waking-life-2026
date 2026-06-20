@@ -490,7 +490,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
           <div className="flex-1 overflow-auto timetable-scrollbar" ref={scrollRef} onScroll={handleScroll}>
             {/* Time labels - sticky top so they stay visible while scrolling stages */}
             <div
-              className="sticky top-0 z-30 flex relative px-4 border-b border-black/15 bg-white/80 backdrop-blur-sm mix-blend-multiply dark:border-white/15 dark:bg-black/80 dark:mix-blend-normal"
+              className="sticky top-0 z-30 flex relative px-4 bg-white/80 backdrop-blur-sm mix-blend-multiply dark:bg-black/80 dark:mix-blend-normal"
               style={{ width: timelineWidth }}
             >
               {hourLabels.map((h) => (
