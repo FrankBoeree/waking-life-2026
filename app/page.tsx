@@ -93,7 +93,7 @@ export default function Home() {
   }, [manualThemeOverride, mounted, setTheme])
 
   return (
-    <div className="min-h-screen waking-life-shell text-[#222] dark:text-[#f7f3e7]">
+    <div className="h-dvh flex flex-col overflow-hidden waking-life-shell text-[#222] dark:text-[#f7f3e7]">
       {/* Countdown Banner */}
       {mounted && countdown.show && (
         <div className="border-b-2 border-black bg-white/70 text-[#222] text-center py-3 px-4 mix-blend-multiply dark:border-white dark:bg-black/70 dark:text-[#f7f3e7] dark:mix-blend-normal">
@@ -174,13 +174,16 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className={activeView === "timetable" ? "h-[calc(100vh-120px)] pb-16 overflow-y-auto" : "pb-24"}>
+      <main className={activeView === "timetable" ? "flex-1 min-h-0 overflow-hidden" : "flex-1 min-h-0 overflow-y-auto"}>
         {activeView === "timetable" ? (
           <TimetableView data={data} isLoading={isLoading} error={error} />
         ) : (
           <LineupView data={data} />
         )}
       </main>
+
+      {/* Reserve space for the fixed bottom navigation */}
+      <div aria-hidden="true" className="h-[var(--bottom-nav-height)] shrink-0" />
 
       {/* Bottom Navigation - always visible */}
       <div className="fixed bottom-0 left-0 right-0 border-t-2 border-black bg-white/95 backdrop-blur-md z-50 dark:border-white dark:bg-[#111]/95">

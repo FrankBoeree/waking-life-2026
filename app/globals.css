@@ -105,6 +105,7 @@ body {
 
 @layer base {
   :root {
+    --bottom-nav-height: 4.875rem;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;

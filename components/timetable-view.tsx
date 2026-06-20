@@ -507,7 +507,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
           <div className="flex-1 overflow-auto timetable-scrollbar" ref={scrollRef} onScroll={handleScroll}>
             {/* Time labels - sticky top so they stay visible while scrolling stages */}
             <div
-              className="sticky top-0 z-30 flex relative px-4 bg-white/80 backdrop-blur-sm mix-blend-multiply dark:bg-black/80 dark:mix-blend-normal"
+              className="sticky top-0 z-50 flex relative px-4 bg-transparent"
               style={{ width: timelineWidth }}
             >
               <div className="absolute inset-0 z-0 pointer-events-none">
@@ -525,16 +525,14 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
               {/* Now indicator - red vertical line */}
               {currentTimePosition !== null && (
                 <div
-                  className="absolute top-0 z-50 pointer-events-none"
+                  className="absolute top-0 z-[60] pointer-events-none"
                   style={{
                     left: `${currentTimePosition * PIXELS_PER_MINUTE}px`,
                     height: '100%',
                   }}
                 >
-                  {/* Red line */}
-                  <div className="w-0.5 bg-black h-full dark:bg-white"></div>
-                  {/* "Now" label - centered on the line */}
-                  <div className="absolute top-2 transform -translate-x-1/2 border border-black bg-white text-black text-xs font-bold px-2 py-1 lowercase dark:border-white dark:bg-black dark:text-white">
+                  <div className="relative z-0 w-0.5 bg-black h-full dark:bg-white" />
+                  <div className="absolute top-2 left-0 z-10 -translate-x-1/2 border border-black bg-white text-black text-xs font-bold px-2 py-1 lowercase shadow-sm">
                     NOW
                   </div>
                 </div>
@@ -548,14 +546,13 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
               {/* Now indicator for artists section */}
               {currentTimePosition !== null && (
                 <div
-                  className="absolute top-0 z-50 pointer-events-none"
+                  className="absolute top-0 z-20 pointer-events-none"
                   style={{
                     left: `${currentTimePosition * PIXELS_PER_MINUTE}px`,
                     height: '100%',
                   }}
                 >
-                  {/* Red line */}
-                  <div className="w-0.5 bg-black h-full dark:bg-white"></div>
+                  <div className="w-0.5 bg-black h-full dark:bg-white" />
                 </div>
               )}
               {stages.map((stage) => {
@@ -682,8 +679,8 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                 </div>
                 )
               })}
-              {/* Add bottom padding for scroll space */}
-              <div style={{ height: "80px" }}></div>
+              {/* Small bottom padding so the last stage can scroll clear of the edge */}
+              <div style={{ height: "16px" }}></div>
             </div>
           </div>
         </div>
