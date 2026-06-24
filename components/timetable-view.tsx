@@ -14,13 +14,13 @@ import {
   type ArtistWithSlots,
 } from "@/components/artist-detail-sheet"
 
-const HOUR_WIDTH = 240
+const HOUR_WIDTH = 200
 const MINUTES_PER_DAY = 24 * 60
 const PIXELS_PER_MINUTE = HOUR_WIDTH / 60
 const MIMO_PROGRAM_BLOCK_MINUTES = 4 * 60
 const MIMO_PAUSE_MINUTES = 2 * 60
-const SINGLE_LANE_HEIGHT = 56
-const STACKED_LANE_HEIGHT = 40
+const SINGLE_LANE_HEIGHT = 64
+const STACKED_LANE_HEIGHT = 52
 const STACKED_LANE_GAP = 4
 
 function HourGridLines({ hours }: { hours: number }) {
@@ -607,7 +607,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                             width: `${width}px`,
                             top: `${laneTop}px`,
                             height: `${laneHeight}px`,
-                            minWidth: "60px",
+                            minWidth: "50px",
                           }}
                           onClick={
                             isInteractive
@@ -642,12 +642,16 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                               </span>
                             </div>
                           )}
-                          <div className={`h-full flex flex-col justify-between ${isStacked ? "p-1.5" : "p-2"}`}>
+                          <div
+                            className={`flex h-full min-h-0 flex-col ${
+                              isStacked ? "px-1.5 py-1" : "px-2 py-1.5"
+                            }`}
+                          >
                             {artist.placeholderKind !== "pause" && (
                               <>
-                                <div 
-                                  className={`font-bold lowercase leading-tight ${
-                                    isStacked ? "text-[11px] line-clamp-2" : "text-xs truncate"
+                                <div
+                                  className={`min-h-0 flex-1 overflow-hidden pr-4 font-bold lowercase leading-snug line-clamp-2 ${
+                                    isStacked ? "text-[11px]" : "text-xs"
                                   } ${
                                     artist.placeholderKind === "stage-program"
                                       ? "text-black/70 whitespace-normal dark:text-white/75"
@@ -658,9 +662,10 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                                 >
                                   {artist.name}
                                 </div>
-                                <div className={`font-bold lowercase ${
-                                  isStacked ? "text-[10px]" : "text-xs"
-                                } ${
+                                <div
+                                  className={`shrink-0 font-bold lowercase ${
+                                    isStacked ? "text-[10px]" : "text-[11px]"
+                                  } ${
                                   artist.placeholderKind
                                     ? "text-black/45 dark:text-white/45"
                                     : isFav

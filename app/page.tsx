@@ -15,6 +15,10 @@ import { trackViewSwitch } from "@/lib/analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 import { isBeforeFestivalStart } from "@/lib/festival-dates"
 
+const festivalTitleParts = FESTIVAL_CONFIG.title.trim().split(/\s+/)
+const festivalTitleYear = festivalTitleParts.pop() ?? ""
+const festivalTitleLead = festivalTitleParts.join(" ")
+
 export default function Home() {
   const [activeView, setActiveView] = useState<"timetable" | "lineup">("timetable")
   const [manualThemeOverride, setManualThemeOverride] = useState(false)
@@ -121,34 +125,29 @@ export default function Home() {
 
       {/* Page Header - not clickable */}
       <header className="sticky top-0 z-50 border-b-2 border-black bg-white/95 backdrop-blur-md dark:border-white dark:bg-[#111]/95">
-        <div className="px-4 py-4 flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-[#555] dark:text-[#d8d1bd]">
-              {FESTIVAL_CONFIG.officialDateRange}
-            </p>
-            <h1 className="text-2xl font-bold leading-none text-[#222] dark:text-[#f7f3e7]">
-              {FESTIVAL_CONFIG.title}
+        <div className="flex items-center justify-between px-4 py-4">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold leading-tight text-[#222] dark:text-[#f7f3e7]">
+              <span className="block">{festivalTitleLead}</span>
+              <span className="block">{festivalTitleYear}</span>
             </h1>
             <p className="sr-only">
               Festival timetable and lineup for Waking Life 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.
             </p>
           </div>
-          
-          <div className="flex items-center gap-3">
-            {/* Refresh button - only visible in timetable view */}
-            {activeView === "timetable" && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleRefresh}
-                disabled={isLoading}
-                className="text-[#222] hover:bg-black hover:text-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
-                aria-label="Refresh app and timetable"
-                title="Refresh app and timetable"
-              >
-                <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
-              </Button>
-            )}
+
+          <div className="flex shrink-0 items-center gap-3">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isLoading}
+              className="text-[#222] hover:bg-black hover:text-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+              aria-label="Refresh app and timetable"
+              title="Refresh app and timetable"
+            >
+              <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+            </Button>
 
             <AppSharePanel />
             <AppInfoPanel />
