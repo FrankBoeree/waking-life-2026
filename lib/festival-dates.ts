@@ -7,16 +7,6 @@ export function isPostFestivalPreview(): boolean {
   return new URLSearchParams(window.location.search).has("previewPostFestival")
 }
 
-export function isNowPreview(): boolean {
-  if (typeof window === "undefined") return false
-  return new URLSearchParams(window.location.search).has("previewNow")
-}
-
-/** Fixed mid-festival moment for ?previewNow local testing. */
-export function getPreviewNowDate(): Date {
-  return new Date("2026-08-01T16:00:00")
-}
-
 export function isFestivalOver(
   now: Date = new Date(),
   timetable: Artist[] = [],

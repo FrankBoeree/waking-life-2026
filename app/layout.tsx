@@ -4,14 +4,13 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FavoritesProvider } from "@/contexts/favorites-context"
 import { OfflineInitializer } from "@/components/offline-initializer"
-import { FESTIVAL_CONFIG, APP_SURFACE_COLORS } from "@/lib/festival-config"
-import { GoogleAnalytics } from "@/components/google-analytics"
-import { ThemeColorSync } from "@/components/theme-color-sync"
+import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 import { structuredData } from "@/lib/structured-data"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const siteUrl = new URL(FESTIVAL_CONFIG.siteUrl)
+const ogImagePath = "/waking-life-background.jpg"
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -19,31 +18,25 @@ export const metadata: Metadata = {
   description: FESTIVAL_CONFIG.description,
   applicationName: FESTIVAL_CONFIG.manifestName,
   keywords: [...FESTIVAL_CONFIG.seoKeywords],
-  category: "music",
-  authors: [{ name: "Unofficial Dekmantel Timetable", url: FESTIVAL_CONFIG.siteUrl }],
-  creator: "Unofficial Dekmantel Timetable",
-  publisher: "Unofficial Dekmantel Timetable",
   manifest: "/manifest.json",
   alternates: {
     canonical: "/",
     types: {
       "text/markdown": "/lineup-summary.md",
-      "application/ld+json": "/geo-structured-data.json",
     },
   },
   openGraph: {
     type: "website",
     url: "/",
-    locale: "en_GB",
     siteName: FESTIVAL_CONFIG.title,
     title: FESTIVAL_CONFIG.appTitle,
     description: FESTIVAL_CONFIG.description,
     images: [
       {
-        url: "/og-image.png",
+        url: ogImagePath,
         width: 1200,
         height: 630,
-        alt: "Dekmantel Festival 2026 unofficial timetable and lineup",
+        alt: "Waking Life 2026 unofficial timetable and lineup",
       },
     ],
   },
@@ -51,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: FESTIVAL_CONFIG.appTitle,
     description: FESTIVAL_CONFIG.description,
-    images: ["/og-image.png"],
+    images: [ogImagePath],
   },
   robots: {
     index: true,
@@ -66,7 +59,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: FESTIVAL_CONFIG.title,
   },
   formatDetection: {
@@ -79,11 +72,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: APP_SURFACE_COLORS.light },
-    { media: "(prefers-color-scheme: dark)", color: APP_SURFACE_COLORS.dark },
-  ],
+  themeColor: "#ec4899",
 }
 
 export default function RootLayout({
@@ -95,26 +84,34 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="llms-txt" href="/llms.txt" />
-        <link
-          rel="alternate"
-          type="application/ld+json"
-          href="/geo-structured-data.json"
-        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={FESTIVAL_CONFIG.title} />
         <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon-192x192.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CQJY9XWXS"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-2CQJY9XWXS');
+            `
+          }}
+        />
       </head>
       <body className={inter.className}>
-        <GoogleAnalytics />
         <noscript>
-          Unofficial Dekmantel Festival 2026 timetable companion ({FESTIVAL_CONFIG.officialDateRange}).
+          Unofficial Waking Life 2026 timetable companion ({FESTIVAL_CONFIG.officialDateRange}).
           Full schedule summary: {FESTIVAL_CONFIG.siteUrl}/lineup-summary.md
         </noscript>
         <ThemeProvider
@@ -124,7 +121,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FavoritesProvider>
-            <ThemeColorSync />
             <OfflineInitializer />
             {children}
           </FavoritesProvider>

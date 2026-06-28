@@ -7,16 +7,12 @@ import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
-import { getPerformanceFormatLabel } from "@/lib/artist-info"
+import { getArtistCategory } from "@/lib/categories"
 import {
   ArtistDetailSheet,
   buildArtistWithSlots,
   type ArtistWithSlots,
 } from "@/components/artist-detail-sheet"
-import { getAccessibleStageLabelBackground } from "@/lib/color-contrast"
-import { formatStageLabel } from "@/lib/stage-label"
-import { trackDayFilter } from "@/lib/analytics"
-import { getPreviewNowDate, isNowPreview } from "@/lib/festival-dates"
 
 const HOUR_WIDTH = 200
 const MINUTES_PER_DAY = 24 * 60
@@ -26,30 +22,6 @@ const MIMO_PAUSE_MINUTES = 2 * 60
 const SINGLE_LANE_HEIGHT = 64
 const STACKED_LANE_HEIGHT = 52
 const STACKED_LANE_GAP = 4
-const TILE_PADDING_X_PX = {
-  stacked: 6,
-  normal: 8,
-} as const
-const FAVORITE_STAR_SIZE_PX = 20
-const FAVORITE_STAR_RIGHT_INSET_PX = 4
-
-function getTilePaddingXPx(isStacked: boolean) {
-  return isStacked ? TILE_PADDING_X_PX.stacked : TILE_PADDING_X_PX.normal
-}
-
-function getFavoriteStarNameGapPx(isStacked: boolean) {
-  return getTilePaddingXPx(isStacked) * 2
-}
-
-function getTileContentPaddingRightPx(isInteractive: boolean, isStacked: boolean) {
-  if (!isInteractive) return 0
-
-  return (
-    FAVORITE_STAR_RIGHT_INSET_PX +
-    FAVORITE_STAR_SIZE_PX +
-    getFavoriteStarNameGapPx(isStacked)
-  )
-}
 
 function HourGridLines({ hours }: { hours: number }) {
   return (
@@ -294,30 +266,18 @@ function getStageLaneLayout(stageId: string, artists: Artist[]) {
 
 function getArtistBlockClassName(artist: Artist, isFav: boolean) {
   if (artist.placeholderKind === "stage-program") {
-    return "bg-white/55 cursor-default dark:bg-black/45"
+    return "border-dashed bg-white/55 border-black/70 cursor-default dark:bg-black/45 dark:border-white/70"
   }
 
   if (artist.placeholderKind === "pause") {
-    return "bg-transparent cursor-default"
+    return "border-dashed bg-transparent border-black/25 cursor-default dark:border-white/25"
   }
 
   if (isFav) {
-    return "bg-black dark:bg-white"
+    return "bg-black border-black dark:bg-white dark:border-white"
   }
 
-  return "bg-white/80 hover:bg-black dark:bg-black/60 dark:hover:bg-white"
-}
-
-function getArtistBlockOutlineClassName(artist: Artist) {
-  if (artist.placeholderKind === "stage-program") {
-    return "outline outline-1 -outline-offset-[0.5px] outline-dashed outline-black/70 dark:outline-white/70"
-  }
-
-  if (artist.placeholderKind === "pause") {
-    return "outline outline-1 -outline-offset-[0.5px] outline-dashed outline-black/25 dark:outline-white/25"
-  }
-
-  return "outline outline-1 -outline-offset-[0.5px] outline-black dark:outline-white"
+  return "bg-white/80 border-black hover:bg-black dark:bg-black/60 dark:border-white dark:hover:bg-white"
 }
 
 function getFestivalTotalMinutes(timetable: Artist[]) {
@@ -332,7 +292,7 @@ function getFestivalTotalMinutes(timetable: Artist[]) {
 }
 
 function getCurrentTimePosition(totalMinutes: number) {
-  const now = isNowPreview() ? getPreviewNowDate() : new Date()
+  const now = new Date()
   const start = getTimelineStartDate()
   if (!start) return null
 
@@ -340,21 +300,6 @@ function getCurrentTimePosition(totalMinutes: number) {
   if (minutes < 0 || minutes > totalMinutes) return null
 
   return minutes
-}
-
-function getFirstActMinutesForDay(day: ProgramDayId, timetable: Artist[]) {
-  let earliest: number | null = null
-
-  for (const artist of timetable) {
-    if (artist.startDay !== day || artist.placeholderKind === "pause") continue
-
-    const start = getMinutesSinceFestivalStart(artist)
-    if (earliest === null || start < earliest) {
-      earliest = start
-    }
-  }
-
-  return earliest
 }
 
 function getActiveDayFromMinutes(
@@ -396,10 +341,6 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     acc[day] = getDayStartMinutes(day)
     return acc
   }, {} as Record<ProgramDayId, number>)
-  const firstActMinutes = PROGRAM_DAY_ORDER.reduce<Record<ProgramDayId, number | null>>((acc, day) => {
-    acc[day] = getFirstActMinutesForDay(day, timetable)
-    return acc
-  }, {} as Record<ProgramDayId, number | null>)
 
   // Update current time position every minute
   useEffect(() => {
@@ -473,16 +414,11 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     })
   }, [activeDay])
 
-  // Scroll to the first act of the selected day
-  function handleDayTabClick(day: ProgramDayId) {
-    trackDayFilter(day)
-    scrollToDay(day)
-  }
-
+  // Scroll to day tab
   function scrollToDay(day: ProgramDayId) {
     if (!scrollRef.current) return
-
-    const targetMinutes = firstActMinutes[day] ?? dayStartMinutes[day] ?? 0
+    
+    const targetMinutes = dayStartMinutes[day] || 0
     const px = targetMinutes * PIXELS_PER_MINUTE
     scrollRef.current.scrollTo({ left: px, behavior: "smooth" })
   }
@@ -537,7 +473,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
   return (
     <div className="h-full flex flex-col bg-transparent text-[#222] dark:text-[#f7f3e7]">
       {/* Day tabs - horizontally scrollable (sticky) */}
-      <div className="sticky top-0 z-40 border-b-2 border-black bg-transparent dark:border-white">
+      <div className="sticky top-0 z-40 border-b-2 border-black bg-white/70 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/70 dark:mix-blend-normal">
         <div className="overflow-x-auto hide-scrollbar" ref={dayTabsScrollRef}>
           <div className="flex gap-2 px-4 py-3" style={{ minWidth: 'max-content' }}>
             {PROGRAM_DAY_ORDER.map((day) => (
@@ -556,7 +492,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                     ? "bg-black text-white dark:bg-white dark:text-black" 
                     : "bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                 }`}
-                onClick={() => handleDayTabClick(day)}
+                onClick={() => scrollToDay(day)}
               >
                 {day.charAt(0).toUpperCase() + day.slice(1)}
               </Button>
@@ -628,9 +564,9 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                 <div key={stage.id} className="relative" style={{ height: `${stageRowHeight}px`, width: timelineWidth, marginBottom: "16px" }}>
                   {/* Sticky stagenaam above the artist row */}
                   <div
-                    className="pointer-events-none text-xs font-bold px-2 py-1 z-30 border border-black sticky left-0 text-white"
+                    className="pointer-events-none text-xs font-bold text-black px-2 py-1 z-30 border border-black sticky left-0 lowercase mix-blend-multiply dark:border-white dark:mix-blend-normal"
                     style={{ 
-                      backgroundColor: getAccessibleStageLabelBackground(stage.color),
+                      backgroundColor: stage.color,
                       width: '200px',
                       whiteSpace: 'nowrap',
                       height: '24px',
@@ -641,7 +577,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                       zIndex: 30
                     }}
                   >
-                    {formatStageLabel(stage.name)}
+                    {stage.name}
                   </div>
                   {/* Artist timeline */}
                   <div className="relative" style={{ height: `${laneLayout.timelineHeight}px`, width: timelineWidth, marginTop: "8px" }}>
@@ -656,19 +592,16 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                       const isPlaceholder = Boolean(artist.placeholderKind);
                       const isInteractive = !isPlaceholder;
                       const isStacked = laneLayout.laneCount > 1;
-                      const tilePaddingX = isStacked ? "pl-1.5" : "pl-2";
-                      const tilePaddingY = isStacked ? "py-1" : "py-1.5";
-                      const tileContentPaddingRight = getTileContentPaddingRightPx(isInteractive, isStacked);
                       return (
                         <div
                           key={artist.id}
                           role={isInteractive ? "button" : undefined}
                           tabIndex={isInteractive ? 0 : undefined}
-                          className={`absolute z-10 transition-colors group flex flex-col justify-between ${
+                          className={`absolute z-10 border transition-colors group flex flex-col justify-between overflow-hidden ${
                             isInteractive ? "dark:mix-blend-normal" : "mix-blend-multiply dark:mix-blend-normal"
                           } ${
                             getArtistBlockClassName(artist, isFav)
-                          } ${getArtistBlockOutlineClassName(artist)} ${isInteractive ? "cursor-pointer" : ""}`}
+                          } ${isInteractive ? "cursor-pointer" : ""}`}
                           style={{
                             left: `${left}px`,
                             width: `${width}px`,
@@ -693,13 +626,13 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                           }
                         >
                           {isInteractive && (
-                            <div className="pointer-events-auto absolute top-1 right-1 z-20">
+                            <div className="absolute top-1 right-1 z-10">
                               <span
                                 onClick={e => {
                                   e.stopPropagation()
                                   toggleFavorite(favoriteId, {
                                     artistName: artist.name,
-                                    artistCategory: getPerformanceFormatLabel(artist.name),
+                                    artistCategory: getArtistCategory(artist),
                                     source: "timetable",
                                   })
                                 }}
@@ -710,19 +643,16 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                             </div>
                           )}
                           <div
-                            className={`flex h-full min-h-0 flex-col justify-between ${tilePaddingY}`}
-                            style={
-                              tileContentPaddingRight > 0
-                                ? { paddingRight: `${tileContentPaddingRight}px` }
-                                : undefined
-                            }
+                            className={`flex h-full min-h-0 flex-col ${
+                              isStacked ? "px-1.5 py-1" : "px-2 py-1.5"
+                            }`}
                           >
                             {artist.placeholderKind !== "pause" && (
                               <>
                                 <div
-                                  className={`sticky left-0 z-[1] min-w-0 w-max max-w-full self-start overflow-hidden font-bold lowercase leading-snug line-clamp-2 ${
-                                    tilePaddingX
-                                  } ${isStacked ? "text-[11px]" : "text-xs"} ${
+                                  className={`min-h-0 flex-1 overflow-hidden pr-4 font-bold lowercase leading-snug line-clamp-2 ${
+                                    isStacked ? "text-[11px]" : "text-xs"
+                                  } ${
                                     artist.placeholderKind === "stage-program"
                                       ? "text-black/70 whitespace-normal dark:text-white/75"
                                       : isFav
@@ -733,16 +663,15 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                                   {artist.name}
                                 </div>
                                 <div
-                                  className={`sticky left-0 z-[1] w-max max-w-full self-start ${tilePaddingX} font-bold lowercase ${
+                                  className={`shrink-0 font-bold lowercase ${
                                     isStacked ? "text-[10px]" : "text-[11px]"
                                   } ${
-                                    artist.placeholderKind
-                                      ? "text-black/45 dark:text-white/45"
-                                      : isFav
-                                        ? "text-white/80 dark:text-black/75"
-                                        : "text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75"
-                                  }`}
-                                >
+                                  artist.placeholderKind
+                                    ? "text-black/45 dark:text-white/45"
+                                    : isFav
+                                      ? "text-white/80 dark:text-black/75"
+                                      : "text-black/55 group-hover:text-white/80 dark:text-white/60 dark:group-hover:text-black/75"
+                                }`}>
                                   {formatArtistTimeRange(artist)}
                                 </div>
                               </>

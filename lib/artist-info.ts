@@ -13,7 +13,6 @@ export interface ArtistInfo {
   residentAdvisorUrl: string
   sourceLabel?: string
   sourceUrl?: string
-  soundcloudUrl?: string
 }
 
 function cleanArtistQuery(name: string) {
@@ -174,25 +173,6 @@ export function getArtistSourceLink(
       : getUrlSourceLabel(url)
 
   return { url, label }
-}
-
-export function getSoundCloudLink(info: ArtistInfo): { url: string; label: string } | null {
-  const url = info.soundcloudUrl?.trim()
-  if (!url || !/soundcloud\.com/i.test(url)) return null
-  return { url, label: "SoundCloud" }
-}
-
-function detectLiveFromName(name: string): boolean | undefined {
-  const lower = name.toLowerCase()
-  if (/\blive\b/.test(lower) || /\bhybrid\b/.test(lower)) return true
-  if (/\bdj set\b/.test(lower) || /\bdnb set\b/.test(lower)) return false
-  return undefined
-}
-
-/** Returns a lowercase lineup label: "dj" or "live". */
-export function getPerformanceFormatLabel(name: string): "dj" | "live" {
-  const isLive = getArtistInfo(name).isLive ?? detectLiveFromName(name) ?? false
-  return isLive ? "live" : "dj"
 }
 
 export function getArtistInfo(name: string): ArtistInfo {

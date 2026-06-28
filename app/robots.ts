@@ -10,14 +10,7 @@ const AI_USER_AGENTS = [
   "anthropic-ai",
   "PerplexityBot",
   "Google-Extended",
-  "Applebot-Extended",
-  "Bytespider",
-  "CCBot",
-  "cohere-ai",
-  "Meta-ExternalAgent",
 ] as const
-
-const DISALLOWED_PATHS = ["/debug/", "/offline/"]
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -25,12 +18,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: DISALLOWED_PATHS,
+        disallow: ["/debug/"],
       },
       ...AI_USER_AGENTS.map((userAgent) => ({
         userAgent,
         allow: "/",
-        disallow: DISALLOWED_PATHS,
+        disallow: ["/debug/"],
       })),
     ],
     sitemap: `${FESTIVAL_CONFIG.siteUrl}/sitemap.xml`,
