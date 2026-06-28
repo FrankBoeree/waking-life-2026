@@ -17,8 +17,6 @@ import {
 const HOUR_WIDTH = 200
 const MINUTES_PER_DAY = 24 * 60
 const PIXELS_PER_MINUTE = HOUR_WIDTH / 60
-const MIMO_PROGRAM_BLOCK_MINUTES = 4 * 60
-const MIMO_PAUSE_MINUTES = 2 * 60
 const SINGLE_LANE_HEIGHT = 64
 const STACKED_LANE_HEIGHT = 52
 const STACKED_LANE_GAP = 4
@@ -128,78 +126,7 @@ function getArtistDuration(artist: Artist) {
   return daysDiff * MINUTES_PER_DAY + (endMin - startMin)
 }
 
-function festivalOffsetToSlot(minutesFromStart: number): { day: ProgramDayId; time: string } {
-  const startDayIdx = PROGRAM_DAY_ORDER.indexOf(FESTIVAL_CONFIG.programStartDay)
-  const festivalStartMin = timeToMinutes(FESTIVAL_CONFIG.programStartTime)
-  const absoluteMin = festivalStartMin + minutesFromStart
-  const dayOffset = Math.floor(absoluteMin / MINUTES_PER_DAY)
-  const timeMin = ((absoluteMin % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY
-  const dayIdx = Math.min(startDayIdx + dayOffset, PROGRAM_DAY_ORDER.length - 1)
-
-  return {
-    day: PROGRAM_DAY_ORDER[dayIdx],
-    time: formatTime(timeMin),
-  }
-}
-
-function createMimoBlock(
-  offsetMinutes: number,
-  durationMinutes: number,
-  name: string,
-  placeholderKind: NonNullable<Artist["placeholderKind"]>,
-  index: number,
-): Artist {
-  const start = festivalOffsetToSlot(offsetMinutes)
-  const end = festivalOffsetToSlot(offsetMinutes + durationMinutes)
-
-  return {
-    id: `mimo-${placeholderKind}-${index}`,
-    name,
-    startTime: start.time,
-    endTime: end.time,
-    startDay: start.day,
-    endDay: end.day,
-    stage: "Mimo",
-    placeholderKind,
-  }
-}
-
-function generateMimoPlaceholderBlocks(totalFestivalMinutes: number): Artist[] {
-  const blocks: Artist[] = []
-  let offset = 0
-  let index = 0
-
-  while (offset < totalFestivalMinutes) {
-    const programDuration = Math.min(MIMO_PROGRAM_BLOCK_MINUTES, totalFestivalMinutes - offset)
-    if (programDuration > 0) {
-      blocks.push(
-        createMimoBlock(
-          offset,
-          programDuration,
-          "check program at stage",
-          "stage-program",
-          index++,
-        ),
-      )
-      offset += programDuration
-    }
-
-    if (offset >= totalFestivalMinutes) break
-
-    const pauseDuration = Math.min(MIMO_PAUSE_MINUTES, totalFestivalMinutes - offset)
-    if (pauseDuration > 0) {
-      offset += pauseDuration
-    }
-  }
-
-  return blocks
-}
-
-function getStageArtists(stageId: string, timetable: Artist[], totalMinutes: number) {
-  if (stageId === "Mimo") {
-    return generateMimoPlaceholderBlocks(totalMinutes)
-  }
-
+function getStageArtists(stageId: string, timetable: Artist[]) {
   return timetable.filter(
     (artist) => artist.stage === stageId && artist.placeholderKind !== "pause",
   )
@@ -463,7 +390,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
         <div className="max-w-xl border-2 border-black bg-white/75 p-6 text-center mix-blend-multiply dark:border-white dark:bg-black/65 dark:mix-blend-normal">
           <p className="mb-3 text-2xl font-black lowercase">timetable not available yet</p>
           <p className="text-base font-bold lowercase leading-7 text-black/65 dark:text-white/65">
-            Exact times and stages for Waking Life 2026 have not been published yet. When an update is ready, the app will show a banner so you can hard reset the offline cache.
+            Exact times and stages for Dekmantel Festival 2026 have not been published yet. When an update is ready, the app will show a banner so you can refresh the offline cache.
           </p>
         </div>
       </div>
@@ -556,7 +483,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                 </div>
               )}
               {stages.map((stage) => {
-                const stageArtists = getStageArtists(stage.id, timetable, totalMinutes)
+                const stageArtists = getStageArtists(stage.id, timetable)
                 const laneLayout = getStageLaneLayout(stage.id, stageArtists)
                 const stageRowHeight = 24 + 8 + laneLayout.timelineHeight
 

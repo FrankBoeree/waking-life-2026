@@ -6,17 +6,23 @@ export const dynamic = "force-static"
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: FESTIVAL_CONFIG.manifestName,
-    short_name: "Waking Life",
+    short_name: "Dekmantel",
     description: FESTIVAL_CONFIG.manifestDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#000000",
-    theme_color: "#ec4899",
+    background_color: "#f5f0e8",
+    theme_color: "#E63946",
     orientation: "portrait",
     scope: "/",
     lang: "en",
     categories: ["entertainment", "music", "lifestyle"],
     icons: [
+      {
+        src: "/icon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+        purpose: "maskable"
+      },
       {
         src: "/icon-192x192.png",
         sizes: "192x192",

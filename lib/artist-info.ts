@@ -13,6 +13,7 @@ export interface ArtistInfo {
   residentAdvisorUrl: string
   sourceLabel?: string
   sourceUrl?: string
+  soundcloudUrl?: string
 }
 
 function cleanArtistQuery(name: string) {
@@ -173,6 +174,12 @@ export function getArtistSourceLink(
       : getUrlSourceLabel(url)
 
   return { url, label }
+}
+
+export function getSoundCloudLink(info: ArtistInfo): { url: string; label: string } | null {
+  const url = info.soundcloudUrl?.trim()
+  if (!url || !/soundcloud\.com/i.test(url)) return null
+  return { url, label: "SoundCloud" }
 }
 
 export function getArtistInfo(name: string): ArtistInfo {
