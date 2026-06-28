@@ -103,6 +103,7 @@ export function AppInfoPanel() {
                     title="iphone"
                     steps={[
                       "open this page in safari",
+                      'tap the menu (three dots) in the safari toolbar',
                       'tap the share button (square with an arrow pointing up)',
                       'scroll down and tap "add to home screen"',
                       'tap "add"',

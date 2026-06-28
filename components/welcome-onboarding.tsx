@@ -42,6 +42,7 @@ function getManualSteps(platform: Platform): string[] {
   if (platform === "ios") {
     if (isIOSSafari()) {
       return [
+        'tap the menu (three dots) in the safari toolbar',
         'tap the share button (square with arrow pointing up)',
         'scroll down and tap "add to home screen"',
         'tap "add"',
@@ -50,6 +51,7 @@ function getManualSteps(platform: Platform): string[] {
 
     return [
       "open this page in safari",
+      'tap the menu (three dots) in the safari toolbar',
       'tap the share button (square with arrow pointing up)',
       'scroll down and tap "add to home screen"',
       'tap "add"',
