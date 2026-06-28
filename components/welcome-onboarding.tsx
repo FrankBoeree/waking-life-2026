@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Share, Download, Smartphone, SquareArrowOutUpRight } from "lucide-react"
+import { Download, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 import {
-  canUseWebShare,
   getPlatform,
   hasSeenWelcome,
   isInstalledPwa,
@@ -41,6 +40,14 @@ function InstallSteps({ steps }: { steps: string[] }) {
 
 function getManualSteps(platform: Platform): string[] {
   if (platform === "ios") {
+    if (isIOSSafari()) {
+      return [
+        'tap the share button (square with arrow pointing up)',
+        'scroll down and tap "add to home screen"',
+        'tap "add"',
+      ]
+    }
+
     return [
       "open this page in safari",
       'tap the share button (square with arrow pointing up)',
@@ -110,22 +117,6 @@ export function WelcomeOnboarding() {
     }
   }, [open])
 
-  const handleIOSShare = async () => {
-    if (!canUseWebShare()) return
-
-    try {
-      await navigator.share({
-        title: FESTIVAL_CONFIG.appTitle,
-        url: window.location.href,
-        text: "Add this timetable to your home screen for offline access.",
-      })
-      trackWelcomeOnboarding({ action: "share_opened", platform })
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "AbortError") return
-      trackWelcomeOnboarding({ action: "share_failed", platform })
-    }
-  }
-
   const handleAndroidInstall = async () => {
     if (!deferredPrompt) return
 
@@ -146,7 +137,6 @@ export function WelcomeOnboarding() {
   if (!open) return null
 
   const showInstallSection = platform !== "desktop"
-  const showIOSDirectShare = platform === "ios" && isIOSSafari() && canUseWebShare()
   const showAndroidDirectInstall = platform === "android" && deferredPrompt !== null
 
   return (
@@ -198,25 +188,7 @@ export function WelcomeOnboarding() {
                 </p>
               </div>
 
-              {showIOSDirectShare ? (
-                <div className="space-y-3">
-                  <p className="text-sm font-bold lowercase leading-relaxed text-black/65 dark:text-white/65">
-                    tap below to open the share menu, then scroll down and choose{" "}
-                    <span className="text-black dark:text-white">&quot;add to home screen&quot;</span>.
-                  </p>
-                  <Button
-                    onClick={handleIOSShare}
-                    className="h-auto w-full rounded-none border-2 border-black bg-black py-3 text-sm font-black lowercase text-white hover:bg-black/90 dark:border-white dark:bg-white dark:text-black dark:hover:bg-white/90"
-                  >
-                    <Share className="mr-2 h-4 w-4" />
-                    open share menu
-                  </Button>
-                  <div className="flex items-center gap-2 text-xs font-black uppercase text-black/40 dark:text-white/40">
-                    <SquareArrowOutUpRight className="h-3.5 w-3.5" />
-                    then tap &quot;add to home screen&quot;
-                  </div>
-                </div>
-              ) : showAndroidDirectInstall ? (
+              {showAndroidDirectInstall ? (
                 <div className="space-y-3">
                   <p className="text-sm font-bold lowercase leading-relaxed text-black/65 dark:text-white/65">
                     tap below to install the app directly on your home screen.
