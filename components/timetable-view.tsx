@@ -7,12 +7,15 @@ import { useFavorites } from "@/contexts/favorites-context"
 import type { OfflineData } from "@/lib/offline-storage"
 import { FESTIVAL_CONFIG, PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
-import { getArtistCategory } from "@/lib/categories"
+import { getPerformanceFormatLabel } from "@/lib/artist-info"
 import {
   ArtistDetailSheet,
   buildArtistWithSlots,
   type ArtistWithSlots,
 } from "@/components/artist-detail-sheet"
+import { getAccessibleStageLabelBackground } from "@/lib/color-contrast"
+import { formatStageLabel } from "@/lib/stage-label"
+import { trackDayFilter } from "@/lib/analytics"
 
 const HOUR_WIDTH = 200
 const MINUTES_PER_DAY = 24 * 60
@@ -229,6 +232,21 @@ function getCurrentTimePosition(totalMinutes: number) {
   return minutes
 }
 
+function getFirstActMinutesForDay(day: ProgramDayId, timetable: Artist[]) {
+  let earliest: number | null = null
+
+  for (const artist of timetable) {
+    if (artist.startDay !== day || artist.placeholderKind === "pause") continue
+
+    const start = getMinutesSinceFestivalStart(artist)
+    if (earliest === null || start < earliest) {
+      earliest = start
+    }
+  }
+
+  return earliest
+}
+
 function getActiveDayFromMinutes(
   scrollMinutes: number,
   dayStartMinutes: Record<ProgramDayId, number>,
@@ -268,6 +286,10 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     acc[day] = getDayStartMinutes(day)
     return acc
   }, {} as Record<ProgramDayId, number>)
+  const firstActMinutes = PROGRAM_DAY_ORDER.reduce<Record<ProgramDayId, number | null>>((acc, day) => {
+    acc[day] = getFirstActMinutesForDay(day, timetable)
+    return acc
+  }, {} as Record<ProgramDayId, number | null>)
 
   // Update current time position every minute
   useEffect(() => {
@@ -341,11 +363,16 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
     })
   }, [activeDay])
 
-  // Scroll to day tab
+  // Scroll to the first act of the selected day
+  function handleDayTabClick(day: ProgramDayId) {
+    trackDayFilter(day)
+    scrollToDay(day)
+  }
+
   function scrollToDay(day: ProgramDayId) {
     if (!scrollRef.current) return
-    
-    const targetMinutes = dayStartMinutes[day] || 0
+
+    const targetMinutes = firstActMinutes[day] ?? dayStartMinutes[day] ?? 0
     const px = targetMinutes * PIXELS_PER_MINUTE
     scrollRef.current.scrollTo({ left: px, behavior: "smooth" })
   }
@@ -419,7 +446,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                     ? "bg-black text-white dark:bg-white dark:text-black" 
                     : "bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                 }`}
-                onClick={() => scrollToDay(day)}
+                onClick={() => handleDayTabClick(day)}
               >
                 {day.charAt(0).toUpperCase() + day.slice(1)}
               </Button>
@@ -491,9 +518,9 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                 <div key={stage.id} className="relative" style={{ height: `${stageRowHeight}px`, width: timelineWidth, marginBottom: "16px" }}>
                   {/* Sticky stagenaam above the artist row */}
                   <div
-                    className="pointer-events-none text-xs font-bold text-black px-2 py-1 z-30 border border-black sticky left-0 lowercase mix-blend-multiply dark:border-white dark:mix-blend-normal"
+                    className="pointer-events-none text-xs font-bold px-2 py-1 z-30 border border-black sticky left-0 text-white"
                     style={{ 
-                      backgroundColor: stage.color,
+                      backgroundColor: getAccessibleStageLabelBackground(stage.color),
                       width: '200px',
                       whiteSpace: 'nowrap',
                       height: '24px',
@@ -504,7 +531,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                       zIndex: 30
                     }}
                   >
-                    {stage.name}
+                    {formatStageLabel(stage.name)}
                   </div>
                   {/* Artist timeline */}
                   <div className="relative" style={{ height: `${laneLayout.timelineHeight}px`, width: timelineWidth, marginTop: "8px" }}>
@@ -559,7 +586,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
                                   e.stopPropagation()
                                   toggleFavorite(favoriteId, {
                                     artistName: artist.name,
-                                    artistCategory: getArtistCategory(artist),
+                                    artistCategory: getPerformanceFormatLabel(artist.name),
                                     source: "timetable",
                                   })
                                 }}

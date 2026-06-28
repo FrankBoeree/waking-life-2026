@@ -14,11 +14,12 @@ import {
 import type { Artist } from "@/data/timetable"
 import { STAGE_COLORS } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
-import { getArtistInfo, getArtistSourceLink, getResidentAdvisorProfileUrl, getSoundCloudLink, type ArtistInfo } from "@/lib/artist-info"
+import { formatFavoriteLabel } from "@/lib/favorite-counts"
+import { getArtistInfo, getPerformanceFormatLabel, getArtistSourceLink, getResidentAdvisorProfileUrl, getSoundCloudLink, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
+import { formatStageLabel } from "@/lib/stage-label"
 import { toArtistFavoriteId } from "@/lib/artist-id"
 import { trackExternalLink, trackViewArtist, type ArtistViewSource } from "@/lib/analytics"
-import { getArtistCategory } from "@/lib/categories"
 
 export interface ArtistWithSlots {
   id: string
@@ -65,7 +66,10 @@ export function SlotLine({ slot }: { slot: Artist }) {
   return (
     <div className="flex items-center gap-2 leading-snug">
       <StageDot stage={slot.stage} />
-      <span>{`${slot.stage.toLowerCase()} · ${formatSlotMeta(slot)}`}</span>
+      <span>
+        <span className="normal-case">{formatStageLabel(slot.stage)}</span>
+        {` · ${formatSlotMeta(slot)}`}
+      </span>
     </div>
   )
 }
@@ -101,7 +105,7 @@ interface ArtistDetailSheetProps {
 
 export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheetProps) {
   const [artistInfo, setArtistInfo] = useState<ArtistInfo | null>(null)
-  const { isFavorite, toggleFavorite } = useFavorites()
+  const { isFavorite, toggleFavorite, getFavoriteCount } = useFavorites()
 
   useEffect(() => {
     if (!artist) {
@@ -111,16 +115,16 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
 
     setArtistInfo(getArtistInfo(artist.name))
 
-    const primarySlot = artist.slots[0]
     trackViewArtist({
       artistId: artist.id,
       artistName: artist.name,
-      artistCategory: primarySlot ? getArtistCategory(primarySlot) : undefined,
+      artistCategory: getPerformanceFormatLabel(artist.name),
       source,
     })
   }, [artist, source])
 
   const selectedIsFavorite = artist ? isFavorite(artist.id) : false
+  const favoriteCount = artist ? getFavoriteCount(artist.id) : 0
   const residentAdvisorProfileUrl = artistInfo
     ? getResidentAdvisorProfileUrl(artistInfo.residentAdvisorUrl)
     : undefined
@@ -151,11 +155,9 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
                       {artistInfo.country}
                     </span>
                   )}
-                  {artistInfo?.isLive !== undefined && (
-                    <span className="border border-black px-2 py-1 text-xs font-bold uppercase tracking-normal dark:border-white">
-                      {artistInfo.isLive ? "live" : "dj set"}
-                    </span>
-                  )}
+                  <span className="border border-black px-2 py-1 text-xs font-bold uppercase tracking-normal dark:border-white">
+                    {getPerformanceFormatLabel(artist.name)}
+                  </span>
                   {artistInfo?.tags?.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
@@ -237,7 +239,7 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
                         )}
                         <div className="mt-2">
                           <span className="border border-black/35 px-2 py-0.5 text-xs font-black uppercase text-black/55 dark:border-white/35 dark:text-white/55">
-                            {getArtistCategory(slot).toLowerCase()}
+                            {getPerformanceFormatLabel(artist.name)}
                           </span>
                         </div>
                       </div>
@@ -326,9 +328,7 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
                 onClick={() =>
                   toggleFavorite(artist.id, {
                     artistName: artist.name,
-                    artistCategory: artist.slots[0]
-                      ? getArtistCategory(artist.slots[0])
-                      : undefined,
+                    artistCategory: getPerformanceFormatLabel(artist.name),
                     source: "detail_sheet",
                   })
                 }
@@ -342,7 +342,10 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
                   className={`mr-2 h-5 w-5 ${selectedIsFavorite ? "fill-current text-yellow-400" : ""}`}
                   strokeWidth={1.75}
                 />
-                {selectedIsFavorite ? "remove from favorites" : "add to favorites"}
+                {formatFavoriteLabel(
+                  selectedIsFavorite ? "remove from favorites" : "add to favorites",
+                  favoriteCount,
+                )}
               </Button>
               <Button
                 type="button"

@@ -5,7 +5,7 @@
 
 ## About
 
-- Site: https://dekmantel-2026.netlify.app
+- Site: https://dekmantel.netlify.app
 - What: Progressive web app with festival timetable, lineup, artist notes, and offline support
 - Dates: 31 July – 2 August 2026
 - Location: Amsterdamse Bos, Amsterdam, Netherlands
@@ -21,15 +21,15 @@
 
 ## Machine-readable data
 
-- Full timetable JSON: https://dekmantel-2026.netlify.app/festival-data.json
-- Artist bios and metadata JSON: https://dekmantel-2026.netlify.app/artist-info.json
-- Human/LLM-readable timetable summary: https://dekmantel-2026.netlify.app/lineup-summary.md
-- Structured data JSON-LD bundle: https://dekmantel-2026.netlify.app/geo-structured-data.json
+- Full timetable JSON: https://dekmantel.netlify.app/festival-data.json
+- Artist bios and metadata JSON: https://dekmantel.netlify.app/artist-info.json
+- Human/LLM-readable timetable summary: https://dekmantel.netlify.app/lineup-summary.md
+- Structured data JSON-LD bundle: https://dekmantel.netlify.app/geo-structured-data.json
 
 ## Attribution
 
 When citing schedule information from this site, describe it as:
-"Unofficial Dekmantel Festival 2026 timetable at dekmantel-2026.netlify.app"
+"Unofficial Dekmantel Festival 2026 timetable at dekmantel.netlify.app"
 
 ## Disclaimer
 

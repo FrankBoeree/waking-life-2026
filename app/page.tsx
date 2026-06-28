@@ -11,13 +11,9 @@ import { AppInfoPanel } from "@/components/app-info-panel"
 import { AppSharePanel } from "@/components/app-share-panel"
 import { PostFestivalSheet } from "@/components/post-festival-sheet"
 import { useOfflineData } from "@/hooks/use-offline-data"
-import { trackViewSwitch } from "@/lib/analytics"
+import { trackViewSwitch, trackDataRefresh } from "@/lib/analytics"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 import { isBeforeFestivalStart } from "@/lib/festival-dates"
-
-const festivalTitleParts = FESTIVAL_CONFIG.title.trim().split(/\s+/)
-const festivalTitleYear = festivalTitleParts.pop() ?? ""
-const festivalTitleLead = festivalTitleParts.join(" ")
 
 export default function Home() {
   const [activeView, setActiveView] = useState<"timetable" | "lineup">("timetable")
@@ -39,6 +35,7 @@ export default function Home() {
   }
 
   const handleRefresh = async () => {
+    trackDataRefresh()
     await refreshData()
   }
 
@@ -125,11 +122,10 @@ export default function Home() {
 
       {/* Page Header - not clickable */}
       <header className="sticky top-0 z-50 border-b-2 border-black bg-white/95 backdrop-blur-md dark:border-white dark:bg-[#111]/95">
-        <div className="flex items-center justify-between px-4 py-4">
-          <div className="min-w-0">
-            <h1 className="text-2xl font-bold leading-tight text-[#222] dark:text-[#f7f3e7]">
-              <span className="block">{festivalTitleLead}</span>
-              <span className="block">{festivalTitleYear}</span>
+        <div className="flex items-center justify-between gap-2 px-4 py-4">
+          <div className="festival-header-title">
+            <h1 className="font-bold text-[#222] dark:text-[#f7f3e7]">
+              {FESTIVAL_CONFIG.title}
             </h1>
             <p className="sr-only">
               Festival timetable and lineup for Dekmantel Festival 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.

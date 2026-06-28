@@ -36,6 +36,15 @@ The site is a static Next.js export published to Netlify (`out/`). Connect the G
 - Build command: `npm run netlify-build`
 - Publish directory: `out`
 
+### Supabase (favorite counts)
+
+Global favorite counts are stored in Supabase project **Dekmantel festival 2026**. Copy `.env.local.example` to `.env.local` for local development, and add the same variables in Netlify → Site settings → Environment variables:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+Schema migrations live in `supabase/migrations/`.
+
 ## Disclaimer
 
 Schedules can change. Always verify critical information with official Dekmantel channels.

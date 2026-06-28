@@ -2,23 +2,46 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://dekmantel-2026.netlify.app/#website",
+    "@id": "https://dekmantel.netlify.app/#website",
     "name": "Dekmantel Festival 2026 Timetable (Unofficial)",
-    "url": "https://dekmantel-2026.netlify.app",
+    "url": "https://dekmantel.netlify.app",
     "description": "Unofficial fan-made festival timetable and lineup companion for Dekmantel Festival 2026.",
     "inLanguage": "en",
     "publisher": {
       "@type": "Organization",
       "name": "Unofficial Dekmantel Timetable",
-      "url": "https://dekmantel-2026.netlify.app"
-    }
+      "url": "https://dekmantel.netlify.app"
+    },
+    "about": {
+      "@id": "https://dekmantel.netlify.app/#event"
+    },
+    "hasPart": [
+      {
+        "@id": "https://dekmantel.netlify.app/#app"
+      },
+      {
+        "@id": "https://dekmantel.netlify.app/#lineup"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Machine-readable timetable summary",
+        "url": "https://dekmantel.netlify.app/lineup-summary.md",
+        "encodingFormat": "text/markdown"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Structured data bundle",
+        "url": "https://dekmantel.netlify.app/geo-structured-data.json",
+        "encodingFormat": "application/ld+json"
+      }
+    ]
   },
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "@id": "https://dekmantel-2026.netlify.app/#app",
+    "@id": "https://dekmantel.netlify.app/#app",
     "name": "Dekmantel Festival 2026 Timetable",
-    "url": "https://dekmantel-2026.netlify.app",
+    "url": "https://dekmantel.netlify.app",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript for interactive timetable UI",
@@ -29,13 +52,13 @@
       "priceCurrency": "EUR"
     },
     "isPartOf": {
-      "@id": "https://dekmantel-2026.netlify.app/#website"
+      "@id": "https://dekmantel.netlify.app/#website"
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
-    "@id": "https://dekmantel-2026.netlify.app/#event",
+    "@id": "https://dekmantel.netlify.app/#event",
     "name": "Dekmantel Festival 2026",
     "startDate": "2026-07-31",
     "endDate": "2026-08-02",
@@ -69,14 +92,14 @@
     "subjectOf": {
       "@type": "CreativeWork",
       "name": "Unofficial timetable companion",
-      "url": "https://dekmantel-2026.netlify.app",
+      "url": "https://dekmantel.netlify.app",
       "description": "Unofficial fan-made timetable data export; not published by festival organizers."
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": "https://dekmantel-2026.netlify.app/#lineup",
+    "@id": "https://dekmantel.netlify.app/#lineup",
     "name": "Dekmantel Festival 2026 lineup (unofficial timetable)",
     "numberOfItems": 125,
     "itemListElement": [
@@ -713,10 +736,10 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is dekmantel-2026.netlify.app the official Dekmantel website?",
+        "name": "Is dekmantel.netlify.app the official Dekmantel website?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. https://dekmantel-2026.netlify.app is an unofficial fan-made timetable companion and is not affiliated with Dekmantel organizers. The official site is https://dekmantelfestival.com/"
+          "text": "No. https://dekmantel.netlify.app is an unofficial fan-made timetable companion and is not affiliated with Dekmantel organizers. The official site is https://dekmantelfestival.com/"
         }
       },
       {
@@ -748,7 +771,7 @@
         "name": "Where can I find the Dekmantel Festival 2026 timetable?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "This unofficial companion publishes machine-readable timetable data at https://dekmantel-2026.netlify.app/festival-data.json and a readable summary at https://dekmantel-2026.netlify.app/lineup-summary.md"
+          "text": "This unofficial companion publishes machine-readable timetable data at https://dekmantel.netlify.app/festival-data.json and a readable summary at https://dekmantel.netlify.app/lineup-summary.md"
         }
       }
     ]
@@ -758,28 +781,28 @@
     "@type": "Dataset",
     "name": "Dekmantel Festival 2026 unofficial timetable data",
     "description": "Unofficial fan-compiled festival timetable slots with stage, day, and time information.",
-    "url": "https://dekmantel-2026.netlify.app/festival-data.json",
+    "url": "https://dekmantel.netlify.app/festival-data.json",
     "version": "2026.1.0",
     "creator": {
       "@type": "Organization",
       "name": "Unofficial Dekmantel Timetable",
-      "url": "https://dekmantel-2026.netlify.app"
+      "url": "https://dekmantel.netlify.app"
     },
     "distribution": [
       {
         "@type": "DataDownload",
         "encodingFormat": "application/json",
-        "contentUrl": "https://dekmantel-2026.netlify.app/festival-data.json"
+        "contentUrl": "https://dekmantel.netlify.app/festival-data.json"
       },
       {
         "@type": "DataDownload",
         "encodingFormat": "application/json",
-        "contentUrl": "https://dekmantel-2026.netlify.app/artist-info.json"
+        "contentUrl": "https://dekmantel.netlify.app/artist-info.json"
       },
       {
         "@type": "DataDownload",
         "encodingFormat": "text/markdown",
-        "contentUrl": "https://dekmantel-2026.netlify.app/lineup-summary.md"
+        "contentUrl": "https://dekmantel.netlify.app/lineup-summary.md"
       }
     ],
     "isBasedOn": "https://dekmantelfestival.com/"

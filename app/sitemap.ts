@@ -11,27 +11,27 @@ const GEO_ASSET_PATHS = [
   "/geo-structured-data.json",
 ] as const
 
+function sitePath(path = ""): string {
+  const base = FESTIVAL_CONFIG.siteUrl.replace(/\/$/, "")
+  if (!path) return `${base}/`
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   return [
     {
-      url: FESTIVAL_CONFIG.siteUrl,
+      url: sitePath(),
       lastModified,
       changeFrequency: "daily",
       priority: 1,
     },
     ...GEO_ASSET_PATHS.map((path) => ({
-      url: `${FESTIVAL_CONFIG.siteUrl}${path}`,
+      url: sitePath(path),
       lastModified,
       changeFrequency: "daily" as const,
       priority: 0.8,
     })),
-    {
-      url: `${FESTIVAL_CONFIG.siteUrl}/offline`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.3,
-    },
   ]
 }

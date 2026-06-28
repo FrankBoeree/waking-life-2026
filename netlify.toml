@@ -24,11 +24,40 @@
   for = "/llms.txt"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
 
 [[headers]]
   for = "/lineup-summary.md"
   [headers.values]
     Content-Type = "text/markdown; charset=utf-8"
+
+[[headers]]
+  for = "/geo-structured-data.json"
+  [headers.values]
+    Content-Type = "application/ld+json; charset=utf-8"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/festival-data.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/artist-info.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/debug/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/offline/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
   for = "/*"
@@ -37,4 +66,5 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin" 
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload" 

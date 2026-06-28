@@ -1,14 +1,35 @@
 import { createHash } from "node:crypto"
+import { readFileSync } from "node:fs"
 import { readFile, writeFile } from "node:fs/promises"
 
 const ROOT = new URL("..", import.meta.url)
 const FESTIVAL_DATA_PATH = new URL("public/festival-data.json", ROOT)
 const ARTIST_DB_PATH = new URL("data/artist-info-db.ts", ROOT)
 const PUBLIC_DIR = new URL("public/", ROOT)
+const FESTIVAL_CONFIG_PATH = new URL("lib/festival-config.ts", ROOT)
 
-const SITE_URL = "https://dekmantel-2026.netlify.app"
-const OFFICIAL_SITE = "https://dekmantelfestival.com/"
-const OFFICIAL_INSTAGRAM = "https://www.instagram.com/dekmantelfestival/"
+function readFestivalConfigValue(key, type = "string") {
+  const source = readFileSync(FESTIVAL_CONFIG_PATH, "utf8")
+  if (type === "number") {
+    const match = source.match(new RegExp(`${key}:\\s*([\\d.]+)`))
+    if (!match) throw new Error(`Missing ${key} in festival-config.ts`)
+    return Number(match[1])
+  }
+  const match = source.match(new RegExp(`${key}:\\s*"([^"]+)"`))
+  if (!match) throw new Error(`Missing ${key} in festival-config.ts`)
+  return match[1]
+}
+
+const SITE_URL = readFestivalConfigValue("siteUrl").replace(/\/$/, "")
+const OFFICIAL_SITE = readFestivalConfigValue("officialSiteUrl")
+const OFFICIAL_INSTAGRAM = readFestivalConfigValue("officialInstagramUrl")
+const festivalSeo = {
+  locationName: readFestivalConfigValue("locationName"),
+  locationLocality: readFestivalConfigValue("locationLocality"),
+  locationCountry: readFestivalConfigValue("locationCountry"),
+  geoLatitude: readFestivalConfigValue("geoLatitude", "number"),
+  geoLongitude: readFestivalConfigValue("geoLongitude", "number"),
+}
 const DATE_RANGE = "31 July – 2 August 2026"
 const PROGRAM_DAY_ORDER = ["friday", "saturday", "sunday"]
 
@@ -198,16 +219,16 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
       "Dekmantel Festival is an electronic music festival in the Amsterdamse Bos, Amsterdam.",
     location: {
       "@type": "Place",
-      name: "Amsterdamse Bos",
+      name: festivalSeo.locationName,
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 52.308,
-        longitude: 4.833,
+        latitude: festivalSeo.geoLatitude,
+        longitude: festivalSeo.geoLongitude,
       },
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Amsterdam",
-        addressCountry: "NL",
+        addressLocality: festivalSeo.locationLocality,
+        addressCountry: festivalSeo.locationCountry,
       },
     },
     organizer: {
@@ -241,6 +262,23 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
         name: "Unofficial Dekmantel Timetable",
         url: SITE_URL,
       },
+      about: { "@id": eventId },
+      hasPart: [
+        { "@id": appId },
+        { "@id": lineupId },
+        {
+          "@type": "CreativeWork",
+          name: "Machine-readable timetable summary",
+          url: `${SITE_URL}/lineup-summary.md`,
+          encodingFormat: "text/markdown",
+        },
+        {
+          "@type": "CreativeWork",
+          name: "Structured data bundle",
+          url: `${SITE_URL}/geo-structured-data.json`,
+          encodingFormat: "application/ld+json",
+        },
+      ],
     },
     {
       "@context": "https://schema.org",
