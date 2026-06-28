@@ -10,7 +10,7 @@
     "start": "next start",
     "import:artist-info": "node scripts/import-artist-info-from-excel.mjs",
     "import:acts": "node scripts/import-acts-from-excel.mjs",
-    "build:timetable": "node scripts/import-timetable-from-excel.mjs",
+    "build:timetable": "node scripts/import-acts-from-excel.mjs && node scripts/build-timetable.mjs",
     "lint": "next lint"
   },
   "dependencies": {

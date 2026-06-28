@@ -3,7 +3,7 @@ export interface LineupArtist {
   name: string
 }
 
-// Legacy likely-lineup list — unused; lineup is derived from timetable data.
+// Imported from organizer-provided likely Waking Life 2026 artist notes.
 // The exact timetable is not available yet, so these artists intentionally have no time or stage.
 export const likelyLineup: LineupArtist[] = [
   {

@@ -5,37 +5,21 @@ import { promisify } from "node:util"
 const execFileAsync = promisify(execFile)
 const ROOT = new URL("..", import.meta.url)
 const DEFAULT_EXCEL =
-  "/Users/frank@sodastudio.nl/Downloads/Dekmantel Schedule with short bios and soundcloud.xlsx"
-const BIO_SHEET = "Artist biographies"
+  "/Users/frank@sodastudio.nl/Downloads/waking_life_timetable final.xlsx"
 const TIMETABLE_PATH = new URL("public/festival-data.json", ROOT)
+const EXISTING_DB_PATH = new URL("data/artist-info-db.ts", ROOT)
 const OUTPUT_PATH = new URL("data/artist-info-db.ts", ROOT)
 
-/** Timetable slot name → Excel lookup name */
+/** Excel artist name → timetable slot name */
 const TIMETABLE_NAME_OVERRIDES = {
-  "At Dawn: DJ Sprinkles' Deeperama": "DJ Sprinkles' Deeperama",
-  "At Dawn: James Holden & Surgeon live": "James Holden & Surgeon live",
-  "At Dawn: Kuniyuki & Satoshi Tomiie live": "Kuniyuki & Satoshi Tomiie live",
-  "At Dawn: Eris Drew's Mystery of the Motherbeat": "Eris Drew's Mystery of the Motherbeat",
-  "At Dawn: Colin Benders": "Colin Benders",
-  "At Dawn: Jeff Mills": "Jeff Mills",
-  "At Dawn: Jane Fitz presents Morning Colours": "Jane Fitz presents Morning Colours",
-  "At Dawn: Sampha DJ set": "Sampha DJ set",
-  "At Dawn: Channel One": "Channel One",
-  "At Dawn: RA In Conversation": "RA In Conversation",
-  "At Dawn:RA In Conversation": "RA In Conversation",
-  "Cari Lekebusch presents Vector": "Cari Lekebusch presents Vector",
-  "Gigi FM & Jako Jako": "Gigi FM & Jako Jako",
-  "Honduku": "Honduku",
-  "Katatonic Silention": "Katatonic Silention",
-  "Ron Trent presents La Marr w/ Paolo Color live": "Ron Trent presents La Marr w/ Paolo Color live",
-  "Underground Resistance presents Depth Charge featuring Saul Williams":
-    "Underground Resistance presents Depth Charge featuring Saul Williams",
-}
-
-function stripAtDawnPrefix(name) {
-  return String(name || "")
-    .replace(/^at dawn:\s*/i, "")
-    .trim()
+  elemental: "e l e m e n t a l",
+  "Coco María": "Coco Maria",
+  "Charlemagne Palestine, Oren Ambarchi & Daniel O'Sullivan present 'KKAARRREENNIINNAA'":
+    "Charlemagne Palestine, Oren Ambarchi & Daniel O'Sullivan present KKAARREENNIINNAA",
+  "Heith & Tarawangsawelas present Duori":
+    "Heith & Tarawangawelas present Duori",
+  "Dj Trystero": "DJ Trystero",
+  "Vera, DJ Dustin, Mimi, Vuur, …": "Vera, DJ Dustin, Mimi, Vuur, ...",
 }
 
 function normalizeForMatch(text) {
@@ -45,6 +29,17 @@ function normalizeForMatch(text) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .trim()
+}
+
+function countryCodeToFlag(countryCode) {
+  const code = String(countryCode || "")
+    .split(/[/|,]/)[0]
+    .trim()
+    .toUpperCase()
+  if (!/^[A-Z]{2}$/.test(code)) return undefined
+  return code.replace(/./g, (char) =>
+    String.fromCodePoint(127397 + char.charCodeAt(0))
+  )
 }
 
 function cleanArtistQuery(name) {
@@ -63,91 +58,115 @@ function getResidentAdvisorSearchUrl(name) {
   return `https://ra.co/search?search=${encodeURIComponent(cleanArtistQuery(name))}`
 }
 
+function parseGenreTags(genre) {
+  if (!genre || !String(genre).trim()) return []
+  return String(genre)
+    .split(/\s*\/\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+}
+
+function parseLive(value) {
+  if (value === undefined || value === null || value === "") return undefined
+  return String(value).trim().toLowerCase() === "yes"
+}
+
 function getResidentAdvisorUrl(sourceUrl, name) {
   if (sourceUrl && /ra\.co/i.test(sourceUrl)) return sourceUrl
   return getResidentAdvisorSearchUrl(name)
 }
 
-function detectLiveFromName(name) {
-  const lower = String(name || "").toLowerCase()
-  if (/\blive\b/.test(lower) || /\bhybrid\b/.test(lower)) return true
-  if (/\bdj set\b/.test(lower) || /\bdnb set\b/.test(lower)) return false
-  return undefined
-}
-
-async function readBioSheet(excelPath) {
+async function readExcelRows(excelPath) {
   const { stdout } = await execFileAsync(
     "npx",
-    ["--yes", "xlsx-cli", excelPath, "--sheet", BIO_SHEET, "--json"],
-    { maxBuffer: 1024 * 1024 * 8 },
+    ["--yes", "xlsx-cli", excelPath, "--json"],
+    { maxBuffer: 1024 * 1024 * 8 }
   )
   return JSON.parse(stdout)
 }
 
+function parseExistingDatabase(source) {
+  const match = source.match(
+    /export const artistInfoDatabase: Record<string, ArtistInfo> = (\{[\s\S]*\})\s*$/
+  )
+  if (!match) return {}
+  return JSON.parse(match[1])
+}
+
 function timetableNameForExcelRow(row) {
-  const matched = row["Matched Dekmantel name"]?.trim()
-  const artist = row.Artist?.trim()
-  const lookupName = matched || artist
-  if (!lookupName) return undefined
-  return TIMETABLE_NAME_OVERRIDES[lookupName] || lookupName
+  const excelName = row.Name?.trim()
+  if (!excelName) return undefined
+  return TIMETABLE_NAME_OVERRIDES[excelName] || excelName
 }
 
 function mergeArtistRows(rows) {
-  const bios = [
+  const descriptions = [
+    ...new Set(rows.map((row) => String(row.Description || "").trim()).filter(Boolean)),
+  ]
+  const genres = [
     ...new Set(
-      rows
-        .flatMap((row) => [
-          String(row["Factual bio"] || "").trim(),
-          String(row.Biography || "").trim(),
-        ])
-        .filter(Boolean),
+      rows.flatMap((row) => parseGenreTags(row.Genre)).filter(Boolean)
     ),
   ]
+  const liveValues = rows.map((row) => parseLive(row.Live)).filter((v) => v !== undefined)
+  const isLive = liveValues.length > 0 ? liveValues.some(Boolean) : undefined
 
   const bestRow =
-    rows.find((row) => String(row["Factual bio"] || "").trim()) ||
-    rows.find((row) => String(row.Biography || "").trim()) ||
+    rows.find((row) => String(row.Description || "").trim()) ||
+    rows.find((row) => row.Genre) ||
     rows.find((row) => row["Source URL"]) ||
     rows[0]
 
-  const timetableName = timetableNameForExcelRow(bestRow)
-  const sourceUrl = bestRow["Source URL"]?.trim() || undefined
-  const soundcloudUrl = bestRow["SoundCloud URL"]?.trim() || undefined
-  const isLive =
-    detectLiveFromName(timetableName) ??
-    detectLiveFromName(bestRow.Artist) ??
-    detectLiveFromName(bestRow["Matched Dekmantel name"])
+  let bio = descriptions[0] || ""
+  if (descriptions.length > 1) {
+    bio = [descriptions[0], descriptions.slice(1).join(" ")].filter(Boolean).join(" ")
+  }
 
-  return {
-    bio: bios[0] || "",
-    tags: [],
+  const country = bestRow["Origin Country"]?.trim() || undefined
+  const countryCode = bestRow["Country Code"]?.trim() || undefined
+  const sourceUrl = bestRow["Source URL"]?.trim() || undefined
+  const sourceLabel = bestRow.Source?.trim() || undefined
+  const timetableName = timetableNameForExcelRow(bestRow)
+
+  const record = {
+    bio,
+    tags: genres,
     labels: [],
     festivals: [],
-    residentAdvisorUrl: getResidentAdvisorUrl(sourceUrl, timetableName || bestRow.Artist),
+    residentAdvisorUrl: getResidentAdvisorUrl(sourceUrl, timetableName || bestRow.Name),
+    ...(sourceLabel ? { sourceLabel } : {}),
     ...(sourceUrl ? { sourceUrl } : {}),
-    ...(soundcloudUrl ? { soundcloudUrl } : {}),
+    ...(country ? { country } : {}),
+    ...(countryCode ? { countryCode } : {}),
+    ...(countryCode ? { flag: countryCodeToFlag(countryCode) } : {}),
     ...(isLive !== undefined ? { isLive } : {}),
   }
+
+  return record
 }
 
 function mergeArtistInfo(primary, secondary, { allowSecondaryBio = true } = {}) {
   if (!secondary) return primary
   if (!primary) return secondary
 
+  const tags = [...new Set([...(primary.tags || []), ...(secondary.tags || [])])]
   const primaryBio = primary.bio?.trim() || ""
   const secondaryBio = secondary.bio?.trim() || ""
 
   return {
     bio: primaryBio || (allowSecondaryBio ? secondaryBio : "") || "",
-    tags: [...new Set([...(primary.tags || []), ...(secondary.tags || [])])],
+    tags,
     labels: primary.labels?.length ? primary.labels : secondary.labels || [],
     festivals: primary.festivals?.length ? primary.festivals : secondary.festivals || [],
     residentAdvisorUrl:
       /ra\.co/i.test(primary.residentAdvisorUrl || "")
         ? primary.residentAdvisorUrl
         : secondary.residentAdvisorUrl || primary.residentAdvisorUrl,
+    sourceLabel: primary.sourceLabel || secondary.sourceLabel,
     sourceUrl: primary.sourceUrl || secondary.sourceUrl,
-    soundcloudUrl: primary.soundcloudUrl || secondary.soundcloudUrl,
+    country: primary.country || secondary.country,
+    countryCode: primary.countryCode || secondary.countryCode,
+    flag: primary.flag || secondary.flag,
     isLive:
       primary.isLive === true || secondary.isLive === true
         ? true
@@ -161,24 +180,12 @@ function buildExcelLookup(rows) {
   const rowsByTimetableName = new Map()
 
   for (const row of rows) {
-    const keys = new Set(
-      [row.Artist, row["Matched Dekmantel name"], timetableNameForExcelRow(row)]
-        .map((value) => String(value || "").trim())
-        .filter(Boolean),
-    )
+    const timetableName = timetableNameForExcelRow(row)
+    if (!timetableName) continue
 
-    for (const key of keys) {
-      const existing = rowsByTimetableName.get(key) || []
-      existing.push(row)
-      rowsByTimetableName.set(key, existing)
-
-      const stripped = stripAtDawnPrefix(key)
-      if (stripped && stripped !== key) {
-        const strippedExisting = rowsByTimetableName.get(stripped) || []
-        strippedExisting.push(row)
-        rowsByTimetableName.set(stripped, strippedExisting)
-      }
-    }
+    const existing = rowsByTimetableName.get(timetableName) || []
+    existing.push(row)
+    rowsByTimetableName.set(timetableName, existing)
   }
 
   const merged = new Map()
@@ -190,7 +197,10 @@ function buildExcelLookup(rows) {
   for (const [name, info] of merged.entries()) {
     const normalized = normalizeForMatch(name)
     const existing = byNormalized.get(normalized)
-    byNormalized.set(normalized, existing ? mergeArtistInfo(existing, info) : info)
+    byNormalized.set(
+      normalized,
+      existing ? mergeArtistInfo(existing, info) : info
+    )
   }
 
   return { merged, byNormalized }
@@ -201,73 +211,75 @@ function getTimetableArtistNames(timetable) {
     new Set(
       timetable
         .filter((slot) => !slot.placeholderKind)
-        .map((slot) => slot.name),
-    ),
+        .map((slot) => slot.name)
+    )
   ).sort((a, b) => a.localeCompare(b))
 }
 
 function lookupExcelInfo(timetableName, lookup) {
-  const candidates = [
-    timetableName,
-    TIMETABLE_NAME_OVERRIDES[timetableName],
-    stripAtDawnPrefix(timetableName),
-    stripAtDawnPrefix(TIMETABLE_NAME_OVERRIDES[timetableName] || ""),
-  ].filter(Boolean)
-
-  let result = null
-  for (const candidate of candidates) {
-    const exact = lookup.merged.get(candidate)
-    const normalized = lookup.byNormalized.get(normalizeForMatch(candidate))
-    result = mergeArtistInfo(result, mergeArtistInfo(exact, normalized))
-  }
-
-  return result
+  const exact = lookup.merged.get(timetableName)
+  const normalized = lookup.byNormalized.get(normalizeForMatch(timetableName))
+  return mergeArtistInfo(exact, normalized)
 }
 
-function fallbackArtistInfo(name) {
-  const isLive = detectLiveFromName(name)
+function fallbackFromExisting(name, existingDb) {
+  if (existingDb[name]) return existingDb[name]
+
+  const normalized = normalizeForMatch(name)
+  for (const [dbName, info] of Object.entries(existingDb)) {
+    if (normalizeForMatch(dbName) === normalized) return info
+  }
+
   return {
     bio: "",
     tags: [],
     labels: [],
     festivals: [],
     residentAdvisorUrl: getResidentAdvisorSearchUrl(name),
-    ...(isLive !== undefined ? { isLive } : {}),
+    sourceLabel: "Local fallback",
   }
 }
 
 function toTs(records) {
   return `import type { ArtistInfo } from "@/lib/artist-info"
 
-// Generated by scripts/import-artist-info-from-excel.mjs from Dekmantel artist biographies sheet.
-// Rerun: npm run import:artist-info -- "/path/to/Dekmantel Schedule.xlsx"
+// Generated by scripts/import-artist-info-from-excel.mjs from organizer timetable spreadsheet.
+// Rerun: npm run import:artist-info -- "/path/to/waking_life_timetable final.xlsx"
 export const artistInfoDatabase: Record<string, ArtistInfo> = ${JSON.stringify(records, null, 2)}
 `
 }
 
 const excelPath = process.argv[2] || DEFAULT_EXCEL
-const excelRows = await readBioSheet(excelPath)
+const excelRows = await readExcelRows(excelPath)
 const timetable = JSON.parse(await readFile(TIMETABLE_PATH, "utf8")).timetable
+const existingDb = parseExistingDatabase(await readFile(EXISTING_DB_PATH, "utf8"))
 const lookup = buildExcelLookup(excelRows)
 const artistNames = getTimetableArtistNames(timetable)
 const records = {}
 
 let importedFromExcel = 0
+let keptFromExisting = 0
 let missingFromExcel = []
 
 for (const name of artistNames) {
   const excelInfo = lookupExcelInfo(name, lookup)
   const hasExcelContent =
     excelInfo &&
-    (excelInfo.bio?.trim() || excelInfo.sourceUrl || excelInfo.soundcloudUrl)
+    (excelInfo.bio?.trim() ||
+      excelInfo.tags?.length ||
+      excelInfo.isLive !== undefined ||
+      excelInfo.sourceUrl)
 
   if (hasExcelContent) {
-    records[name] = mergeArtistInfo(excelInfo, fallbackArtistInfo(name), {
-      allowSecondaryBio: false,
-    })
+    records[name] = mergeArtistInfo(
+      excelInfo,
+      fallbackFromExisting(name, existingDb),
+      { allowSecondaryBio: false }
+    )
     importedFromExcel += 1
   } else {
-    records[name] = fallbackArtistInfo(name)
+    records[name] = fallbackFromExisting(name, existingDb)
+    keptFromExisting += 1
     missingFromExcel.push(name)
   }
 }
@@ -277,6 +289,7 @@ await writeFile(OUTPUT_PATH, toTs(records), "utf8")
 console.log(`Wrote ${OUTPUT_PATH.pathname}`)
 console.log(`Artists in timetable: ${artistNames.length}`)
 console.log(`Imported from Excel: ${importedFromExcel}`)
+console.log(`Kept from existing DB (not in Excel): ${keptFromExisting}`)
 if (missingFromExcel.length > 0) {
   console.log("Not found in Excel:")
   for (const name of missingFromExcel) {

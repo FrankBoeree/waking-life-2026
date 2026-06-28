@@ -1,6 +1,6 @@
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
 
-export const APP_CACHE_VERSION_KEY = "dekmantel-app-cache-version"
+export const APP_CACHE_VERSION_KEY = "waking-life-app-cache-version"
 
 interface AppVersionPayload {
   cacheVersion: string

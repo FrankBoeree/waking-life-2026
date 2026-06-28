@@ -97,7 +97,7 @@ export default function Home() {
   }, [manualThemeOverride, mounted, setTheme])
 
   return (
-    <div className="h-dvh flex flex-col overflow-hidden dekmantel-shell text-[#222] dark:text-[#f5f0e8]">
+    <div className="h-dvh flex flex-col overflow-hidden waking-life-shell text-[#222] dark:text-[#f7f3e7]">
       {/* Countdown Banner */}
       {mounted && countdown.show && (
         <div className="border-b-2 border-black bg-white/70 text-[#222] text-center py-3 px-4 mix-blend-multiply dark:border-white dark:bg-black/70 dark:text-[#f7f3e7] dark:mix-blend-normal">
@@ -132,7 +132,7 @@ export default function Home() {
               <span className="block">{festivalTitleYear}</span>
             </h1>
             <p className="sr-only">
-              Festival timetable and lineup for Dekmantel Festival 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.
+              Festival timetable and lineup for Waking Life 2026, taking place {FESTIVAL_CONFIG.officialDateRange}.
             </p>
           </div>
 

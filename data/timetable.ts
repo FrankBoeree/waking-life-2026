@@ -31,34 +31,34 @@ export interface Day {
 }
 
 export const MUSIC_STAGES = new Set([
-  "The Loop",
-  "UFO I",
-  "UFO II",
-  "The Nest",
-  "Selectors",
-  "Greenhouse",
-  "Radar",
+  "Floresta",
+  "Praia",
+  "Outro Lado",
+  "Mimo",
+  "Cochilo",
 ])
 
 export const days: Day[] = [
-  { id: "friday", name: "Friday", date: "2026-07-31" },
-  { id: "saturday", name: "Saturday", date: "2026-08-01" },
-  { id: "sunday", name: "Sunday", date: "2026-08-02" },
+  { id: "tuesday", name: "Tuesday", date: "2026-06-16" },
+  { id: "wednesday", name: "Wednesday", date: "2026-06-17" },
+  { id: "thursday", name: "Thursday", date: "2026-06-18" },
+  { id: "friday", name: "Friday", date: "2026-06-19" },
+  { id: "saturday", name: "Saturday", date: "2026-06-20" },
+  { id: "sunday", name: "Sunday", date: "2026-06-21" },
+  { id: "monday", name: "Monday", date: "2026-06-22" },
 ]
 
 export const stages: Stage[] = [
-  { id: "The Loop", name: "The Loop", color: "#E63946" },
-  { id: "UFO I", name: "UFO I", color: "#457B9D" },
-  { id: "UFO II", name: "UFO II", color: "#1D3557" },
-  { id: "The Nest", name: "The Nest", color: "#F4A261" },
-  { id: "Selectors", name: "Selectors", color: "#2A9D8F" },
-  { id: "Greenhouse", name: "Greenhouse", color: "#E9C46A" },
-  { id: "Radar", name: "Radar", color: "#9B5DE5" },
+  { id: "Floresta", name: "Floresta", color: "#8b5cf6" },
+  { id: "Praia", name: "Praia", color: "#06b6d4" },
+  { id: "Outro Lado", name: "Outro Lado", color: "#10b981" },
+  { id: "Mimo", name: "Mimo", color: "#f59e0b" },
+  { id: "Cochilo", name: "Cochilo", color: "#84cc16" },
+  { id: "Apuro", name: "Apuro", color: "#f97316" },
+  { id: "Moonscreen", name: "Moonscreen", color: "#6366f1" },
+  { id: "Suna", name: "Suna", color: "#f43f5e" },
+  { id: "Tudo Bem", name: "Tudo Bem", color: "#0ea5e9" },
 ]
-
-export const STAGE_COLORS: Record<string, string> = Object.fromEntries(
-  stages.map((stage) => [stage.id, stage.color]),
-)
 
 // Bundled fallback; runtime refresh loads /festival-data.json.
 export const timetable: Artist[] = festivalData.timetable as Artist[]

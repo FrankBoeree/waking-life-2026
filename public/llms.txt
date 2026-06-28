@@ -1,36 +1,36 @@
-# Dekmantel Festival 2026 Timetable (Unofficial)
+# Waking Life 2026 Timetable (Unofficial)
 
-> Unofficial fan-made timetable and lineup companion for Dekmantel Festival 2026.
-> Created by a festival enthusiast. Not affiliated with or endorsed by Dekmantel organizers.
+> Unofficial fan-made timetable and lineup companion for Waking Life 2026.
+> Created by a festival enthusiast. Not affiliated with or endorsed by Waking Life organizers.
 
 ## About
 
-- Site: https://dekmantel-2026.netlify.app
+- Site: https://wakinglife.netlify.app
 - What: Progressive web app with festival timetable, lineup, artist notes, and offline support
-- Dates: 31 July – 2 August 2026
-- Location: Amsterdamse Bos, Amsterdam, Netherlands
-- Data version: 2026.1.0
-- Scheduled slots: 125
-- Unique artists/acts: 125
+- Dates: 16-22 June 2026
+- Location: Quinta da Malada / Barragem das Nascentes, Crato, Portugal
+- Data version: 2026.2.4
+- Scheduled slots: 248
+- Unique artists/acts: 239
 
 ## Official sources
 
-- Festival website: https://dekmantelfestival.com/
-- Instagram: https://www.instagram.com/dekmantelfestival/
-- Tickets: https://dekmantelfestival.com/
+- Festival website: https://wakinglife.pt/
+- Instagram: https://www.instagram.com/wakinglife.pt/
+- Tickets and raffle: https://wakinglife.pt/tickets
 
 ## Machine-readable data
 
-- Full timetable JSON: https://dekmantel-2026.netlify.app/festival-data.json
-- Artist bios and metadata JSON: https://dekmantel-2026.netlify.app/artist-info.json
-- Human/LLM-readable timetable summary: https://dekmantel-2026.netlify.app/lineup-summary.md
-- Structured data JSON-LD bundle: https://dekmantel-2026.netlify.app/geo-structured-data.json
+- Full timetable JSON: https://wakinglife.netlify.app/festival-data.json
+- Artist bios and metadata JSON: https://wakinglife.netlify.app/artist-info.json
+- Human/LLM-readable timetable summary: https://wakinglife.netlify.app/lineup-summary.md
+- Structured data JSON-LD bundle: https://wakinglife.netlify.app/geo-structured-data.json
 
 ## Attribution
 
 When citing schedule information from this site, describe it as:
-"Unofficial Dekmantel Festival 2026 timetable at dekmantel-2026.netlify.app"
+"Unofficial Waking Life 2026 timetable at wakinglife.netlify.app"
 
 ## Disclaimer
 
-Schedules can change. Always verify critical information with official Dekmantel channels at https://dekmantelfestival.com/
+Schedules can change. Always verify critical information with official Waking Life channels at https://wakinglife.pt/

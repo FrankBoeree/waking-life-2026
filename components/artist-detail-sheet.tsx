@@ -12,9 +12,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 import type { Artist } from "@/data/timetable"
-import { STAGE_COLORS } from "@/data/timetable"
 import { useFavorites } from "@/contexts/favorites-context"
-import { getArtistInfo, getArtistSourceLink, getResidentAdvisorProfileUrl, getSoundCloudLink, type ArtistInfo } from "@/lib/artist-info"
+import { getArtistInfo, getArtistSourceLink, getResidentAdvisorProfileUrl, type ArtistInfo } from "@/lib/artist-info"
 import { PROGRAM_DAY_ORDER, type ProgramDayId } from "@/lib/festival-config"
 import { toArtistFavoriteId } from "@/lib/artist-id"
 import { trackExternalLink, trackViewArtist, type ArtistViewSource } from "@/lib/analytics"
@@ -26,6 +25,17 @@ export interface ArtistWithSlots {
   slots: Artist[]
 }
 
+const STAGE_COLORS: Record<string, string> = {
+  Floresta: "#8b5cf6",
+  Praia: "#06b6d4",
+  "Outro Lado": "#10b981",
+  Mimo: "#f59e0b",
+  Cochilo: "#84cc16",
+  Apuro: "#f97316",
+  Moonscreen: "#6366f1",
+  Suna: "#f43f5e",
+  "Tudo Bem": "#0ea5e9",
+}
 
 function isOpenEndTime(time: string) {
   return !time || time === "--" || time === "..:.."
@@ -125,7 +135,6 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
     ? getResidentAdvisorProfileUrl(artistInfo.residentAdvisorUrl)
     : undefined
   const sourceLink = artistInfo ? getArtistSourceLink(artistInfo) : null
-  const soundCloudLink = artistInfo ? getSoundCloudLink(artistInfo) : null
 
   return (
     <Sheet
@@ -187,25 +196,6 @@ export function ArtistDetailSheet({ artist, onClose, source }: ArtistDetailSheet
                     className="mt-4 inline-flex items-center gap-2 border border-black px-3 py-2 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
                   >
                     Resident Advisor profile & events
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                )}
-                {soundCloudLink && (
-                  <a
-                    href={soundCloudLink.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() =>
-                      trackExternalLink({
-                        artistId: artist.id,
-                        artistName: artist.name,
-                        linkType: "source",
-                        url: soundCloudLink.url,
-                      })
-                    }
-                    className="mt-3 inline-flex items-center gap-2 border border-black px-3 py-2 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
-                  >
-                    {soundCloudLink.label}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 )}

@@ -10,7 +10,7 @@ import { structuredData } from "@/lib/structured-data"
 const inter = Inter({ subsets: ["latin"] })
 
 const siteUrl = new URL(FESTIVAL_CONFIG.siteUrl)
-const ogImagePath = "/dekmantel-og.svg"
+const ogImagePath = "/waking-life-background.jpg"
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: ogImagePath,
         width: 1200,
         height: 630,
-        alt: "Dekmantel Festival 2026 unofficial timetable and lineup",
+        alt: "Waking Life 2026 unofficial timetable and lineup",
       },
     ],
   },
@@ -72,7 +72,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#E63946",
+  themeColor: "#ec4899",
 }
 
 export default function RootLayout({
@@ -111,7 +111,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <noscript>
-          Unofficial Dekmantel Festival 2026 timetable companion ({FESTIVAL_CONFIG.officialDateRange}).
+          Unofficial Waking Life 2026 timetable companion ({FESTIVAL_CONFIG.officialDateRange}).
           Full schedule summary: {FESTIVAL_CONFIG.siteUrl}/lineup-summary.md
         </noscript>
         <ThemeProvider

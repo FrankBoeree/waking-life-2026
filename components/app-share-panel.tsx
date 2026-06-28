@@ -42,7 +42,7 @@ export function AppSharePanel() {
               share the timetable
             </SheetTitle>
             <SheetDescription className="sr-only">
-              QR code to open the Dekmantel Festival timetable app on another phone
+              QR code to open the Waking Life timetable app on another phone
             </SheetDescription>
           </SheetHeader>
 
