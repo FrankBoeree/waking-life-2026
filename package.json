@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-geo-assets.mjs && next dev",
-    "build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && next build",
-    "netlify-build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && next build",
+    "dev": "node scripts/generate-geo-assets.mjs && node scripts/generate-icons.mjs && next dev",
+    "build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && node scripts/generate-icons.mjs && next build",
+    "netlify-build": "node scripts/write-app-version.mjs && node scripts/generate-geo-assets.mjs && node scripts/generate-icons.mjs && next build",
     "generate:geo": "node scripts/generate-geo-assets.mjs",
+    "generate:icons": "node scripts/generate-icons.mjs",
     "start": "next start",
     "import:artist-info": "node scripts/import-artist-info-from-excel.mjs",
     "import:acts": "node scripts/import-acts-from-excel.mjs",
@@ -73,6 +74,7 @@
     "eslint": "^9.29.0",
     "eslint-config-next": "15.3.3",
     "postcss": "^8.5",
+    "sharp": "^0.35.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }

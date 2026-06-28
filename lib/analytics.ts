@@ -80,6 +80,22 @@ export function trackInstallPrompt(outcome: "accepted" | "dismissed") {
   trackEvent("install_prompt", { outcome })
 }
 
+export function trackWelcomeOnboarding(params: {
+  action:
+    | "shown"
+    | "completed"
+    | "installed"
+    | "share_opened"
+    | "share_failed"
+    | "install_dismissed"
+  platform: string
+}) {
+  trackEvent("welcome_onboarding", {
+    action: params.action,
+    platform: params.platform,
+  })
+}
+
 export function trackDataRefresh() {
   trackEvent("refresh_data")
 }

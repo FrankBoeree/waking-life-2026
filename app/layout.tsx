@@ -4,8 +4,9 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FavoritesProvider } from "@/contexts/favorites-context"
 import { OfflineInitializer } from "@/components/offline-initializer"
-import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+import { FESTIVAL_CONFIG, APP_SURFACE_COLORS } from "@/lib/festival-config"
 import { GoogleAnalytics } from "@/components/google-analytics"
+import { ThemeColorSync } from "@/components/theme-color-sync"
 import { structuredData } from "@/lib/structured-data"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -37,11 +38,20 @@ export const metadata: Metadata = {
     siteName: FESTIVAL_CONFIG.title,
     title: FESTIVAL_CONFIG.appTitle,
     description: FESTIVAL_CONFIG.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dekmantel Festival 2026 unofficial timetable and lineup",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: FESTIVAL_CONFIG.appTitle,
     description: FESTIVAL_CONFIG.description,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -56,7 +66,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: FESTIVAL_CONFIG.title,
   },
   formatDetection: {
@@ -69,7 +79,11 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#E63946",
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: APP_SURFACE_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: APP_SURFACE_COLORS.dark },
+  ],
 }
 
 export default function RootLayout({
@@ -87,12 +101,9 @@ export default function RootLayout({
           href="/geo-structured-data.json"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content={FESTIVAL_CONFIG.title} />
         <meta name="mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon-192x192.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -113,6 +124,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FavoritesProvider>
+            <ThemeColorSync />
             <OfflineInitializer />
             {children}
           </FavoritesProvider>

@@ -101,7 +101,7 @@ export default function LineupView({ data }: LineupViewProps) {
           placeholder="Search artists..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="rounded-none border-2 border-black bg-white/70 pl-10 pr-10 font-bold lowercase text-[#222] placeholder:text-black/45 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-white dark:bg-black/60 dark:text-[#f7f3e7] dark:placeholder:text-white/45"
+          className="rounded-none border-2 border-black bg-transparent pl-10 pr-10 font-bold lowercase text-[#222] placeholder:text-black/45 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-white dark:bg-transparent dark:text-[#f7f3e7] dark:placeholder:text-white/45"
         />
         {searchTerm && (
           <button
@@ -181,10 +181,10 @@ export default function LineupView({ data }: LineupViewProps) {
           return (
             <div 
               key={artist.id} 
-              className={`relative min-h-32 cursor-pointer border transition-colors group mix-blend-multiply dark:mix-blend-normal ${
+              className={`relative min-h-32 cursor-pointer border transition-colors group ${
                 isFav
                   ? 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black' 
-                  : 'border-black bg-white/80 text-[#222] hover:bg-black hover:text-white dark:border-white dark:bg-black/60 dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black'
+                  : 'border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:bg-transparent dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black'
               }`}
               onClick={() => setSelectedArtist(artist)}
             >

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+import { FESTIVAL_CONFIG, APP_SURFACE_COLORS } from "@/lib/festival-config"
 
 export const dynamic = "force-static"
 
@@ -11,44 +11,56 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#f5f0e8",
-    theme_color: "#E63946",
+    theme_color: APP_SURFACE_COLORS.light,
     orientation: "portrait",
     scope: "/",
     lang: "en",
     categories: ["entertainment", "music", "lifestyle"],
     icons: [
       {
-        src: "/icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
-        purpose: "maskable"
+        src: "/app-icon.png",
+        sizes: "800x800",
+        type: "image/png",
+        purpose: "any",
       },
       {
         src: "/icon-192x192.png",
         sizes: "192x192",
         type: "image/png",
-        purpose: "maskable"
+        purpose: "any",
       },
       {
         src: "/icon-512x512.png",
         sizes: "512x512",
         type: "image/png",
-        purpose: "maskable"
+        purpose: "any",
+      },
+      {
+        src: "/icon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "maskable",
+      },
+      {
+        src: "/icon-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
     screenshots: [
       {
+        src: "/og-image.png",
+        sizes: "1200x630",
+        type: "image/png",
+        form_factor: "wide",
+      },
+      {
         src: "/icon-512x512.png",
         sizes: "512x512",
         type: "image/png",
-        form_factor: "wide"
+        form_factor: "narrow",
       },
-      {
-        src: "/icon-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-        form_factor: "narrow"
-      }
     ],
     shortcuts: [
       {

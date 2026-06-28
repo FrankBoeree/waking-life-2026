@@ -6,22 +6,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.dekmantel-shell {
-  position: relative;
+html {
+  min-height: 100%;
+  min-height: 100dvh;
   background-color: #f5f0e8;
   background-image:
     linear-gradient(135deg, rgba(230, 57, 70, 0.06) 0%, transparent 28%),
     linear-gradient(225deg, rgba(69, 123, 157, 0.08) 0%, transparent 32%),
     linear-gradient(315deg, rgba(155, 93, 229, 0.05) 0%, transparent 24%),
     linear-gradient(45deg, rgba(42, 157, 143, 0.05) 0%, transparent 30%);
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  background-attachment: fixed;
 }
 
-.dekmantel-shell::before {
+html.dark {
+  background-color: #0a0a0a;
+  background-image:
+    linear-gradient(135deg, rgba(230, 57, 70, 0.12) 0%, transparent 28%),
+    linear-gradient(225deg, rgba(69, 123, 157, 0.14) 0%, transparent 32%),
+    linear-gradient(315deg, rgba(155, 93, 229, 0.1) 0%, transparent 24%);
+}
+
+html::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   background:
     repeating-linear-gradient(
       90deg,
@@ -32,15 +42,7 @@ body {
     );
 }
 
-.dark .dekmantel-shell {
-  background-color: #0a0a0a;
-  background-image:
-    linear-gradient(135deg, rgba(230, 57, 70, 0.12) 0%, transparent 28%),
-    linear-gradient(225deg, rgba(69, 123, 157, 0.14) 0%, transparent 32%),
-    linear-gradient(315deg, rgba(155, 93, 229, 0.1) 0%, transparent 24%);
-}
-
-.dark .dekmantel-shell::before {
+html.dark::before {
   background:
     repeating-linear-gradient(
       90deg,
@@ -49,6 +51,12 @@ body {
       transparent 1px,
       transparent 48px
     );
+}
+
+.dekmantel-shell {
+  position: relative;
+  z-index: 1;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
@@ -107,18 +115,6 @@ body {
     .mobile-safe-area {
       padding-bottom: env(safe-area-inset-bottom);
     }
-  }
-
-  .festival-header-title {
-    container-type: inline-size;
-    min-width: 0;
-    flex: 1 1 0%;
-  }
-
-  .festival-header-title h1 {
-    font-size: clamp(0.5rem, 6.5cqi, 1.5rem);
-    line-height: 1;
-    white-space: nowrap;
   }
 }
 
@@ -200,6 +196,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: transparent;
   }
 }

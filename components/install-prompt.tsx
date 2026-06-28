@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Download, X, Smartphone, WifiOff } from 'lucide-react'
 import { trackInstallPrompt } from '@/lib/analytics'
+import { hasSeenWelcome } from '@/lib/pwa-utils'
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -29,7 +30,9 @@ export function InstallPrompt() {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      setShowPrompt(true)
+      if (hasSeenWelcome()) {
+        setShowPrompt(true)
+      }
     }
 
     const handleAppInstalled = () => {

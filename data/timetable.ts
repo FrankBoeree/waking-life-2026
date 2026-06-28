@@ -48,10 +48,10 @@ export const days: Day[] = [
 
 export const stages: Stage[] = [
   { id: "The Loop", name: "The Loop", color: "#E63946" },
+  { id: "Selectors", name: "Selectors", color: "#2A9D8F" },
   { id: "UFO I", name: "UFO I", color: "#457B9D" },
   { id: "UFO II", name: "UFO II", color: "#1D3557" },
   { id: "The Nest", name: "The Nest", color: "#F4A261" },
-  { id: "Selectors", name: "Selectors", color: "#2A9D8F" },
   { id: "Greenhouse", name: "Greenhouse", color: "#E9C46A" },
   { id: "Radar", name: "Radar", color: "#9B5DE5" },
 ]

@@ -29,7 +29,7 @@ export function AppSharePanel() {
           setOpen(true)
           trackShareApp()
         }}
-        className="border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+        className="border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
         aria-label="Share app with QR code"
         title="Share app"
       >

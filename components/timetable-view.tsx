@@ -427,7 +427,7 @@ export default function TimetableView({ data, isLoading, error }: TimetableViewP
   return (
     <div className="h-full flex flex-col bg-transparent text-[#222] dark:text-[#f7f3e7]">
       {/* Day tabs - horizontally scrollable (sticky) */}
-      <div className="sticky top-0 z-40 border-b-2 border-black bg-white/70 backdrop-blur-sm mix-blend-multiply dark:border-white dark:bg-black/70 dark:mix-blend-normal">
+      <div className="sticky top-0 z-40 border-b-2 border-black bg-transparent dark:border-white">
         <div className="overflow-x-auto hide-scrollbar" ref={dayTabsScrollRef}>
           <div className="flex gap-2 px-4 py-3" style={{ minWidth: 'max-content' }}>
             {PROGRAM_DAY_ORDER.map((day) => (

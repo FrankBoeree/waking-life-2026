@@ -42,7 +42,7 @@ export function AppInfoPanel() {
         variant="outline"
         size="sm"
         onClick={() => setOpen(true)}
-        className="border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
+        className="border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
         aria-label="About this app and install instructions"
         title="About this app"
       >
@@ -121,22 +121,26 @@ export function AppInfoPanel() {
               </div>
 
               <div className="border-t border-black/25 pt-5 text-center dark:border-white/25">
-                <p className="mb-5 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                <p className="text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
                   updated for Dekmantel Festival 2026 ({FESTIVAL_CONFIG.officialDateRange}).
                   unofficial, fan-made, and always subject to last-minute changes on site.
                 </p>
-                <p className="mb-3 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
-                  useful app? a small tip helps keep it running for next year.
-                </p>
-                <a
-                  href={FESTIVAL_CONFIG.beerDonationUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-black px-4 py-3 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  send a tip
-                </a>
+                {FESTIVAL_CONFIG.showTipDonation && (
+                  <>
+                    <p className="mb-3 mt-5 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                      useful app? a small tip helps keep it running for next year.
+                    </p>
+                    <a
+                      href={FESTIVAL_CONFIG.beerDonationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 border-2 border-black px-4 py-3 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      send a tip
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -38,9 +38,16 @@ export const FESTIVAL_CONFIG = {
   officialDateRange: FESTIVAL_OFFICIAL_DATE_RANGE,
   officialStartDateTime: "2026-07-31T11:00:00",
   nextEditionYear: 2027,
+  showTipDonation: false,
   beerDonationUrl: "https://revolut.me/frank_frank",
   programStartDay: "friday" as ProgramDayId,
   programStartTime: "11:00",
   dataVersion: "2026.1.0",
   cacheVersion: "v1",
+} as const
+
+/** Matches html/body background — used for theme-color and iOS status bar. */
+export const APP_SURFACE_COLORS = {
+  light: "#f5f0e8",
+  dark: "#0a0a0a",
 } as const
