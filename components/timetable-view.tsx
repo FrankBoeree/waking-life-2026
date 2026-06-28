@@ -16,6 +16,7 @@ import {
 import { getAccessibleStageLabelBackground } from "@/lib/color-contrast"
 import { formatStageLabel } from "@/lib/stage-label"
 import { trackDayFilter } from "@/lib/analytics"
+import { getPreviewNowDate, isNowPreview } from "@/lib/festival-dates"
 
 const HOUR_WIDTH = 200
 const MINUTES_PER_DAY = 24 * 60
@@ -222,7 +223,7 @@ function getFestivalTotalMinutes(timetable: Artist[]) {
 }
 
 function getCurrentTimePosition(totalMinutes: number) {
-  const now = new Date()
+  const now = isNowPreview() ? getPreviewNowDate() : new Date()
   const start = getTimelineStartDate()
   if (!start) return null
 
