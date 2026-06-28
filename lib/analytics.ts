@@ -1,3 +1,5 @@
+export const GA_MEASUREMENT_ID = "G-3YX2X16XJV"
+
 type AnalyticsParams = Record<string, string | number | boolean>
 
 export type ArtistViewSource = "lineup" | "timetable"
@@ -56,8 +58,46 @@ export function trackCategoryFilter(category: string | null) {
   })
 }
 
+export function trackDayFilter(day: string | null) {
+  trackEvent("filter_day", {
+    day: day ?? "all",
+  })
+}
+
+export function trackFavoritesFilter(enabled: boolean) {
+  trackEvent("filter_favorites", { enabled })
+}
+
 export function trackViewSwitch(view: "timetable" | "lineup") {
   trackEvent("select_view", { view })
+}
+
+export function trackShareApp() {
+  trackEvent("share_app")
+}
+
+export function trackInstallPrompt(outcome: "accepted" | "dismissed") {
+  trackEvent("install_prompt", { outcome })
+}
+
+export function trackWelcomeOnboarding(params: {
+  action:
+    | "shown"
+    | "completed"
+    | "installed"
+    | "share_opened"
+    | "share_failed"
+    | "install_dismissed"
+  platform: string
+}) {
+  trackEvent("welcome_onboarding", {
+    action: params.action,
+    platform: params.platform,
+  })
+}
+
+export function trackDataRefresh() {
+  trackEvent("refresh_data")
 }
 
 export function trackExternalLink(params: {

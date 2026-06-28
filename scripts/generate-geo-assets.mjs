@@ -1,24 +1,37 @@
 import { createHash } from "node:crypto"
+import { readFileSync } from "node:fs"
 import { readFile, writeFile } from "node:fs/promises"
 
 const ROOT = new URL("..", import.meta.url)
 const FESTIVAL_DATA_PATH = new URL("public/festival-data.json", ROOT)
 const ARTIST_DB_PATH = new URL("data/artist-info-db.ts", ROOT)
 const PUBLIC_DIR = new URL("public/", ROOT)
+const FESTIVAL_CONFIG_PATH = new URL("lib/festival-config.ts", ROOT)
 
-const SITE_URL = "https://wakinglife.netlify.app"
-const OFFICIAL_SITE = "https://wakinglife.pt/"
-const OFFICIAL_INSTAGRAM = "https://www.instagram.com/wakinglife.pt/"
-const DATE_RANGE = "16-22 June 2026"
-const PROGRAM_DAY_ORDER = [
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
-  "monday",
-]
+function readFestivalConfigValue(key, type = "string") {
+  const source = readFileSync(FESTIVAL_CONFIG_PATH, "utf8")
+  if (type === "number") {
+    const match = source.match(new RegExp(`${key}:\\s*([\\d.]+)`))
+    if (!match) throw new Error(`Missing ${key} in festival-config.ts`)
+    return Number(match[1])
+  }
+  const match = source.match(new RegExp(`${key}:\\s*"([^"]+)"`))
+  if (!match) throw new Error(`Missing ${key} in festival-config.ts`)
+  return match[1]
+}
+
+const SITE_URL = readFestivalConfigValue("siteUrl").replace(/\/$/, "")
+const OFFICIAL_SITE = readFestivalConfigValue("officialSiteUrl")
+const OFFICIAL_INSTAGRAM = readFestivalConfigValue("officialInstagramUrl")
+const festivalSeo = {
+  locationName: readFestivalConfigValue("locationName"),
+  locationLocality: readFestivalConfigValue("locationLocality"),
+  locationCountry: readFestivalConfigValue("locationCountry"),
+  geoLatitude: readFestivalConfigValue("geoLatitude", "number"),
+  geoLongitude: readFestivalConfigValue("geoLongitude", "number"),
+}
+const DATE_RANGE = "31 July – 2 August 2026"
+const PROGRAM_DAY_ORDER = ["friday", "saturday", "sunday"]
 
 function parseArtistInfoDatabase(source) {
   const marker = "export const artistInfoDatabase"
@@ -83,13 +96,13 @@ function formatSlotLine(slot) {
 
 function buildLineupSummary(timetable) {
   const lines = [
-    "# Waking Life 2026 — Timetable Summary",
+    "# Dekmantel Festival 2026 — Timetable Summary",
     "",
-    "Unofficial fan-made timetable companion. Not affiliated with Waking Life organizers.",
+    "Unofficial fan-made timetable companion. Not affiliated with Dekmantel organizers.",
     `Official festival site: ${OFFICIAL_SITE}`,
     "",
     `Dates: ${DATE_RANGE}`,
-    "Location: Quinta da Malada / Barragem das Nascentes, Crato, Portugal",
+    "Location: Amsterdamse Bos, Amsterdam, Netherlands",
     "",
     `Total scheduled slots: ${timetable.length}`,
     "",
@@ -147,17 +160,17 @@ function buildLineupSummary(timetable) {
 }
 
 function buildLlmsTxt({ slotCount, artistCount, dataVersion }) {
-  return `# Waking Life 2026 Timetable (Unofficial)
+  return `# Dekmantel Festival 2026 Timetable (Unofficial)
 
-> Unofficial fan-made timetable and lineup companion for Waking Life 2026.
-> Created by a festival enthusiast. Not affiliated with or endorsed by Waking Life organizers.
+> Unofficial fan-made timetable and lineup companion for Dekmantel Festival 2026.
+> Created by a festival enthusiast. Not affiliated with or endorsed by Dekmantel organizers.
 
 ## About
 
 - Site: ${SITE_URL}
 - What: Progressive web app with festival timetable, lineup, artist notes, and offline support
 - Dates: ${DATE_RANGE}
-- Location: Quinta da Malada / Barragem das Nascentes, Crato, Portugal
+- Location: Amsterdamse Bos, Amsterdam, Netherlands
 - Data version: ${dataVersion}
 - Scheduled slots: ${slotCount}
 - Unique artists/acts: ${artistCount}
@@ -166,7 +179,7 @@ function buildLlmsTxt({ slotCount, artistCount, dataVersion }) {
 
 - Festival website: ${OFFICIAL_SITE}
 - Instagram: ${OFFICIAL_INSTAGRAM}
-- Tickets and raffle: ${OFFICIAL_SITE}tickets
+- Tickets: ${OFFICIAL_SITE}
 
 ## Machine-readable data
 
@@ -178,11 +191,11 @@ function buildLlmsTxt({ slotCount, artistCount, dataVersion }) {
 ## Attribution
 
 When citing schedule information from this site, describe it as:
-"Unofficial Waking Life 2026 timetable at ${SITE_URL.replace("https://", "")}"
+"Unofficial Dekmantel Festival 2026 timetable at ${SITE_URL.replace("https://", "")}"
 
 ## Disclaimer
 
-Schedules can change. Always verify critical information with official Waking Life channels at ${OFFICIAL_SITE}
+Schedules can change. Always verify critical information with official Dekmantel channels at ${OFFICIAL_SITE}
 `
 }
 
@@ -196,32 +209,31 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
     "@id": eventId,
-    name: "Waking Life 2026",
-    startDate: "2026-06-16",
-    endDate: "2026-06-22",
+    name: "Dekmantel Festival 2026",
+    startDate: "2026-07-31",
+    endDate: "2026-08-02",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     url: OFFICIAL_SITE,
     description:
-      "Waking Life is a music and arts festival at Quinta da Malada near Crato, Portugal.",
+      "Dekmantel Festival is an electronic music festival in the Amsterdamse Bos, Amsterdam.",
     location: {
       "@type": "Place",
-      name: "Quinta da Malada, Crato",
+      name: festivalSeo.locationName,
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 39.284,
-        longitude: -7.653,
+        latitude: festivalSeo.geoLatitude,
+        longitude: festivalSeo.geoLongitude,
       },
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Crato",
-        addressRegion: "Alentejo",
-        addressCountry: "PT",
+        addressLocality: festivalSeo.locationLocality,
+        addressCountry: festivalSeo.locationCountry,
       },
     },
     organizer: {
       "@type": "Organization",
-      name: "Waking Life",
+      name: "Dekmantel",
       url: OFFICIAL_SITE,
     },
     sameAs: [OFFICIAL_SITE, OFFICIAL_INSTAGRAM],
@@ -240,28 +252,45 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": siteId,
-      name: "Waking Life 2026 Timetable (Unofficial)",
+      name: "Dekmantel Festival 2026 Timetable (Unofficial)",
       url: SITE_URL,
       description:
-        "Unofficial fan-made festival timetable and lineup companion for Waking Life 2026.",
+        "Unofficial fan-made festival timetable and lineup companion for Dekmantel Festival 2026.",
       inLanguage: "en",
       publisher: {
         "@type": "Organization",
-        name: "Unofficial Waking Life Timetable",
+        name: "Unofficial Dekmantel Timetable",
         url: SITE_URL,
       },
+      about: { "@id": eventId },
+      hasPart: [
+        { "@id": appId },
+        { "@id": lineupId },
+        {
+          "@type": "CreativeWork",
+          name: "Machine-readable timetable summary",
+          url: `${SITE_URL}/lineup-summary.md`,
+          encodingFormat: "text/markdown",
+        },
+        {
+          "@type": "CreativeWork",
+          name: "Structured data bundle",
+          url: `${SITE_URL}/geo-structured-data.json`,
+          encodingFormat: "application/ld+json",
+        },
+      ],
     },
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "@id": appId,
-      name: "Waking Life 2026 Timetable",
+      name: "Dekmantel Festival 2026 Timetable",
       url: SITE_URL,
       applicationCategory: "LifestyleApplication",
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript for interactive timetable UI",
       description:
-        "Unofficial fan-made festival timetable and lineup for Waking Life 2026. Works offline as a PWA.",
+        "Unofficial fan-made festival timetable and lineup for Dekmantel Festival 2026. Works offline as a PWA.",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -274,7 +303,7 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "@id": lineupId,
-      name: "Waking Life 2026 lineup (unofficial timetable)",
+      name: "Dekmantel Festival 2026 lineup (unofficial timetable)",
       numberOfItems: uniqueArtists.length,
       itemListElement: uniqueArtists.map((name, index) => ({
         "@type": "ListItem",
@@ -288,39 +317,39 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Is wakinglife.netlify.app the official Waking Life website?",
+          name: `Is ${SITE_URL.replace("https://", "")} the official Dekmantel website?`,
           acceptedAnswer: {
             "@type": "Answer",
-            text: `No. ${SITE_URL} is an unofficial fan-made timetable companion and is not affiliated with Waking Life organizers. The official site is ${OFFICIAL_SITE}`,
+            text: `No. ${SITE_URL} is an unofficial fan-made timetable companion and is not affiliated with Dekmantel organizers. The official site is ${OFFICIAL_SITE}`,
           },
         },
         {
           "@type": "Question",
-          name: "When is Waking Life 2026?",
+          name: "When is Dekmantel Festival 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: `Waking Life 2026 runs ${DATE_RANGE} in Crato, Portugal.`,
+            text: `Dekmantel Festival 2026 runs ${DATE_RANGE} in the Amsterdamse Bos, Amsterdam.`,
           },
         },
         {
           "@type": "Question",
-          name: "Where is Waking Life held?",
+          name: "Where is Dekmantel Festival held?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Waking Life takes place at Quinta da Malada / Barragem das Nascentes near Crato, Alentejo, Portugal.",
+            text: "Dekmantel Festival takes place in the Amsterdamse Bos, Amsterdam, Netherlands.",
           },
         },
         {
           "@type": "Question",
-          name: "How can I get Waking Life 2026 tickets?",
+          name: "How can I get Dekmantel Festival 2026 tickets?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: `Tickets are sold through the official Waking Life raffle and ticket process at ${OFFICIAL_SITE}tickets`,
+            text: `Tickets are sold through the official Dekmantel website at ${OFFICIAL_SITE}`,
           },
         },
         {
           "@type": "Question",
-          name: "Where can I find the Waking Life 2026 timetable?",
+          name: "Where can I find the Dekmantel Festival 2026 timetable?",
           acceptedAnswer: {
             "@type": "Answer",
             text: `This unofficial companion publishes machine-readable timetable data at ${SITE_URL}/festival-data.json and a readable summary at ${SITE_URL}/lineup-summary.md`,
@@ -331,14 +360,14 @@ function buildStructuredData({ uniqueArtists, dataVersion, subEvents = null }) {
     {
       "@context": "https://schema.org",
       "@type": "Dataset",
-      name: "Waking Life 2026 unofficial timetable data",
+      name: "Dekmantel Festival 2026 unofficial timetable data",
       description:
         "Unofficial fan-compiled festival timetable slots with stage, day, and time information.",
       url: `${SITE_URL}/festival-data.json`,
       version: dataVersion,
       creator: {
         "@type": "Organization",
-        name: "Unofficial Waking Life Timetable",
+        name: "Unofficial Dekmantel Timetable",
         url: SITE_URL,
       },
       distribution: [
@@ -367,19 +396,18 @@ function buildSubEvents(timetable) {
   return timetable.map((slot) => ({
     "@type": "MusicEvent",
     name: slot.name,
-    startDate: `2026-06-${dayToIsoDate(slot.startDay)}T${slot.startTime}:00`,
-    endDate: `2026-06-${dayToIsoDate(slot.endDay || slot.startDay)}T${slot.endTime}:00`,
+    startDate: `${dayToIsoDate(slot.startDay)}T${slot.startTime}:00`,
+    endDate: `${dayToIsoDate(slot.endDay || slot.startDay)}T${slot.endTime}:00`,
     location: {
       "@type": "Place",
       name: slot.stage,
       containedInPlace: {
         "@type": "Place",
-        name: "Quinta da Malada, Crato",
+        name: "Amsterdamse Bos, Amsterdam",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Crato",
-          addressRegion: "Alentejo",
-          addressCountry: "PT",
+          addressLocality: "Amsterdam",
+          addressCountry: "NL",
         },
       },
     },
@@ -392,15 +420,11 @@ function buildSubEvents(timetable) {
 
 function dayToIsoDate(day) {
   const map = {
-    tuesday: "16",
-    wednesday: "17",
-    thursday: "18",
-    friday: "19",
-    saturday: "20",
-    sunday: "21",
-    monday: "22",
+    friday: "2026-07-31",
+    saturday: "2026-08-01",
+    sunday: "2026-08-02",
   }
-  return map[day] || "16"
+  return map[day] || "2026-07-31"
 }
 
 async function writePublicFile(name, contents) {
@@ -421,7 +445,7 @@ async function main() {
   const artistInfoJson = {
     version: festivalData.version,
     disclaimer:
-      "Unofficial fan-made artist notes for Waking Life 2026. Not affiliated with festival organizers.",
+      "Unofficial fan-made artist notes for Dekmantel Festival 2026. Not affiliated with festival organizers.",
     officialSite: OFFICIAL_SITE,
     artists: artistInfoDatabase,
   }

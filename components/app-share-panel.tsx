@@ -12,6 +12,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
+import { trackShareApp } from "@/lib/analytics"
 
 const QRCode = dynamic(() => import("react-qr-code"), { ssr: false })
 
@@ -24,8 +25,11 @@ export function AppSharePanel() {
       <Button
         variant="outline"
         size="sm"
-        onClick={() => setOpen(true)}
-        className="border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+        onClick={() => {
+          setOpen(true)
+          trackShareApp()
+        }}
+        className="border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
         aria-label="Share app with QR code"
         title="Share app"
       >

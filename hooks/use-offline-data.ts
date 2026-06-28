@@ -83,24 +83,27 @@ export function useOfflineData(): UseOfflineDataReturn {
         return
       }
 
-      // If no data in IndexedDB or IndexedDB failed, use static imports
+      // If no data in IndexedDB, version mismatch, or empty cached timetable — refresh
       if (
         !offlineData ||
-        offlineData.version !== FESTIVAL_CONFIG.dataVersion
+        offlineData.version !== FESTIVAL_CONFIG.dataVersion ||
+        offlineData.timetable.length === 0
       ) {
         try {
           const latestData = await fetchLatestFestivalData()
           const lastSync = Date.now()
+          const timetableData =
+            latestData.timetable.length > 0 ? latestData.timetable : timetable
 
           offlineData = {
-            timetable: latestData.timetable,
+            timetable: timetableData,
             favorites: offlineData?.favorites || [],
             lastSync,
             version: latestData.version
           }
 
           try {
-            await offlineStorage.saveData('timetable', latestData.timetable)
+            await offlineStorage.saveData('timetable', timetableData)
             await offlineStorage.saveData('data-version', latestData.version)
             await offlineStorage.saveData('last-sync', lastSync)
           } catch (saveError) {
@@ -126,6 +129,21 @@ export function useOfflineData(): UseOfflineDataReturn {
           } catch (saveError) {
             console.warn('Failed to save to IndexedDB:', saveError)
           }
+        }
+      }
+
+      if (offlineData.timetable.length === 0 && timetable.length > 0) {
+        offlineData = {
+          ...offlineData,
+          timetable,
+          version: FESTIVAL_CONFIG.dataVersion,
+        }
+
+        try {
+          await offlineStorage.saveData('timetable', timetable)
+          await offlineStorage.saveData('data-version', FESTIVAL_CONFIG.dataVersion)
+        } catch (saveError) {
+          console.warn('Failed to save bundled timetable to IndexedDB:', saveError)
         }
       }
 

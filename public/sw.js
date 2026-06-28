@@ -8,6 +8,8 @@ const STATIC_ASSETS = [
   '/offline',
   '/icon-192x192.png',
   '/icon-512x512.png',
+  '/apple-touch-icon.png',
+  '/og-image.png',
   '/placeholder.svg',
   '/placeholder-logo.svg',
   '/placeholder-user.jpg',

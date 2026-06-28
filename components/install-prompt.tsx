@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Download, X, Smartphone, WifiOff } from 'lucide-react'
+import { trackInstallPrompt } from '@/lib/analytics'
+import { hasSeenWelcome } from '@/lib/pwa-utils'
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -28,7 +30,9 @@ export function InstallPrompt() {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      setShowPrompt(true)
+      if (hasSeenWelcome()) {
+        setShowPrompt(true)
+      }
     }
 
     const handleAppInstalled = () => {
@@ -53,9 +57,9 @@ export function InstallPrompt() {
     const { outcome } = await deferredPrompt.userChoice
 
     if (outcome === 'accepted') {
-      console.log('User accepted the install prompt')
+      trackInstallPrompt('accepted')
     } else {
-      console.log('User dismissed the install prompt')
+      trackInstallPrompt('dismissed')
     }
 
     setDeferredPrompt(null)
@@ -63,6 +67,7 @@ export function InstallPrompt() {
   }
 
   const handleDismiss = () => {
+    trackInstallPrompt('dismissed')
     setShowPrompt(false)
     setDeferredPrompt(null)
   }

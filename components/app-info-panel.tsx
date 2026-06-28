@@ -42,7 +42,7 @@ export function AppInfoPanel() {
         variant="outline"
         size="sm"
         onClick={() => setOpen(true)}
-        className="border-black text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+        className="border-black bg-transparent text-[#222] hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
         aria-label="About this app and install instructions"
         title="About this app"
       >
@@ -52,33 +52,41 @@ export function AppInfoPanel() {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent
           side="bottom"
-          className="flex max-h-[85vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f7f3e7]"
+          className="flex max-h-[85vh] flex-col border-2 border-b-0 border-black bg-white/95 p-0 text-[#222] backdrop-blur-md dark:border-white dark:bg-[#111]/95 dark:text-[#f5f0e8]"
         >
           <SheetHeader className="border-b border-black/25 px-5 pb-4 pt-5 text-left dark:border-white/25">
-            <SheetTitle className="text-3xl font-black lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
-              your pocket compass
+            <SheetTitle className="text-3xl font-black lowercase leading-none text-[#222] dark:text-[#f5f0e8]">
+              about this timetable
             </SheetTitle>
             <SheetDescription className="sr-only">
-              About the Waking Life timetable app, install instructions, and dance floor etiquette
+              About the Dekmantel Festival timetable app, install instructions, and dance floor etiquette
             </SheetDescription>
           </SheetHeader>
 
           <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-10 pt-5">
             <div className="space-y-5">
-              <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
-                waking life is made for getting lost. follow your instinct through the lake, the
-                forest, the night — let curiosity pull you somewhere unexpected. this app is a quiet
-                thread through the chaos: star your highlights, glance at the timetable when you need
-                it, then pocket your phone and be fully there.
+              <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f5f0e8]">
+                check who&apos;s on, star your picks, and glance at set times when you need them.
+                then pocket your phone and stay with the music. this is an unofficial companion —
+                not affiliated with{" "}
+                <a
+                  href="https://dekmantelfestival.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline decoration-2 underline-offset-4"
+                >
+                  Dekmantel organizers
+                </a>
+                .
               </p>
 
               <div className="border-2 border-black p-4 dark:border-white">
                 <p className="text-sm font-black uppercase tracking-wide text-black/50 dark:text-white/50">
                   dance floor
                 </p>
-                <p className="mt-2 text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
-                  please keep phones off the dance floor. no filming, no flashlights, no screens
-                  between you and the music. check your timetable before you step in — then dance.
+                <p className="mt-2 text-base font-bold leading-7 text-[#222] dark:text-[#f5f0e8]">
+                  keep phones off the dance floor. no filming, no flashlights, no screens between
+                  you and the music. check your timetable before you step in — then dance.
                 </p>
               </div>
 
@@ -87,14 +95,15 @@ export function AppInfoPanel() {
                   add to home screen
                 </p>
                 <p className="mb-4 text-sm font-bold lowercase leading-relaxed text-black/65 dark:text-white/65">
-                  install the app for quick access and full offline use — even when signal drops
-                  among the trees.
+                  install the app for quick access and full offline use — even when signal drops in
+                  the Amsterdamse Bos.
                 </p>
                 <div className="grid gap-4">
                   <InstallSteps
                     title="iphone"
                     steps={[
                       "open this page in safari",
+                      'tap the menu (three dots) in the safari toolbar',
                       'tap the share button (square with an arrow pointing up)',
                       'scroll down and tap "add to home screen"',
                       'tap "add"',
@@ -113,22 +122,26 @@ export function AppInfoPanel() {
               </div>
 
               <div className="border-t border-black/25 pt-5 text-center dark:border-white/25">
-                <p className="mb-5 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
-                  updated for this year&apos;s edition and rebuilt with a lot of love. still
-                  imperfect, still unofficial, still no substitute for wandering around on your own.
+                <p className="text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                  updated for Dekmantel Festival 2026 ({FESTIVAL_CONFIG.officialDateRange}).
+                  unofficial, fan-made, and always subject to last-minute changes on site.
                 </p>
-                <p className="mb-3 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
-                  enjoyed using this little compass? a tiny spark keeps it alive for next year.
-                </p>
-                <a
-                  href={FESTIVAL_CONFIG.beerDonationUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 border-2 border-black px-4 py-3 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  send a spark
-                </a>
+                {FESTIVAL_CONFIG.showTipDonation && (
+                  <>
+                    <p className="mb-3 mt-5 text-sm font-bold lowercase leading-relaxed text-black/75 dark:text-white/75">
+                      useful app? a small tip helps keep it running for next year.
+                    </p>
+                    <a
+                      href={FESTIVAL_CONFIG.beerDonationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 border-2 border-black px-4 py-3 text-sm font-black lowercase text-[#222] transition-colors hover:bg-black hover:text-white dark:border-white dark:text-[#f5f0e8] dark:hover:bg-white dark:hover:text-black"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      send a tip
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>
