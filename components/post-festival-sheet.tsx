@@ -58,7 +58,7 @@ export function PostFestivalSheet({ timetable = staticTimetable }: PostFestivalS
             <div className="space-y-5">
               <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
                 Thanks for using this timetable. Discover future festival timetables and new editions
-                on One More Set.
+                on onemoreset.app.
               </p>
 
               <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
