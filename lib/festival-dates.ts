@@ -19,6 +19,18 @@ export function isFestivalOver(
   return now.getTime() >= festivalEnd.getTime()
 }
 
+export function isFestivalArchive(
+  now: Date = new Date(),
+  timetable: Artist[] = [],
+): boolean {
+  if (isPostFestivalPreview()) return false
+
+  const festivalEnd = getLastPerformanceEndDateTime(timetable)
+  if (!festivalEnd) return false
+
+  return now.getTime() >= festivalEnd.getTime() + 14 * 24 * 60 * 60 * 1000
+}
+
 export function isBeforeFestivalStart(now: Date = new Date()): boolean {
   return now.getTime() < new Date(FESTIVAL_CONFIG.officialStartDateTime).getTime()
 }

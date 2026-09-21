@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sheet"
 import { timetable as staticTimetable, type Artist } from "@/data/timetable"
 import { FESTIVAL_CONFIG } from "@/lib/festival-config"
-import { isFestivalOver } from "@/lib/festival-dates"
+import { isFestivalArchive, isFestivalOver } from "@/lib/festival-dates"
 
 interface PostFestivalSheetProps {
   timetable?: Artist[]
@@ -22,6 +22,7 @@ export function PostFestivalSheet({ timetable = staticTimetable }: PostFestivalS
   const [mounted, setMounted] = useState(false)
 
   const festivalOver = mounted && isFestivalOver(new Date(), timetable)
+  const festivalArchived = mounted && isFestivalArchive(new Date(), timetable)
 
   useEffect(() => {
     setMounted(true)
@@ -43,15 +44,45 @@ export function PostFestivalSheet({ timetable = staticTimetable }: PostFestivalS
       >
         <SheetHeader className="border-b border-black/25 px-5 pb-4 pt-5 text-left dark:border-white/25">
           <SheetTitle className="text-3xl font-black lowercase leading-none text-[#222] dark:text-[#f7f3e7]">
-            enjoyed the ride?
+            {festivalArchived ? "this festival is over" : "enjoyed the ride?"}
           </SheetTitle>
           <SheetDescription className="sr-only">
-            Waking Life 2026 has ended — thank you for using the timetable app
+            {festivalArchived
+              ? "Waking Life 2026 is over. Discover future festival timetables on One More Set."
+              : "Waking Life 2026 has ended — thank you for using the timetable app"}
           </SheetDescription>
         </SheetHeader>
 
         <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-10 pt-5">
-          <div className="space-y-5">
+          {festivalArchived ? (
+            <div className="space-y-5">
+              <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
+                Thanks for using this timetable. Discover future festival timetables and new editions
+                on One More Set.
+              </p>
+
+              <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
+                Looking for a timetable for another festival? You can submit a request on the site.
+              </p>
+
+              <div className="flex flex-col gap-3 pt-2">
+                <a
+                  href="https://onemoreset.app"
+                  className="inline-flex w-full items-center justify-center gap-2 border-2 border-black bg-black px-4 py-3 text-sm font-black lowercase text-white outline-none ring-0 shadow-none transition-colors [-webkit-tap-highlight-color:transparent] hover:bg-black/80 focus:outline-none focus:ring-0 focus:shadow-none focus-visible:outline-none focus-visible:ring-0 dark:border-white dark:bg-white dark:text-black dark:hover:bg-white/80"
+                >
+                  go to onemoreset.app
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex w-full items-center justify-center gap-2 border-2 border-black bg-transparent px-4 py-3 text-sm font-black lowercase text-[#222] outline-none ring-0 shadow-none transition-colors [-webkit-tap-highlight-color:transparent] hover:bg-black hover:text-white focus:outline-none focus:ring-0 focus:shadow-none focus-visible:outline-none focus-visible:ring-0 dark:border-white dark:text-[#f7f3e7] dark:hover:bg-white dark:hover:text-black"
+                >
+                  view this timetable
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-5">
             <p className="text-base font-bold leading-7 text-[#222] dark:text-[#f7f3e7]">
               the lake goes quiet. the forest exhales. another waking life drifts into memory.
             </p>
@@ -91,7 +122,8 @@ export function PostFestivalSheet({ timetable = staticTimetable }: PostFestivalS
                 </a>
               </div>
             </div>
-          </div>
+            </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>
